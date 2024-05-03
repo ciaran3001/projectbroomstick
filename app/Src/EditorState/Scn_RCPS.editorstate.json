@@ -185,7 +185,14 @@
           "IsLockable": false,
           "NameMapSourceSchema": "?"
         },
-        "BasePaletteColor",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "",
+          "InvariantPropertyName": "BasePaletteColor",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
         "FontColor",
         {
           "AFDDataSourceName": "",
@@ -281,7 +288,14 @@
           "IsLockable": false,
           "NameMapSourceSchema": "?"
         },
-        "BasePaletteColor",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "",
+          "InvariantPropertyName": "BasePaletteColor",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
         "FontColor",
         {
           "AFDDataSourceName": "",
