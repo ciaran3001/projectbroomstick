@@ -1,0 +1,52 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+    "CdpRevision": {
+      "BaseUrl": "/",
+      "LastChangedTimeString": "2024-04-02T20:12:43.8600000Z",
+      "RevisionNumber": 1
+    },
+    "ConnectedDataSourceInfoNameMapping": {
+      "{FilenameWithExtension}": "File name with extension",
+      "{FullPath}": "Full Path",
+      "{Identifier}": "Identifier",
+      "{IsFolder}": "IsFolder",
+      "{Link}": "Link to item",
+      "{ModerationComment}": "Comments associated with the content approval of this list item",
+      "{ModerationStatus}": "Content approval status",
+      "{Name}": "Name",
+      "{Path}": "Folder path",
+      "{Thumbnail}": "Thumbnail",
+      "{TriggerWindowEndToken}": "Trigger Window End Token",
+      "{TriggerWindowStartToken}": "Trigger Window Start Token",
+      "{VersionNumber}": "Version number",
+      "a3referencenumber": "A3 Reference Number",
+      "Author": "Created By",
+      "Author#Claims": "Created By Claims",
+      "ComplianceAssetId": "Compliance Asset Id",
+      "Created": "Created",
+      "department": "Department",
+      "Department_x0020_Lookup_x0020_Id": "Department Lookup Id",
+      "Description": "Description",
+      "Editor": "Modified By",
+      "Editor#Claims": "Modified By Claims",
+      "ID": "ID",
+      "Justification": "Justification",
+      "mesupdatestohelpresolve": "MES Updates to help resolve",
+      "Modified": "Modified",
+      "OData__ColorTag": "Color Tag",
+      "Person_x0020_Lookup_x0020_Id": "Person Lookup Id",
+      "pointofcontact": "Point of Contact",
+      "q1referencenumber": "Q1 Reference Number",
+      "reactiveproactivea3": "Reactive Proactive A3",
+      "Time_x0020_to_x0020_access_x0020": "Time to access the impact Hour",
+      "Title": "Title"
+    },
+    "DatasetName": "https://ciaransenterprisesolutions.sharepoint.com/sites/JJResourceManagement/MES",
+    "EncodeDataset": true,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "Name": "RCPS",
+    "Type": "ConnectedDataSourceInfo"
+  }
+]
