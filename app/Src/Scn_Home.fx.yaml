@@ -695,10 +695,10 @@ Scn_Home As screen:
             Height: =50
             HoverBorderColor: =RGBA(0, 0, 0, 0)
             HoverFill: =RGBA(0, 0, 0, 0)
-            Image: ='logo-site-white-header-animated-med.22180f8ca16ad33fd51a4b8f78d4120d'
+            Image: ='johnson-johnson-logo'
             PressedBorderColor: =RGBA(0, 0, 0, 0)
             PressedFill: =RGBA(0, 0, 0, 0)
             Width: =247
-            X: =116
+            X: =15
             ZIndex: =1
 
