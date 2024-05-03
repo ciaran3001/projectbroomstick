@@ -1,0 +1,59 @@
+{
+  "229e2663-6d1c-4622-baeb-cb0fd675a00d": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1685/1.0.1685.3700/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://ciaransenterprisesolutions.sharepoint.com/sites/JJResourceManagement/MES": {
+        "dataSources": {
+          "Business Unit": {
+            "tableName": "88606863-3116-4c6c-98a3-ddba5dea439f"
+          },
+          "Department": {
+            "tableName": "a3b9eb92-b81c-4ca2-9056-582afbd8188d"
+          },
+          "General": {
+            "tableName": "f37f8203-4ae4-4a79-84c9-953bdbf8f2b8"
+          },
+          "NPI": {
+            "tableName": "80087a6e-fa15-4da1-966f-4ed01c00dd8a"
+          },
+          "Person": {
+            "tableName": "0f5ba859-e43a-4d7b-86d7-359b172b519c"
+          },
+          "Project": {
+            "tableName": "61a57985-aa9e-439d-ba47-bd95f5043c84"
+          },
+          "RCPS": {
+            "tableName": "c7bdf17d-bb49-4399-a7ea-947791ce33af"
+          },
+          "Resource Allocation": {
+            "tableName": "722f3918-738c-4361-89e6-36792b09baa3"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "General",
+      "NPI",
+      "Project",
+      "RCPS",
+      "Person",
+      "Department",
+      "Business Unit",
+      "Resource Allocation"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "229e2663-6d1c-4622-baeb-cb0fd675a00d"
+  }
+}

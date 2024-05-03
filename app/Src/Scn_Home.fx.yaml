@@ -1,0 +1,676 @@
+Scn_Home As screen:
+    Fill: =RGBA(242, 242, 242, 1)
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnVisible: |+
+        =Set(enableEditButton,false);
+        Set(showResourceAllocateContainer,false);
+        Set(RequestRecordNPI, Blank());
+        Set(RequestRecordProject, Blank());
+        Set(RequestRecordGeneral, Blank());
+        Set(RequestRecordRCPS, Blank());
+        Set(Padding,15);
+        Set(varFormMode, Blank());
+        
+        // setting empty lookup variables
+        Set(selectedBusinessUnit, Blank());
+        Set(selectedPerson, Blank());
+        Set(selectedDepartment, Blank());
+        
+        ClearCollect(BUs, 'Business Unit');
+        ClearCollect(RequestTypes, 
+        {Label: "NPI", Desc:"Select this option if you need assistance with an NPI.", Image: undraw_os_upgrade_re_r0qa},
+        {Label: "Project", Desc:"Select this option if you need a resource for a JJPS, change control or other minor Projects.", Image: undraw_projections_re_ulc6},
+        {Label: "RCPS", Desc:"Select this option if you need resource(s) for an RCPS.", Image: undraw_searching_re_3ra9},
+        {Label: "General", Desc:"Select this option if you require resources for other types of tasks.", Image: undraw_my_answer_re_k4dv}
+        );
+        
+        
+        ClearCollect(NPICollection, NPI);
+        ClearCollect( NPICollection, AddColumns( NPI, RecordType, "NPI" ));
+        
+        
+        ClearCollect(ProjectCollection, Project);
+        ClearCollect(ProjectCollection,AddColumns( Project, RecordType, "Project"));
+        
+        ClearCollect(GeneralCollection, General);
+        ClearCollect(GeneralCollection,AddColumns( General, RecordType, "General"));
+        
+        ClearCollect(RCPSCollection, RCPS);
+        ClearCollect(RCPSCollection,AddColumns( RCPS, RecordType, "RCPS"));
+        
+        
+        
+        ClearCollect(Summary,NPICollection);
+        Collect(Summary,ProjectCollection);
+        Collect(Summary,GeneralCollection);
+        Collect(Summary,RCPSCollection);
+        
+        
+        
+        
+        
+        
+
+    Home_Header As Header:
+        BasePaletteColor: =RGBA(247, 30, 62, 1)
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =43
+        Logo: =jjlogowhite_svg
+        OnSelectLogo: =false
+        Title: ="MES Resource Requests"
+        UserEmail: =User().Email
+        UserImage: =User().Image
+        UserName: =User().FullName
+        Width: =Parent.Width
+        X: =0
+        Y: =0
+        ZIndex: =1
+
+    SummariesRequest_Table As Table.pcfdataset:
+        DisableChildItemsEditing: ="no"
+        DisplayMode: =DisplayMode.Edit
+        EnableColumnMoving: ="no"
+        Height: =App.Height - Home_Header.Height - New_Request_Container.Height - Padding*2
+        Items: =Summary
+        onCellValueChange: =false
+        onFilter: =false
+        onNavigate: =false
+        onRowSelect: =false
+        onSave: =false
+        OnSelect: |-
+            =Set(enableEditButton,true);
+            Set(enableResourceAllocateButton,true);
+        Width: =App.Width
+        X: =0
+        Y: =Parent.Height - Self.Height
+        ZIndex: =2
+
+        Title5 As pcfDataField.textualColumn:
+            FieldDisplayName: ="Title"
+            FieldName: ="Title"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =16
+
+        businessunit1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="businessunit"
+            FieldName: ="businessunit"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =17
+
+        department1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="department"
+            FieldName: ="department"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =3
+            ZIndex: =18
+
+        requeststatus1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="requeststatus"
+            FieldName: ="requeststatus"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =5
+            ZIndex: =20
+
+        RecordType1 As pcfDataField.textualColumn:
+            FieldDisplayName: ="RecordType"
+            FieldName: ="RecordType"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =6
+            ZIndex: =21
+
+    Request_Count_Container As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =199
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =226
+        X: |
+            =New_Request_Container.Width + Edit_Request_Container.Width  + Padding*3
+        Y: =Home_Header.Height + Padding
+        ZIndex: =3
+
+        RequestStatus_Header_Label As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =24
+            PaddingLeft: =20
+            Size: =10
+            Text: ="Request Status"
+            Width: =216
+            Y: =5
+            ZIndex: =4
+
+        TotalRequest_Count_Label As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =24
+            PaddingLeft: =20
+            Size: =20
+            Text: =CountRows(Filter(Summary,RecordType <> "RCPS"))
+            Width: =114
+            Y: =29
+            ZIndex: =5
+
+        TotalRequest_Text_Label As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =22
+            PaddingLeft: =24
+            Size: =10
+            Text: ="Total"
+            Width: =114
+            Y: =53
+            ZIndex: =7
+
+        RequestedRequest_Count_Label As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =24
+            PaddingLeft: =20
+            Size: =20
+            Text: =CountRows(Filter(Summary,requeststatus = "Requested"))
+            Width: =114
+            Y: =75
+            ZIndex: =8
+
+        RequestedRequest_Text_Label As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =22
+            PaddingLeft: =24
+            Size: =10
+            Text: ="Requested"
+            Width: =114
+            Y: =99
+            ZIndex: =9
+
+        AcceptedRequest_Count_Label As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =24
+            PaddingLeft: =20
+            Size: =20
+            Text: =CountRows(Filter(Summary,requeststatus = "Accepted"))
+            Width: =114
+            Y: =121
+            ZIndex: =10
+
+        AcceptedRequest_Text_Label As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =22
+            PaddingLeft: =24
+            Size: =10
+            Text: ="Accepted"
+            Width: =114
+            Y: =145
+            ZIndex: =11
+
+        RejectedRequest_Count_Label As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =24
+            PaddingLeft: =20
+            Size: =20
+            Text: =CountRows(Filter(Summary,requeststatus = "Rejected"))
+            Width: =114
+            X: =112
+            Y: =29
+            ZIndex: =12
+
+        RejectedRequest_Text_Label As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =22
+            PaddingLeft: =24
+            Size: =10
+            Text: ="Rejected"
+            Width: =114
+            X: =112
+            Y: =53
+            ZIndex: =13
+
+        CompletedRequest_Count_Label As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =24
+            PaddingLeft: =20
+            Size: =20
+            Text: =CountRows(Filter(Summary,requeststatus = "Completed"))
+            Width: =114
+            X: =112
+            Y: =75
+            ZIndex: =14
+
+        CompletedRequest_Text_Label As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =22
+            PaddingLeft: =24
+            Size: =10
+            Text: ="Completed"
+            Width: =114
+            X: =112
+            Y: =99
+            ZIndex: =15
+
+    Edit_Request_Container As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =199
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =280
+        X: =New_Request_Container.Width + Padding *2
+        Y: =Home_Header.Height + Padding
+        ZIndex: =5
+
+        edit_existing_request_button As Button:
+            BasePaletteColor: =
+            DisplayMode: =If(enableEditButton,DisplayMode.Edit,DisplayMode.Disabled)
+            FontColor: =
+            Height: =23
+            OnSelect: |-
+                =If(SummariesRequest_Table.Selected.RecordType="NPI",Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordNPI,LookUp(NPI,ID=RequestToModify));Navigate(Scn_NPI),
+                If(SummariesRequest_Table.Selected.RecordType="Project",Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordProject,LookUp(Project,ID=RequestToModify));Navigate(Scn_Project),
+                If(SummariesRequest_Table.Selected.RecordType="General",Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordGeneral,LookUp(General,ID=RequestToModify));Navigate(Scn_General),
+                Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordRCPS,LookUp(RCPS,ID=RequestToModify));Navigate(Scn_RCPS))));
+                Set(showResourceAllocateContainer,true);
+            Text: ="Edit Request"
+            Width: =153
+            X: =64
+            Y: =139
+            ZIndex: =1
+
+        edit_existing_request_image As image:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: =undraw_add_files_re_v09g
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            X: =91
+            Y: =13
+            ZIndex: =2
+
+        edit_existing_request_label As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =22
+            PaddingLeft: =24
+            Size: =10
+            Text: ="Start here to edit an existing request"
+            Width: =280
+            Y: =117
+            ZIndex: =3
+
+    New_Request_Container As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =199
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =280
+        X: =Padding
+        Y: =Home_Header.Height + Padding
+        ZIndex: =6
+
+        create_new_request_button As Button:
+            BasePaletteColor: =
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =23
+            OnSelect: =Set(ShowReqTypeModal, true);
+            Text: ="New Request"
+            Width: =153
+            X: =64
+            Y: =139
+            ZIndex: =1
+
+        create_new_request_image As image:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: =undraw_add_files_re_v09g
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            X: =91
+            Y: =13
+            ZIndex: =2
+
+        create_new_request_label As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =22
+            PaddingLeft: =24
+            Size: =10
+            Text: ="Start here to raise a new resource request"
+            Width: =280
+            Y: =117
+            ZIndex: =3
+
+    Greyout_1 As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =RGBA(50, 49, 48, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(161, 159, 157, 1)
+        Fill: =RGBA(54, 51, 50, 0.52)
+        FocusedBorderThickness: =4
+        Font: =Font.'Segoe UI'
+        Height: =App.Height
+        Size: =13
+        Text: =""
+        Visible: =ShowReqTypeModal
+        Width: =App.Width
+        ZIndex: =7
+
+    Cnt_SelectReqType As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(242, 242, 242, 1)
+        Height: =539
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =ShowReqTypeModal
+        Width: =1033
+        X: =Parent.Width /2 -  Self.Width /2
+        Y: =Parent.Height /2 - Self.Height /2
+        ZIndex: =8
+
+        "Gallery1 As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0'":
+            '#CopilotOverlayLabel': ="Filtered"
+            BorderColor: =RGBA(0, 51, 102, 1)
+            DelayItemLoading: =true
+            Height: =376
+            Items: =RequestTypes
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =229
+            Transition: =Transition.Pop
+            Width: |-
+                =//(Cnt_SelectReqType.Width * 91.724)/100
+                
+                Self.AllItemsCount * 229 + Self.TemplatePadding
+            X: =Parent.Width /2 - Self.Width /2 
+            Y: =100
+            ZIndex: =1
+
+            Container3 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Regular
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =360
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: |-
+                    =//(Cnt_SelectReqType.Width * 20.24)/100
+                    209
+                X: =13
+                Y: =8
+                ZIndex: =1
+
+                Container3_1 As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.Regular
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =210
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =(Cnt_SelectReqType.Width * 20.24)/100
+                    Y: =150
+                    ZIndex: =1
+
+            Image1 As image:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Height: =120
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Image: =ThisItem.Image
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                RadiusBottomLeft: =50
+                RadiusBottomRight: =50
+                RadiusTopLeft: =50
+                RadiusTopRight: =50
+                Width: =180
+                X: =31
+                Y: =25
+                ZIndex: =3
+
+            Subtitle1 As label:
+                Align: =Align.Center
+                Color: =RGBA(0, 51, 102, 1)
+                DisabledColor: =RGBA(161, 159, 157, 1)
+                Font: =Font.'Segoe UI'
+                FontWeight: =FontWeight.Semibold
+                Height: =29
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =12
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =12
+                Text: =ThisItem.Label
+                Width: =198
+                X: =17
+                Y: =160
+                ZIndex: =4
+
+            Subtitle1_1 As label:
+                Align: =Align.Center
+                Color: =RGBA(0, 51, 102, 1)
+                DisabledColor: =RGBA(161, 159, 157, 1)
+                Font: =Font.'Segoe UI'
+                Height: =93
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =12
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =10
+                Text: =ThisItem.Desc
+                VerticalAlign: =VerticalAlign.Top
+                Width: =191
+                X: =22
+                Y: =199
+                ZIndex: =5
+
+            ButtonCanvas2 As Button:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =30
+                OnSelect: |-
+                    =If(
+                        Gallery1.Selected.Label = "NPI",
+                        Navigate(
+                            Scn_NPI,
+                            ScreenTransition.Fade
+                        ),
+                        If(
+                            Gallery1.Selected.Label = "Project",
+                            Navigate(
+                                Scn_Project,
+                                ScreenTransition.Fade
+                            ),
+                            If(
+                                Gallery1.Selected.Label = "RCPS",
+                                Navigate(
+                                    Scn_RCPS,
+                                    ScreenTransition.Fade
+                                ),
+                                Navigate(
+                                    Scn_General,
+                                    ScreenTransition.Fade
+                                )
+                            )
+                        )
+                    );
+                    Set(ShowReqTypeModal,false);
+                Text: ="Select"
+                Width: =133
+                X: =49
+                Y: =307
+                ZIndex: =6
+
+        "Icon1 As icon.'3DPrinting'":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Color: =RGBA(0, 120, 212, 1)
+            DisabledBorderColor: =RGBA(245, 245, 245, 1)
+            DisabledColor: =RGBA(225, 223, 221, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =27
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(16, 110, 190, 1)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.Cancel
+            OnSelect: =Set(ShowReqTypeModal,false);
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =RGBA(16, 110, 190, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Width: =27
+            X: =Parent.Width - Self.Width - 20
+            Y: =10
+            ZIndex: =2
+
+        Label1 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(0, 51, 102, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Size: =13
+            Text: ="What type of help do you need from MES?"
+            Width: =409
+            X: =Parent.Width /2 - Self.Width /2 
+            Y: =10
+            ZIndex: =3
+

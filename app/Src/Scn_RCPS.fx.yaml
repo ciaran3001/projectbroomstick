@@ -1,0 +1,1224 @@
+Scn_RCPS As screen:
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnVisible: |-
+        =If(Not(IsBlank(RequestRecordRCPS)),
+        Set(selectedPerson, LookUp(Person,ID = RequestRecordRCPS.'Person Lookup Id'));
+        Set(selectedDepartment, LookUp(Department,ID = RequestRecordRCPS.'Department Lookup Id'));
+        );
+        
+        Set(varFormMode,Form_RCPS.Mode);
+        
+        If(Not(IsBlank(RequestRecordRCPS)),
+        ClearCollect(ResourceAllocationsForThiReq,Filter('Resource Allocation','RCPS Lookup Id' = Text(RequestRecordRCPS.ID)));
+        ClearCollect(ResourceAllocationsForThiReqNonViz,ResourceAllocationsForThiReq))
+
+    Header_RCPS As Header:
+        BasePaletteColor: =RGBA(247, 30, 62, 1)
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =43
+        Logo: =jjlogowhite_svg
+        OnSelectLogo: =false
+        Title: ="MES Resource Requests"
+        UserEmail: =User().Email
+        UserImage: =User().Image
+        UserName: =User().FullName
+        Width: =Parent.Width
+        X: =0
+        Y: =0
+        ZIndex: =1
+
+    RCPS_Container As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =App.Height-Header_Project.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =App.Width
+        Y: =Header_RCPS.Height
+        ZIndex: =2
+
+        RCPS_HeaderFormType_Label As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(214, 221, 224, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.Arial
+            Text: =If(Form_RCPS.Mode = FormMode.New,"New RCPS Request", "Edit RCPS Request - " & DataCardValue22.Value)
+            Width: =App.Width
+            Y: =20
+            ZIndex: =1
+
+        Form_RCPS As form.PowerApps_CoreControls_Form:
+            BorderColor: =RGBA(245, 245, 245, 1)
+            DataSource: =RCPS
+            DefaultMode: =If(IsBlank(RequestRecordRCPS),FormMode.New,FormMode.Edit)
+            Height: =App.Height-Header_RCPS.Height-Container_RCPSFooter.Height-RCPS_HeaderFormType_Label.Height - RCPS_ResourceAllocation_Container.Height
+            Item: =RequestRecordRCPS
+            LayoutMinHeight: =250
+            LayoutMinWidth: =400
+            OnSuccess: |-
+                =Navigate(Scn_Home,ScreenTransition.Fade);
+                If(
+                    varFormMode = FormMode.New,
+                    Notify(
+                        "Record Created Successfully",
+                        NotificationType.Success
+                    );
+                    ForAll(
+                        BUs As Unit,
+                            Patch(
+                                'Resource Allocation',
+                                Defaults('Resource Allocation'),
+                                {
+                                    Title: "RA for " & Unit.Title ,
+                                    'RCPS Lookup Id':  Self.LastSubmit.ID,
+                                    'Business Unit Lookup Id': Unit.ID,
+                                    'Business Unit': Unit.Title,
+                                     RCPS:  Self.LastSubmit.Title,
+                                     'Request Type':"RCPS"
+                                }
+                            )
+                    ),
+                    Notify(
+                        "Record Updated Successfully",
+                        NotificationType.Success
+                    )
+                )
+            UseFluentV9Cards: =true
+            Width: =App.Width
+            ZIndex: =2
+
+            "'Department Lookup Id_DataCard1' As typedDataCard.fluentV9NumberEditCard":
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Department_x0020_Lookup_x0020_Id"
+                Default: =ThisItem.'Department Lookup Id'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@RCPS],DataSourceInfo.DisplayName,'Department Lookup Id')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =Value(DataCardValue1.Value)
+                Visible: =false
+                Width: =455
+                X: =0
+                Y: =3
+                ZIndex: =1
+
+                DataCardKey1 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue1 As 'Text input'":
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =LookUp(Department,Title = RCPS_Department_Dropdown.Selected.Title).ID
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey1.Y + DataCardKey1.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage1 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue1.Y + DataCardValue1.Height
+                    ZIndex: =3
+
+                StarVisible1 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey1.Y
+                    ZIndex: =4
+
+            "'Person Lookup Id_DataCard1' As typedDataCard.fluentV9NumberEditCard":
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Person_x0020_Lookup_x0020_Id"
+                Default: =ThisItem.'Person Lookup Id'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@RCPS],DataSourceInfo.DisplayName,'Person Lookup Id')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =Value(DataCardValue19.Value)
+                Visible: =false
+                Width: =455
+                X: =1
+                Y: =3
+                ZIndex: =1
+
+                DataCardKey20 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue19 As 'Text input'":
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =LookUp(Person, Title = RCPS_PointOfContact_Dropdown.Selected.Title).ID
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey20.Y + DataCardKey20.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage20 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue19.Y + DataCardValue19.Height
+                    ZIndex: =3
+
+                StarVisible20 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey20.Y
+                    ZIndex: =4
+
+            Title_DataCard2 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Title"
+                Default: =ThisItem.Title
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@RCPS],DataSourceInfo.DisplayName,Title)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, Title)
+                Required: =true
+                Update: =DataCardValue22.Value
+                Visible: =false
+                Width: =455
+                X: =2
+                Y: =3
+                ZIndex: =1
+
+                DataCardKey23 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue22 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =RCPS_PointOfContact_Dropdown.Selected.Title
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey23.Y + DataCardKey23.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage23 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue22.Y + DataCardValue22.Height
+                    ZIndex: =3
+
+                StarVisible23 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey23.Y
+                    ZIndex: =4
+
+            "'Point of Contact_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="pointofcontact"
+                Default: =ThisItem.'Point of Contact'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@RCPS],DataSourceInfo.DisplayName,'Point of Contact')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'Point of Contact')
+                Required: =false
+                Update: =DataCardValue39.Value
+                Width: =455
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+                DataCardKey42 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                RCPS_PointOfContact_Dropdown As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =If(Not(IsBlank(RequestRecordRCPS)),selectedPerson)
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    Items: =Person
+                    OnChange: =
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey42.Y + DataCardKey42.Height + 4
+                    ZIndex: =2
+
+                    Title1 As pcfDataField.textualColumn:
+                        FieldDisplayName: ="Title"
+                        FieldName: ="Title"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =6
+
+                    "'First Name1' As pcfDataField.textualColumn":
+                        FieldDisplayName: ="First Name"
+                        FieldName: ="firstname"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =2
+                        ZIndex: =7
+
+                    "'Last Name1' As pcfDataField.textualColumn":
+                        FieldDisplayName: ="Last Name"
+                        FieldName: ="lastname"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =3
+                        ZIndex: =8
+
+                    "'Full Name1' As pcfDataField.textualColumn":
+                        FieldDisplayName: ="Full Name"
+                        FieldName: ="fullname"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =4
+                        ZIndex: =9
+
+                    "'Person ID1' As pcfDataField.textualColumn":
+                        FieldDisplayName: ="Person ID"
+                        FieldName: ="Person_x0020_ID"
+                        FieldType: ="n"
+                        FieldVariantName: ="textualColumn"
+                        Order: =5
+                        ZIndex: =10
+
+                "DataCardValue39 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =RCPS_PointOfContact_Dropdown.Selected.Title
+                    Visible: =false
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey42.Y + DataCardKey42.Height + 4
+                    ZIndex: =3
+
+                ErrorMessage42 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue39.Y + DataCardValue39.Height
+                    ZIndex: =4
+
+                StarVisible42 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey42.Y
+                    ZIndex: =5
+
+            Department_DataCard3 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="department"
+                Default: =ThisItem.Department
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@RCPS],DataSourceInfo.DisplayName,Department)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, Department)
+                Required: =false
+                Update: =DataCardValue47.Value
+                Width: =455
+                X: =1
+                Y: =0
+                ZIndex: =2
+
+                DataCardKey50 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Visible: =true
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                RCPS_Department_Dropdown As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =If(Not(IsBlank(RequestRecordRCPS)),selectedDepartment)
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    Items: =Department
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey42.Y + DataCardKey42.Height + 4
+                    ZIndex: =2
+
+                    Title1_1 As pcfDataField.textualColumn:
+                        FieldDisplayName: ="Title"
+                        FieldName: ="Title"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =6
+
+                    "'First Name1_1' As pcfDataField.textualColumn":
+                        FieldDisplayName: ="First Name"
+                        FieldName: ="firstname"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =2
+                        ZIndex: =7
+
+                    "'Last Name1_1' As pcfDataField.textualColumn":
+                        FieldDisplayName: ="Last Name"
+                        FieldName: ="lastname"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =3
+                        ZIndex: =8
+
+                    "'Full Name1_1' As pcfDataField.textualColumn":
+                        FieldDisplayName: ="Full Name"
+                        FieldName: ="fullname"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =4
+                        ZIndex: =9
+
+                    "'Person ID1_1' As pcfDataField.textualColumn":
+                        FieldDisplayName: ="Person ID"
+                        FieldName: ="Person_x0020_ID"
+                        FieldType: ="n"
+                        FieldVariantName: ="textualColumn"
+                        Order: =5
+                        ZIndex: =10
+
+                "DataCardValue47 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =RCPS_Department_Dropdown.Selected.Title
+                    Visible: =false
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey50.Y + DataCardKey50.Height + 4
+                    ZIndex: =3
+
+                ErrorMessage50 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue47.Y + DataCardValue47.Height
+                    ZIndex: =4
+
+                StarVisible50 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey50.Y
+                    ZIndex: =5
+
+            Description_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Description"
+                Default: =ThisItem.Description
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@RCPS],DataSourceInfo.DisplayName,Description)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, Description)
+                Required: =false
+                Update: =DataCardValue40.Value
+                Width: =455
+                X: =2
+                Y: =0
+                ZIndex: =2
+
+                DataCardKey43 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue40 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey43.Y + DataCardKey43.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage43 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue40.Y + DataCardValue40.Height
+                    ZIndex: =3
+
+                StarVisible43 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey43.Y
+                    ZIndex: =4
+
+            "'A3 Reference Number_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="a3referencenumber"
+                Default: =ThisItem.'A3 Reference Number'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@RCPS],DataSourceInfo.DisplayName,'A3 Reference Number')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'A3 Reference Number')
+                Required: =false
+                Update: =DataCardValue41.Value
+                Width: =455
+                X: =0
+                Y: =1
+                ZIndex: =2
+
+                DataCardKey44 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue41 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey44.Y + DataCardKey44.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage44 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue41.Y + DataCardValue41.Height
+                    ZIndex: =3
+
+                StarVisible44 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey44.Y
+                    ZIndex: =4
+
+            "'Q1 Reference Number_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="q1referencenumber"
+                Default: =ThisItem.'Q1 Reference Number'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@RCPS],DataSourceInfo.DisplayName,'Q1 Reference Number')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'Q1 Reference Number')
+                Required: =false
+                Update: =DataCardValue42.Value
+                Width: =455
+                X: =1
+                Y: =1
+                ZIndex: =2
+
+                DataCardKey45 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue42 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey45.Y + DataCardKey45.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage45 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue42.Y + DataCardValue42.Height
+                    ZIndex: =3
+
+                StarVisible45 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey45.Y
+                    ZIndex: =4
+
+            Justification_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Justification"
+                Default: =ThisItem.Justification
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@RCPS],DataSourceInfo.DisplayName,Justification)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, Justification)
+                Required: =false
+                Update: =DataCardValue45.Value
+                Visible: =If(RCPS_MESUpdates_Toggle.Checked,false,true)
+                Width: =455
+                X: =2
+                Y: =1
+                ZIndex: =2
+
+                DataCardKey48 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue45 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey48.Y + DataCardKey48.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage48 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue45.Y + DataCardValue45.Height
+                    ZIndex: =3
+
+                StarVisible48 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey48.Y
+                    ZIndex: =4
+
+            "'Time to access the impact Hour_DataCard1' As typedDataCard.fluentV9NumberEditCard":
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Time_x0020_to_x0020_access_x0020"
+                Default: =ThisItem.'Time to access the impact Hour'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@RCPS],DataSourceInfo.DisplayName,'Time to access the impact Hour')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =Value(DataCardValue46.Value)
+                Visible: =If(RCPS_MESUpdates_Toggle.Checked,true,false)
+                Width: =455
+                X: =2
+                Y: =1
+                ZIndex: =2
+
+                DataCardKey49 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue46 As 'Text input'":
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey49.Y + DataCardKey49.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage49 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue46.Y + DataCardValue46.Height
+                    ZIndex: =3
+
+                StarVisible49 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey49.Y
+                    ZIndex: =4
+
+            "'Reactive Proactive A3_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="reactiveproactivea3"
+                Default: =ThisItem.'Reactive Proactive A3'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@RCPS],DataSourceInfo.DisplayName,'Reactive Proactive A3')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'Reactive Proactive A3')
+                Required: =false
+                Update: =DataCardValue43.Value
+                Width: =455
+                X: =0
+                Y: |
+                    =2
+                ZIndex: =2
+
+                DataCardKey46 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                RCPS_ReactiveProactive_Toggle As Toggle:
+                    BasePaletteColor: =RGBA(189, 178, 176, 1)
+                    Checked: |-
+                        =If(Not(IsBlank(RequestRecordRCPS)),
+                        If(RequestRecordRCPS.'Reactive Proactive A3' = "Proactive",true,false),
+                        false)
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    Label: =If(RCPS_ReactiveProactive_Toggle.Checked = false,"Reactive", "Proactive")
+                    OnCheck: =false
+                    OnUncheck: =false
+                    Width: =Parent.Width-48
+                    X: =24
+                    Y: =DataCardKey46.Y + DataCardKey46.Height + 4
+                    ZIndex: =2
+
+                "DataCardValue43 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =If(RCPS_ReactiveProactive_Toggle.Checked = false,"Reactive", "Proactive")
+                    Visible: =false
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey46.Y + DataCardKey46.Height + 4
+                    ZIndex: =3
+
+                ErrorMessage46 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue43.Y + DataCardValue43.Height
+                    ZIndex: =4
+
+                StarVisible46 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey46.Y
+                    ZIndex: =5
+
+            "'MES Updates to help resolve_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="mesupdatestohelpresolve"
+                Default: =ThisItem.'MES Updates to help resolve'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@RCPS],DataSourceInfo.DisplayName,'MES Updates to help resolve')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'MES Updates to help resolve')
+                Required: =false
+                Update: =DataCardValue44.Value
+                Visible: =true
+                Width: =455
+                X: =1
+                Y: =2
+                ZIndex: =2
+
+                DataCardKey47 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                RCPS_MESUpdates_Toggle As Toggle:
+                    BasePaletteColor: =RGBA(189, 178, 176, 1)
+                    Checked: |-
+                        =If(Not(IsBlank(RequestRecordRCPS)),
+                        If(RequestRecordRCPS.'MES Updates to help resolve' = "Yes",true,false),
+                        false)
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    Label: =If(RCPS_MESUpdates_Toggle.Checked = false,"No", "Yes")
+                    OnCheck: =false
+                    OnUncheck: =false
+                    Width: =Parent.Width-48
+                    X: =24
+                    Y: =DataCardKey46.Y + DataCardKey46.Height + 4
+                    ZIndex: =2
+
+                "DataCardValue44 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =If(RCPS_MESUpdates_Toggle.Checked = false,"No", "Yes")
+                    Visible: =false
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey47.Y + DataCardKey47.Height + 4
+                    ZIndex: =3
+
+                ErrorMessage47 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue44.Y + DataCardValue44.Height
+                    ZIndex: =4
+
+                StarVisible47 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey47.Y
+                    ZIndex: =5
+
+        RCPS_ResourceAllocation_Container As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            PaddingLeft: =20
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =If(showResourceAllocateContainer,true,false)
+            ZIndex: =3
+
+            RCPS_ResourceAllocation_Gallery As gallery.galleryHorizontal:
+                BorderColor: =RGBA(245, 245, 245, 1)
+                DelayItemLoading: =true
+                Height: =255
+                Items: =ResourceAllocationsForThiReq
+                LoadingSpinner: =LoadingSpinner.Data
+                ShowScrollbar: =false
+                TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(320, Self.Width - 60), Min(320, Self.Height - 60))
+                Width: =616
+                X: =135
+                Y: =65
+                ZIndex: =1
+
+                RCPS_ResourceAllocation_Title_Label As label:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =RGBA(50, 49, 48, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(161, 159, 157, 1)
+                    FocusedBorderThickness: =4
+                    Font: =Font.'Segoe UI'
+                    OnSelect: =Select(Parent)
+                    Size: =13
+                    Text: =ThisItem.Title
+                    Width: =233
+                    X: =40
+                    Y: =40
+                    ZIndex: =1
+
+                "RCPS_ResourceAllocation_Effort_TextInput As 'Text input'":
+                    BasePaletteColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    OnChange: |-
+                        =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Hours: Value(Self.Value)});
+                    Placeholder: =""
+                    Type: ="Number"
+                    Value: =ThisItem.Hours
+                    Width: =320
+                    X: =0
+                    Y: =100
+                    ZIndex: =2
+
+                RCPS_ResourceAllocation_Group_Toggle As Toggle:
+                    BasePaletteColor: =
+                    Checked: =If(ThisItem.Group = "Yes",true,false)
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =35
+                    Label: =If(RCPS_ResourceAllocation_Group_Toggle.Checked = true,"Yes","No")
+                    OnCheck: |-
+                        =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Group: "Yes"});
+                    OnSelect: =Select(Parent)
+                    OnUncheck: |-
+                        =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Group: "No"});
+                    Width: =110
+                    X: =101
+                    Y: =159
+                    ZIndex: =3
+
+            RCPS_Galery_Group_Label As label:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =RGBA(50, 49, 48, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(161, 159, 157, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                Height: =38
+                Size: =13
+                Text: ="Effort"
+                Width: =135
+                X: =Parent.PaddingLeft
+                Y: =170
+                ZIndex: =2
+
+            RCPS_Gallery_Effort_Label As label:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =RGBA(50, 49, 48, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(161, 159, 157, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                Height: =38
+                Size: =13
+                Text: ="Group"
+                Width: =135
+                X: =Parent.PaddingLeft
+                Y: =221
+                ZIndex: =3
+
+            RCPS_ResourceAllocation_ContainerHeader_Label As label:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =RGBA(50, 49, 48, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(161, 159, 157, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                Height: =38
+                Size: =13
+                Text: ="Departmental Impact"
+                Width: =188
+                X: =20
+                Y: =27
+                ZIndex: =4
+
+        Container_RCPSFooter As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =Header_RCPS.Height
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =App.Width
+            ZIndex: =4
+
+            ButtonCanvas_DepartmnentBack_2 As Button:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                OnSelect: |
+                    =ResetForm(Form_RCPS);
+                    Navigate(Scn_Home,ScreenTransition.Fade);
+                Text: ="Back"
+                Width: =96
+                X: =39
+                Y: =9
+                ZIndex: =1
+
+            ButtonCanvas_DepartmentSubmit_2 As Button:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                OnSelect: |
+                    =SubmitForm(Form_RCPS);
+                    Patch('Resource Allocation',ResourceAllocationsForThiReqNonViz);
+                    Clear(ResourceAllocationsForThiReq);
+                    Clear(ResourceAllocationsForThiReqNonViz);
+                Text: ="Submit"
+                Width: =96
+                X: =Parent.Width - Self.Width - 40
+                Y: =9
+                ZIndex: =2
+
