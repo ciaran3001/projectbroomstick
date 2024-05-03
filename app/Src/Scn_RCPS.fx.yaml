@@ -69,7 +69,7 @@ Scn_RCPS As screen:
             Fill: =RGBA(255, 255, 255, 1)
             Height: =App.Height-Header_RCPS.Height-Container_RCPSFooter.Height-RCPS_HeaderFormType_Label.Height - RCPS_ResourceAllocation_Container.Height
             Item: =RequestRecordRCPS
-            LayoutMinHeight: =320
+            LayoutMinHeight: =230
             LayoutMinWidth: =400
             OnSuccess: |-
                 =Navigate(Scn_Home,ScreenTransition.Fade);
