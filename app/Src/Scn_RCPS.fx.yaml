@@ -32,15 +32,17 @@ Scn_RCPS As screen:
 
     RCPS_Container As groupContainer.verticalAutoLayoutContainer:
         DropShadow: =DropShadow.Light
+        Fill: =RGBA(255, 255, 255, 1)
         Height: =App.Height-Header_Project.Height
         LayoutDirection: =LayoutDirection.Vertical
         LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
         RadiusBottomLeft: =4
         RadiusBottomRight: =4
         RadiusTopLeft: =4
         RadiusTopRight: =4
         Width: =App.Width
-        Y: =NPI_Header_Container_3.Height
+        Y: =NPI_Header_Container_3.Height + 20
         ZIndex: =2
 
         RCPS_HeaderFormType_Label As label:
@@ -48,7 +50,7 @@ Scn_RCPS As screen:
             BorderColor: =RGBA(0, 0, 0, 0)
             BorderStyle: =BorderStyle.None
             BorderThickness: =2
-            Color: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(0, 51, 102, 1)
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(161, 159, 157, 1)
             DisplayMode: =DisplayMode.View
@@ -60,13 +62,14 @@ Scn_RCPS As screen:
             ZIndex: =1
 
         Form_RCPS As form.PowerApps_CoreControls_Form:
+            AlignInContainer: =AlignInContainer.Center
             BorderColor: =RGBA(245, 245, 245, 1)
             DataSource: =RCPS
             DefaultMode: =If(IsBlank(RequestRecordRCPS),FormMode.New,FormMode.Edit)
             Fill: =RGBA(255, 255, 255, 1)
             Height: =App.Height-Header_RCPS.Height-Container_RCPSFooter.Height-RCPS_HeaderFormType_Label.Height - RCPS_ResourceAllocation_Container.Height
             Item: =RequestRecordRCPS
-            LayoutMinHeight: =250
+            LayoutMinHeight: =320
             LayoutMinWidth: =400
             OnSuccess: |-
                 =Navigate(Scn_Home,ScreenTransition.Fade);
@@ -97,7 +100,9 @@ Scn_RCPS As screen:
                     )
                 )
             UseFluentV9Cards: =true
-            Width: =App.Width
+            Width: |-
+                =//App.Width
+                1200
             ZIndex: =2
 
             "'Department Lookup Id_DataCard1' As typedDataCard.fluentV9NumberEditCard":
@@ -112,7 +117,7 @@ Scn_RCPS As screen:
                 Required: =false
                 Update: =Value(DataCardValue1.Value)
                 Visible: =false
-                Width: =455
+                Width: =400
                 X: =0
                 Y: =3
                 ZIndex: =1
@@ -178,7 +183,7 @@ Scn_RCPS As screen:
                 Required: =false
                 Update: =Value(DataCardValue19.Value)
                 Visible: =false
-                Width: =455
+                Width: =400
                 X: =1
                 Y: =3
                 ZIndex: =1
@@ -245,7 +250,7 @@ Scn_RCPS As screen:
                 Required: =true
                 Update: =DataCardValue22.Value
                 Visible: =false
-                Width: =455
+                Width: =400
                 X: =2
                 Y: =3
                 ZIndex: =1
@@ -313,14 +318,14 @@ Scn_RCPS As screen:
                 MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'Point of Contact')
                 Required: =false
                 Update: =DataCardValue39.Value
-                Width: =455
+                Width: =400
                 X: =0
                 Y: =0
                 ZIndex: =2
 
                 DataCardKey42 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -433,14 +438,14 @@ Scn_RCPS As screen:
                 MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, Department)
                 Required: =false
                 Update: =DataCardValue47.Value
-                Width: =455
+                Width: =400
                 X: =1
                 Y: =0
                 ZIndex: =2
 
                 DataCardKey50 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Visible: =true
@@ -553,14 +558,14 @@ Scn_RCPS As screen:
                 MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, Description)
                 Required: =false
                 Update: =DataCardValue40.Value
-                Width: =455
+                Width: =400
                 X: =2
                 Y: =0
                 ZIndex: =2
 
                 DataCardKey43 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -621,7 +626,7 @@ Scn_RCPS As screen:
                 MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'A3 Reference Number')
                 Required: =false
                 Update: =DataCardValue41.Value
-                Width: =455
+                Width: =400
                 X: =0
                 Y: =1
                 ZIndex: =2
@@ -689,7 +694,7 @@ Scn_RCPS As screen:
                 MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'Q1 Reference Number')
                 Required: =false
                 Update: =DataCardValue42.Value
-                Width: =455
+                Width: =400
                 X: =1
                 Y: =1
                 ZIndex: =2
@@ -758,7 +763,7 @@ Scn_RCPS As screen:
                 Required: =false
                 Update: =DataCardValue45.Value
                 Visible: =If(RCPS_MESUpdates_Toggle.Checked,false,true)
-                Width: =455
+                Width: =400
                 X: =2
                 Y: =1
                 ZIndex: =2
@@ -826,9 +831,9 @@ Scn_RCPS As screen:
                 Required: =false
                 Update: =Value(DataCardValue46.Value)
                 Visible: =If(RCPS_MESUpdates_Toggle.Checked,true,false)
-                Width: =455
-                X: =2
-                Y: =1
+                Width: =400
+                X: =0
+                Y: =2
                 ZIndex: =2
 
                 DataCardKey49 As Text:
@@ -892,10 +897,9 @@ Scn_RCPS As screen:
                 MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'Reactive Proactive A3')
                 Required: =false
                 Update: =DataCardValue43.Value
-                Width: =455
-                X: =0
-                Y: |
-                    =2
+                Width: =400
+                X: =1
+                Y: =2
                 ZIndex: =2
 
                 DataCardKey46 As Text:
@@ -980,8 +984,8 @@ Scn_RCPS As screen:
                 Required: =false
                 Update: =DataCardValue44.Value
                 Visible: =true
-                Width: =455
-                X: =1
+                Width: =400
+                X: =2
                 Y: =2
                 ZIndex: =2
 
@@ -1055,7 +1059,10 @@ Scn_RCPS As screen:
                     ZIndex: =5
 
         RCPS_ResourceAllocation_Container As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
             DropShadow: =DropShadow.Light
+            FillPortions: =0
+            Height: =400
             LayoutMinHeight: =100
             LayoutMinWidth: =250
             PaddingLeft: =20
@@ -1064,6 +1071,7 @@ Scn_RCPS As screen:
             RadiusTopLeft: =4
             RadiusTopRight: =4
             Visible: =If(showResourceAllocateContainer,true,false)
+            Width: =Parent.Width
             ZIndex: =3
 
             RCPS_ResourceAllocation_Gallery As gallery.galleryHorizontal:
@@ -1073,40 +1081,43 @@ Scn_RCPS As screen:
                 Items: =ResourceAllocationsForThiReq
                 LoadingSpinner: =LoadingSpinner.Data
                 ShowScrollbar: =false
-                TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(320, Self.Width - 60), Min(320, Self.Height - 60))
+                TemplatePadding: =0
+                TemplateSize: =100
                 Width: =616
-                X: =135
+                X: =141
                 Y: =65
                 ZIndex: =1
 
                 RCPS_ResourceAllocation_Title_Label As label:
+                    Align: =Align.Center
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(255, 255, 255, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
+                    Fill: =RGBA(0, 51, 102, 1)
                     FocusedBorderThickness: =4
                     Font: =Font.'Segoe UI'
+                    Height: =76
                     OnSelect: =Select(Parent)
-                    Size: =13
+                    Size: =11
                     Text: =ThisItem.Title
-                    Width: =233
-                    X: =40
-                    Y: =40
+                    Width: =100
+                    Y: =24
                     ZIndex: =1
 
                 "RCPS_ResourceAllocation_Effort_TextInput As 'Text input'":
                     BasePaletteColor: =
                     DisplayMode: =DisplayMode.Edit
                     FontColor: =
-                    Height: =32
+                    Height: =38
                     OnChange: |-
                         =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Hours: Value(Self.Value)});
                     Placeholder: =""
                     Type: ="Number"
                     Value: =ThisItem.Hours
-                    Width: =320
+                    Width: =100
                     X: =0
                     Y: =100
                     ZIndex: =2
@@ -1116,50 +1127,54 @@ Scn_RCPS As screen:
                     Checked: =If(ThisItem.Group = "Yes",true,false)
                     DisplayMode: =DisplayMode.Edit
                     FontColor: =
-                    Height: =35
+                    Height: =30
                     Label: =If(RCPS_ResourceAllocation_Group_Toggle.Checked = true,"Yes","No")
                     OnCheck: |-
                         =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Group: "Yes"});
                     OnSelect: =Select(Parent)
                     OnUncheck: |-
                         =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Group: "No"});
-                    Width: =110
-                    X: =101
-                    Y: =159
+                    Width: =100
+                    X: =0
+                    Y: =152
                     ZIndex: =3
 
             RCPS_Galery_Group_Label As label:
                 BorderColor: =RGBA(0, 0, 0, 0)
                 BorderStyle: =BorderStyle.None
                 BorderThickness: =2
-                Color: =RGBA(50, 49, 48, 1)
+                Color: =RGBA(255, 255, 255, 1)
                 DisabledBorderColor: =RGBA(0, 0, 0, 0)
                 DisabledColor: =RGBA(161, 159, 157, 1)
+                Fill: =RGBA(0, 51, 102, 1)
                 FocusedBorderThickness: =4
                 Font: =Font.'Segoe UI'
-                Height: =38
+                FontWeight: =FontWeight.Semibold
+                Height: =39
                 Size: =13
                 Text: ="Effort"
-                Width: =135
+                Width: =121
                 X: =Parent.PaddingLeft
-                Y: =170
+                Y: =165
                 ZIndex: =2
 
             RCPS_Gallery_Effort_Label As label:
                 BorderColor: =RGBA(0, 0, 0, 0)
                 BorderStyle: =BorderStyle.None
                 BorderThickness: =2
-                Color: =RGBA(50, 49, 48, 1)
+                Color: =RGBA(255, 255, 255, 1)
                 DisabledBorderColor: =RGBA(0, 0, 0, 0)
                 DisabledColor: =RGBA(161, 159, 157, 1)
+                Fill: =RGBA(0, 51, 102, 1)
                 FocusedBorderThickness: =4
                 Font: =Font.'Segoe UI'
-                Height: =38
+                FontWeight: =FontWeight.Semibold
+                Height: =50
                 Size: =13
                 Text: ="Group"
-                Width: =135
+                Width: =121
                 X: =Parent.PaddingLeft
-                Y: =221
+                Y: =204
                 ZIndex: =3
 
             RCPS_ResourceAllocation_ContainerHeader_Label As label:
@@ -1178,6 +1193,25 @@ Scn_RCPS As screen:
                 X: =20
                 Y: =27
                 ZIndex: =4
+
+            RCPS_Galery_Group_Label_1 As label:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(161, 159, 157, 1)
+                Fill: =RGBA(0, 51, 102, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                FontWeight: =FontWeight.Semibold
+                Height: =76
+                Size: =13
+                Text: ="BU Name"
+                Width: =121
+                X: =Parent.PaddingLeft
+                Y: =89
+                ZIndex: =5
 
         Container_RCPSFooter As groupContainer.manualLayoutContainer:
             AlignInContainer: =AlignInContainer.SetByContainer
