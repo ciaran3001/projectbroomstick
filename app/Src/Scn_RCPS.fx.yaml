@@ -1083,7 +1083,7 @@ Scn_RCPS As screen:
                 ShowScrollbar: =false
                 TemplatePadding: =0
                 TemplateSize: =100
-                Width: =616
+                Width: =1126
                 X: =141
                 Y: =65
                 ZIndex: =1
@@ -1181,11 +1181,12 @@ Scn_RCPS As screen:
                 BorderColor: =RGBA(0, 0, 0, 0)
                 BorderStyle: =BorderStyle.None
                 BorderThickness: =2
-                Color: =RGBA(50, 49, 48, 1)
+                Color: =RGBA(0, 51, 102, 1)
                 DisabledBorderColor: =RGBA(0, 0, 0, 0)
                 DisabledColor: =RGBA(161, 159, 157, 1)
                 FocusedBorderThickness: =4
                 Font: =Font.'Segoe UI'
+                FontWeight: =FontWeight.Semibold
                 Height: =38
                 Size: =13
                 Text: ="Departmental Impact"
