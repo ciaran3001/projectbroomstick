@@ -699,6 +699,6 @@ Scn_Home As screen:
             PressedBorderColor: =RGBA(0, 0, 0, 0)
             PressedFill: =RGBA(0, 0, 0, 0)
             Width: =247
-            X: =40
+            X: =116
             ZIndex: =1
 
