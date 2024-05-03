@@ -1875,6 +1875,7 @@ Scn_NPI As screen:
                     BasePaletteColor: =RGBA(189, 178, 176, 1)
                     Content: =ThisItem.Title
                     DisplayMode: =DisplayMode.Edit
+                    FontColor: =
                     Height: =60
                     Shape: ='BadgeCanvas.Shape'.Circular
                     ThemeColor: ='BadgeCanvas.ThemeColor'.Informative
@@ -1933,6 +1934,7 @@ Scn_NPI As screen:
                 BasePaletteColor: =
                 Content: ="Effort"
                 DisplayMode: =DisplayMode.Edit
+                FontColor: =
                 Height: =40
                 ThemeColor: ='BadgeCanvas.ThemeColor'.Brand
                 Width: =115
