@@ -138,7 +138,6 @@
     "Scn_NPI",
     "Scn_Project",
     "Scn_General",
-    "Scn_RCPS",
-    "Scn_ResourceAllocation"
+    "Scn_RCPS"
   ]
 }
