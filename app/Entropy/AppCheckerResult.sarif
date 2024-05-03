@@ -2984,6 +2984,36 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "App.logo-site-white-header-animated-med.22180f8ca16ad33fd51a4b8f78d4120d"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "App.logo-site-white-header-animated-med.22180f8ca16ad33fd51a4b8f78d4120d",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "logo-site-white-header-animated-med.22180f8ca16ad33fd51a4b8f78d4120d",
+                "module": "App",
+                "type": "App"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-UnusedMediaResources",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "App.logo"
                 }
               ],

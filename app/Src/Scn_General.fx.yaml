@@ -25,6 +25,7 @@ Scn_General As screen:
         UserEmail: =User().Email
         UserImage: =User().Image
         UserName: =User().FullName
+        Visible: =false
         Width: =Parent.Width
         X: =0
         Y: =0
@@ -1858,4 +1859,45 @@ Scn_General As screen:
                 X: =Parent.Width - Self.Width - 40
                 Y: =9
                 ZIndex: =2
+
+    NPI_Header_Container_2 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =50
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =App.Width
+        ZIndex: =3
+
+        Home_Header_Image_3 As image:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =50
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: ='johnson-johnson-logo'
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Width: =247
+            X: =10
+            ZIndex: =1
+
+        NPI_Header_Text_2 As Text:
+            DisplayMode: =DisplayMode.Edit
+            Font: =Font.'Segoe UI'
+            FontColor: =RGBA(235, 23, 0, 1)
+            Height: =50
+            Size: =20
+            Text: ="MES Intake"
+            Weight: ='TextCanvas.Weight'.Semibold
+            Width: =378
+            X: =294
+            Y: =0
+            ZIndex: =2
 

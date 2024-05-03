@@ -1,4 +1,5 @@
 Scn_RCPS As screen:
+    Fill: =RGBA(242, 242, 242, 1)
     LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
     OnVisible: |-
         =If(Not(IsBlank(RequestRecordRCPS)),
@@ -23,6 +24,7 @@ Scn_RCPS As screen:
         UserEmail: =User().Email
         UserImage: =User().Image
         UserName: =User().FullName
+        Visible: =false
         Width: =Parent.Width
         X: =0
         Y: =0
@@ -38,7 +40,7 @@ Scn_RCPS As screen:
         RadiusTopLeft: =4
         RadiusTopRight: =4
         Width: =App.Width
-        Y: =Header_RCPS.Height
+        Y: =NPI_Header_Container_3.Height
         ZIndex: =2
 
         RCPS_HeaderFormType_Label As label:
@@ -50,7 +52,6 @@ Scn_RCPS As screen:
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(161, 159, 157, 1)
             DisplayMode: =DisplayMode.View
-            Fill: =RGBA(214, 221, 224, 1)
             FocusedBorderThickness: =4
             Font: =Font.Arial
             Text: =If(Form_RCPS.Mode = FormMode.New,"New RCPS Request", "Edit RCPS Request - " & DataCardValue22.Value)
@@ -62,6 +63,7 @@ Scn_RCPS As screen:
             BorderColor: =RGBA(245, 245, 245, 1)
             DataSource: =RCPS
             DefaultMode: =If(IsBlank(RequestRecordRCPS),FormMode.New,FormMode.Edit)
+            Fill: =RGBA(255, 255, 255, 1)
             Height: =App.Height-Header_RCPS.Height-Container_RCPSFooter.Height-RCPS_HeaderFormType_Label.Height - RCPS_ResourceAllocation_Container.Height
             Item: =RequestRecordRCPS
             LayoutMinHeight: =250
@@ -1221,4 +1223,45 @@ Scn_RCPS As screen:
                 X: =Parent.Width - Self.Width - 40
                 Y: =9
                 ZIndex: =2
+
+    NPI_Header_Container_3 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =50
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =App.Width
+        ZIndex: =3
+
+        Home_Header_Image_4 As image:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =50
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Image: ='johnson-johnson-logo'
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Width: =247
+            X: =10
+            ZIndex: =1
+
+        NPI_Header_Text_3 As Text:
+            DisplayMode: =DisplayMode.Edit
+            Font: =Font.'Segoe UI'
+            FontColor: =RGBA(235, 23, 0, 1)
+            Height: =50
+            Size: =20
+            Text: ="MES Intake"
+            Weight: ='TextCanvas.Weight'.Semibold
+            Width: =378
+            X: =294
+            Y: =0
+            ZIndex: =2
 
