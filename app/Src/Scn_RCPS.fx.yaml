@@ -1130,6 +1130,7 @@ Scn_RCPS As screen:
             Fill: =Color.White
             Height: =400
             LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
             LayoutMinHeight: =100
             LayoutMinWidth: =250
             LayoutMode: =LayoutMode.Auto
@@ -1143,6 +1144,21 @@ Scn_RCPS As screen:
                 =0
             Y: =Parent.Height - Self.Height
             ZIndex: =4
+
+            RCPS_ResourceAllocation_Header_Label As Text:
+                Align: ='TextCanvas.Align'.Center
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =RGBA(0, 51, 102, 1)
+                Height: =32
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =16
+                Text: ="Department Allocation"
+                Weight: ='TextCanvas.Weight'.Bold
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =1
 
             RCPS_ResourceAllocation_Gallery As gallery.galleryVertical:
                 AccessibleLabel: ="Items gallery"
@@ -1163,8 +1179,8 @@ Scn_RCPS As screen:
                 TemplateSize: =250
                 Transition: =Transition.Pop
                 Width: =Parent.Width
-                WrapCount: =3
-                ZIndex: =5
+                WrapCount: =6
+                ZIndex: =2
 
                 RCPS_ResourceAllocation_Gallery_Container As groupContainer.verticalAutoLayoutContainer:
                     DropShadow: =DropShadow.Light
@@ -1184,7 +1200,7 @@ Scn_RCPS As screen:
 
                     RCPS_ResourceAllocation_GalleryTitle_Container As groupContainer.verticalAutoLayoutContainer:
                         AlignInContainer: =AlignInContainer.SetByContainer
-                        Height: =RCPS_ResourceAllocation_Container.Height/2
+                        Height: =125
                         LayoutDirection: =LayoutDirection.Vertical
                         LayoutGap: =8
                         LayoutMinHeight: =100
@@ -1265,7 +1281,7 @@ Scn_RCPS As screen:
                             LayoutMinWidth: =Parent.Width
                             Size: =16
                             Text: |-
-                                =Concatenate("Business Unit :",ThisItem.businessunit)
+                                =Concatenate("🏤Business Unit :",ThisItem.businessunit)
                             VerticalAlign: ='TextCanvas.VerticalAlign'.Top
                             Width: =Parent.Width - RCPS_ResourceAllocation_GalleryTitle_Container.PaddingLeft
                             X: =0
@@ -1273,21 +1289,26 @@ Scn_RCPS As screen:
                             ZIndex: =4
 
                     RCPS_ResourceAllocation_InputControls_Container As groupContainer.verticalAutoLayoutContainer:
+                        AlignInContainer: =AlignInContainer.Center
                         DropShadow: =DropShadow.Light
-                        Height: =RCPS_ResourceAllocation_Container.Height/2
+                        Height: =125
                         LayoutDirection: =LayoutDirection.Vertical
-                        LayoutMinHeight: =100
+                        LayoutMinHeight: =40
                         LayoutMinWidth: =250
                         LayoutMode: =LayoutMode.Auto
                         RadiusBottomLeft: =4
                         RadiusBottomRight: =4
                         RadiusTopLeft: =4
                         RadiusTopRight: =4
+                        Width: =Parent.Width
                         ZIndex: =10
 
                         RCPS_ResourceAllocation_Effort_Container As groupContainer.horizontalAutoLayoutContainer:
                             DropShadow: =DropShadow.Light
-                            LayoutMinHeight: =100
+                            Height: =62.5
+                            LayoutAlignItems: =LayoutAlignItems.Center
+                            LayoutJustifyContent: =LayoutJustifyContent.Center
+                            LayoutMinHeight: =10
                             LayoutMinWidth: =250
                             LayoutMode: =LayoutMode.Auto
                             RadiusBottomLeft: =4
@@ -1295,6 +1316,73 @@ Scn_RCPS As screen:
                             RadiusTopLeft: =4
                             RadiusTopRight: =4
                             ZIndex: =1
+
+                            RCPS_ResourceAllocation_Effort_Label As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =20
+                                LayoutMinHeight: =32
+                                LayoutMinWidth: =Parent.Width
+                                Size: =16
+                                Text: ="Effort"
+                                VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width/2
+                                X: =0
+                                Y: =0
+                                ZIndex: =2
+
+                            "RCPS_ResourceAllocation_Effort_Input As 'Text input'":
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =20
+                                LayoutMinHeight: =32
+                                LayoutMinWidth: =320
+                                Width: =Parent.Width/2
+                                X: =0
+                                Y: =0
+                                ZIndex: =3
+
+                        RCPS_ResourceAllocation_Group_Container As groupContainer.horizontalAutoLayoutContainer:
+                            DropShadow: =DropShadow.Light
+                            Height: =62.5
+                            LayoutMinHeight: =10
+                            LayoutMinWidth: =250
+                            LayoutMode: =LayoutMode.Auto
+                            RadiusBottomLeft: =4
+                            RadiusBottomRight: =4
+                            RadiusTopLeft: =4
+                            RadiusTopRight: =4
+                            ZIndex: =2
+
+                            RCPS_ResourceAllocation_Group_Label As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =30
+                                LayoutMinHeight: =32
+                                LayoutMinWidth: =Parent.Width
+                                Size: =16
+                                Text: ="Effort"
+                                VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width/2
+                                X: =0
+                                Y: =0
+                                ZIndex: =1
+
+                            RCPS_ResourceAllocation_Group_Toggle As Toggle:
+                                DisplayMode: =DisplayMode.Edit
+                                Height: =35
+                                Label: =If(RCPS_ResourceAllocation_Group_Toggle.Checked = true, "Yes", "No")
+                                LayoutMinHeight: =35
+                                LayoutMinWidth: =110
+                                OnCheck: =false
+                                OnUncheck: =false
+                                Width: =110
+                                X: =0
+                                Y: =0
+                                ZIndex: =2
 
     Redirect_URLs As groupContainer.horizontalAutoLayoutContainer:
         DropShadow: =DropShadow.Light

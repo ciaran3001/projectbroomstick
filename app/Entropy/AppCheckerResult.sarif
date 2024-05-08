@@ -2144,6 +2144,36 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "Scn_RCPS.RCPS_Container.RCPS_ResourceAllocation_Container.RCPS_ResourceAllocation_Gallery.RCPS_ResourceAllocation_Gallery_Container.RCPS_ResourceAllocation_InputControls_Container.RCPS_ResourceAllocation_Effort_Container.RCPS_ResourceAllocation_Effort_Input.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_RCPS.RCPS_Container.RCPS_ResourceAllocation_Container.RCPS_ResourceAllocation_Gallery.RCPS_ResourceAllocation_Gallery_Container.RCPS_ResourceAllocation_InputControls_Container.RCPS_ResourceAllocation_Effort_Container.RCPS_ResourceAllocation_Effort_Input.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Scn_RCPS",
+                "type": "Scn_RCPS.RCPS_Container.RCPS_ResourceAllocation_Container.RCPS_ResourceAllocation_Gallery.RCPS_ResourceAllocation_Gallery_Container.RCPS_ResourceAllocation_InputControls_Container.RCPS_ResourceAllocation_Effort_Container.RCPS_ResourceAllocation_Effort_Input"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "Scn_RCPS.RCPS_Container.RCPS_ResourceAllocation_Container.RCPS_ResourceAllocation_Gallery.RCPS_ResourceAllocation_Gallery_Container.RCPS_ResourceAllocation_GalleryTitle_Container.RCPS_ResourceAllocation_GalleryCollection_Container.RCPS_ResourceAllocation_RequestType_Label.AccessibleLabel"
                 }
               ],
@@ -2217,6 +2247,36 @@
                 "member": "AccessibleLabel",
                 "module": "Scn_RCPS",
                 "type": "Scn_RCPS.RCPS_Footer_Container.ButtonCanvas_DepartmnentBack_2"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_RCPS.RCPS_Container.RCPS_ResourceAllocation_Container.RCPS_ResourceAllocation_Gallery.RCPS_ResourceAllocation_Gallery_Container.RCPS_ResourceAllocation_InputControls_Container.RCPS_ResourceAllocation_Group_Container.RCPS_ResourceAllocation_Group_Toggle.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_RCPS.RCPS_Container.RCPS_ResourceAllocation_Container.RCPS_ResourceAllocation_Gallery.RCPS_ResourceAllocation_Gallery_Container.RCPS_ResourceAllocation_InputControls_Container.RCPS_ResourceAllocation_Group_Container.RCPS_ResourceAllocation_Group_Toggle.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Scn_RCPS",
+                "type": "Scn_RCPS.RCPS_Container.RCPS_ResourceAllocation_Container.RCPS_ResourceAllocation_Gallery.RCPS_ResourceAllocation_Gallery_Container.RCPS_ResourceAllocation_InputControls_Container.RCPS_ResourceAllocation_Group_Container.RCPS_ResourceAllocation_Group_Toggle"
               }
             }
           ],
