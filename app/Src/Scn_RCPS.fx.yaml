@@ -1,5 +1,5 @@
 Scn_RCPS As screen:
-    Fill: =RGBA(242, 242, 242, 1)
+    Fill: =RGBA(0, 0, 0, 1)
     LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
     OnVisible: |-
         =If(Not(IsBlank(RequestRecordRCPS)),
@@ -13,37 +13,106 @@ Scn_RCPS As screen:
         ClearCollect(ResourceAllocationsForThiReq,Filter('Resource Allocation','RCPS Lookup Id' = Text(RequestRecordRCPS.ID)));
         ClearCollect(ResourceAllocationsForThiReqNonViz,ResourceAllocationsForThiReq))
 
-    Header_RCPS As Header:
-        BasePaletteColor: =RGBA(247, 30, 62, 1)
-        DisplayMode: =DisplayMode.Edit
-        FontColor: =
-        Height: =43
-        Logo: =jjlogowhite_svg
-        OnSelectLogo: =false
-        Title: ="MES Resource Requests"
-        UserEmail: =User().Email
-        UserImage: =User().Image
-        UserName: =User().FullName
-        Visible: =false
-        Width: =Parent.Width
-        X: =0
-        Y: =0
-        ZIndex: =1
-
-    RCPS_Container As groupContainer.verticalAutoLayoutContainer:
+    RCPS_Footer_Container As groupContainer.manualLayoutContainer:
         DropShadow: =DropShadow.Light
-        Fill: =RGBA(255, 255, 255, 1)
-        Height: =App.Height-Header_Project.Height
-        LayoutDirection: =LayoutDirection.Vertical
-        LayoutMode: =LayoutMode.Auto
-        LayoutOverflowY: =LayoutOverflow.Scroll
+        Fill: =RGBA(0, 0, 0, 1)
+        Height: =RCPS_Header_Container.Height
         RadiusBottomLeft: =4
         RadiusBottomRight: =4
         RadiusTopLeft: =4
         RadiusTopRight: =4
         Width: =App.Width
-        Y: =NPI_Header_Container_3.Height + 20
+        Y: =RCPS_Container.Height + 20
+        ZIndex: =1
+
+        ButtonCanvas_DepartmnentBack_2 As Button:
+            BasePaletteColor: =RGBA(235, 23, 0, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =32
+            OnSelect: |
+                =ResetForm(Form_RCPS);
+                Navigate(Scn_Home,ScreenTransition.Fade);
+            Text: ="Back"
+            Width: =96
+            X: =39
+            Y: =9
+            ZIndex: =1
+
+        ButtonCanvas_DepartmentSubmit_2 As Button:
+            BasePaletteColor: =RGBA(235, 23, 0, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =32
+            OnSelect: |
+                =SubmitForm(Form_RCPS);
+                Patch('Resource Allocation',ResourceAllocationsForThiReqNonViz);
+                Clear(ResourceAllocationsForThiReq);
+                Clear(ResourceAllocationsForThiReqNonViz);
+            Text: ="Submit"
+            Width: =96
+            X: =Parent.Width - Self.Width - 40
+            Y: =9
+            ZIndex: =2
+
+    RCPS_Container As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =App.Height - RCPS_Footer_Container.Height - 20
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        RadiusBottomLeft: =25
+        RadiusBottomRight: =25
+        RadiusTopLeft: =25
+        RadiusTopRight: =25
+        Width: =App.Width
+        Y: =20
         ZIndex: =2
+
+        RCPS_Header_Container As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =50
+            LayoutMinHeight: =50
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =App.Width
+            ZIndex: =1
+
+            RCPS_Header_Image As image:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Height: =50
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Image: ='johnson-johnson-logo'
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                Width: =247
+                X: =10
+                ZIndex: =1
+
+            RCPS_Header_Text As Text:
+                DisplayMode: =DisplayMode.Edit
+                Font: =Font.'Segoe UI'
+                FontColor: =RGBA(235, 23, 0, 1)
+                Height: =50
+                Size: =20
+                Text: ="MES Intake"
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =378
+                X: =294
+                Y: =0
+                ZIndex: =2
 
         RCPS_HeaderFormType_Label As label:
             Align: =Align.Center
@@ -59,7 +128,7 @@ Scn_RCPS As screen:
             Text: =If(Form_RCPS.Mode = FormMode.New,"New RCPS Request", "Edit RCPS Request - " & DataCardValue22.Value)
             Width: =App.Width
             Y: =20
-            ZIndex: =1
+            ZIndex: =2
 
         Form_RCPS As form.PowerApps_CoreControls_Form:
             AlignInContainer: =AlignInContainer.Center
@@ -67,7 +136,7 @@ Scn_RCPS As screen:
             DataSource: =RCPS
             DefaultMode: =If(IsBlank(RequestRecordRCPS),FormMode.New,FormMode.Edit)
             Fill: =RGBA(255, 255, 255, 1)
-            Height: =App.Height-Header_RCPS.Height-Container_RCPSFooter.Height-RCPS_HeaderFormType_Label.Height - RCPS_ResourceAllocation_Container.Height
+            Height: =RCPS_Container.Height-RCPS_Header_Container.Height-RCPS_Footer_Container.Height-RCPS_HeaderFormType_Label.Height - RCPS_ResourceAllocation_Container.Height
             Item: =RequestRecordRCPS
             LayoutMinHeight: =230
             LayoutMinWidth: =400
@@ -103,7 +172,7 @@ Scn_RCPS As screen:
             Width: |-
                 =//App.Width
                 1200
-            ZIndex: =2
+            ZIndex: =3
 
             "'Department Lookup Id_DataCard1' As typedDataCard.fluentV9NumberEditCard":
                 BorderColor: =RGBA(245, 245, 245, 1)
@@ -1072,7 +1141,7 @@ Scn_RCPS As screen:
             RadiusTopRight: =4
             Visible: =If(showResourceAllocateContainer,true,false)
             Width: =Parent.Width
-            ZIndex: =3
+            ZIndex: =4
 
             RCPS_ResourceAllocation_Gallery As gallery.galleryHorizontal:
                 BorderColor: =RGBA(245, 245, 245, 1)
@@ -1213,89 +1282,4 @@ Scn_RCPS As screen:
                 X: =117
                 Y: =86
                 ZIndex: =5
-
-        Container_RCPSFooter As groupContainer.manualLayoutContainer:
-            AlignInContainer: =AlignInContainer.SetByContainer
-            DropShadow: =DropShadow.Light
-            FillPortions: =0
-            Height: =Header_RCPS.Height
-            LayoutMinHeight: =100
-            LayoutMinWidth: =250
-            RadiusBottomLeft: =4
-            RadiusBottomRight: =4
-            RadiusTopLeft: =4
-            RadiusTopRight: =4
-            Width: =App.Width
-            ZIndex: =4
-
-            ButtonCanvas_DepartmnentBack_2 As Button:
-                BasePaletteColor: =RGBA(235, 23, 0, 1)
-                DisplayMode: =DisplayMode.Edit
-                FontColor: =
-                Height: =32
-                OnSelect: |
-                    =ResetForm(Form_RCPS);
-                    Navigate(Scn_Home,ScreenTransition.Fade);
-                Text: ="Back"
-                Width: =96
-                X: =39
-                Y: =9
-                ZIndex: =1
-
-            ButtonCanvas_DepartmentSubmit_2 As Button:
-                BasePaletteColor: =RGBA(235, 23, 0, 1)
-                DisplayMode: =DisplayMode.Edit
-                FontColor: =
-                Height: =32
-                OnSelect: |
-                    =SubmitForm(Form_RCPS);
-                    Patch('Resource Allocation',ResourceAllocationsForThiReqNonViz);
-                    Clear(ResourceAllocationsForThiReq);
-                    Clear(ResourceAllocationsForThiReqNonViz);
-                Text: ="Submit"
-                Width: =96
-                X: =Parent.Width - Self.Width - 40
-                Y: =9
-                ZIndex: =2
-
-    NPI_Header_Container_3 As groupContainer.manualLayoutContainer:
-        DropShadow: =DropShadow.Light
-        Fill: =RGBA(255, 255, 255, 1)
-        Height: =50
-        RadiusBottomLeft: =4
-        RadiusBottomRight: =4
-        RadiusTopLeft: =4
-        RadiusTopRight: =4
-        Width: =App.Width
-        ZIndex: =3
-
-        Home_Header_Image_4 As image:
-            BorderColor: =RGBA(0, 0, 0, 0)
-            BorderStyle: =BorderStyle.None
-            BorderThickness: =2
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            DisabledFill: =RGBA(0, 0, 0, 0)
-            FocusedBorderThickness: =4
-            Height: =50
-            HoverBorderColor: =RGBA(0, 0, 0, 0)
-            HoverFill: =RGBA(0, 0, 0, 0)
-            Image: ='johnson-johnson-logo'
-            PressedBorderColor: =RGBA(0, 0, 0, 0)
-            PressedFill: =RGBA(0, 0, 0, 0)
-            Width: =247
-            X: =10
-            ZIndex: =1
-
-        NPI_Header_Text_3 As Text:
-            DisplayMode: =DisplayMode.Edit
-            Font: =Font.'Segoe UI'
-            FontColor: =RGBA(235, 23, 0, 1)
-            Height: =50
-            Size: =20
-            Text: ="MES Intake"
-            Weight: ='TextCanvas.Weight'.Semibold
-            Width: =378
-            X: =294
-            Y: =0
-            ZIndex: =2
 
