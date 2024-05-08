@@ -59,28 +59,26 @@ Scn_RCPS As screen:
         DropShadow: =DropShadow.Light
         Fill: =RGBA(255, 255, 255, 1)
         Height: =App.Height - RCPS_Footer_Container.Height - 20
+        LayoutAlignItems: =LayoutAlignItems.Center
         LayoutDirection: =LayoutDirection.Vertical
         LayoutMode: =LayoutMode.Auto
-        LayoutOverflowY: =LayoutOverflow.Scroll
         RadiusBottomLeft: =25
         RadiusBottomRight: =25
         RadiusTopLeft: =25
         RadiusTopRight: =25
-        Width: =App.Width
+        Width: =App.Width - 15
+        X: =7.5
         Y: =20
         ZIndex: =2
 
         RCPS_Header_Container As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
             DropShadow: =DropShadow.Light
             Fill: =RGBA(255, 255, 255, 1)
             FillPortions: =0
             Height: =50
             LayoutMinHeight: =50
             LayoutMinWidth: =250
-            RadiusBottomLeft: =4
-            RadiusBottomRight: =4
-            RadiusTopLeft: =4
-            RadiusTopRight: =4
             Width: =App.Width
             ZIndex: =1
 
@@ -127,16 +125,19 @@ Scn_RCPS As screen:
             Font: =Font.Arial
             Text: =If(Form_RCPS.Mode = FormMode.New,"New RCPS Request", "Edit RCPS Request - " & DataCardValue22.Value)
             Width: =App.Width
-            Y: =20
+            Y: |
+                =0
             ZIndex: =2
 
         Form_RCPS As form.PowerApps_CoreControls_Form:
-            AlignInContainer: =AlignInContainer.Center
+            AlignInContainer: =AlignInContainer.SetByContainer
             BorderColor: =RGBA(245, 245, 245, 1)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
             DataSource: =RCPS
             DefaultMode: =If(IsBlank(RequestRecordRCPS),FormMode.New,FormMode.Edit)
             Fill: =RGBA(255, 255, 255, 1)
-            Height: =RCPS_Container.Height-RCPS_Header_Container.Height-RCPS_Footer_Container.Height-RCPS_HeaderFormType_Label.Height - RCPS_ResourceAllocation_Container.Height
+            Height: =RCPS_Container.Height - RCPS_Header_Container.Height - RCPS_ResourceAllocation_Container.Height - RCPS_HeaderFormType_Label.Height
             Item: =RequestRecordRCPS
             LayoutMinHeight: =230
             LayoutMinWidth: =400
@@ -169,9 +170,7 @@ Scn_RCPS As screen:
                     )
                 )
             UseFluentV9Cards: =true
-            Width: |-
-                =//App.Width
-                1200
+            Width: =1200
             ZIndex: =3
 
             "'Department Lookup Id_DataCard1' As typedDataCard.fluentV9NumberEditCard":
@@ -186,7 +185,7 @@ Scn_RCPS As screen:
                 Required: =false
                 Update: =Value(DataCardValue1.Value)
                 Visible: =false
-                Width: =400
+                Width: =399
                 X: =0
                 Y: =3
                 ZIndex: =1
@@ -252,7 +251,7 @@ Scn_RCPS As screen:
                 Required: =false
                 Update: =Value(DataCardValue19.Value)
                 Visible: =false
-                Width: =400
+                Width: =399
                 X: =1
                 Y: =3
                 ZIndex: =1
@@ -319,7 +318,7 @@ Scn_RCPS As screen:
                 Required: =true
                 Update: =DataCardValue22.Value
                 Visible: =false
-                Width: =400
+                Width: =399
                 X: =2
                 Y: =3
                 ZIndex: =1
@@ -387,7 +386,7 @@ Scn_RCPS As screen:
                 MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'Point of Contact')
                 Required: =false
                 Update: =DataCardValue39.Value
-                Width: =400
+                Width: =399
                 X: =0
                 Y: =0
                 ZIndex: =2
@@ -507,7 +506,7 @@ Scn_RCPS As screen:
                 MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, Department)
                 Required: =false
                 Update: =DataCardValue47.Value
-                Width: =400
+                Width: =399
                 X: =1
                 Y: =0
                 ZIndex: =2
@@ -627,7 +626,7 @@ Scn_RCPS As screen:
                 MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, Description)
                 Required: =false
                 Update: =DataCardValue40.Value
-                Width: =400
+                Width: =399
                 X: =2
                 Y: =0
                 ZIndex: =2
@@ -695,7 +694,7 @@ Scn_RCPS As screen:
                 MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'A3 Reference Number')
                 Required: =false
                 Update: =DataCardValue41.Value
-                Width: =400
+                Width: =399
                 X: =0
                 Y: =1
                 ZIndex: =2
@@ -763,7 +762,7 @@ Scn_RCPS As screen:
                 MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'Q1 Reference Number')
                 Required: =false
                 Update: =DataCardValue42.Value
-                Width: =400
+                Width: =399
                 X: =1
                 Y: =1
                 ZIndex: =2
@@ -832,7 +831,7 @@ Scn_RCPS As screen:
                 Required: =false
                 Update: =DataCardValue45.Value
                 Visible: =If(RCPS_MESUpdates_Toggle.Checked,false,true)
-                Width: =400
+                Width: =399
                 X: =2
                 Y: =1
                 ZIndex: =2
@@ -900,9 +899,9 @@ Scn_RCPS As screen:
                 Required: =false
                 Update: =Value(DataCardValue46.Value)
                 Visible: =If(RCPS_MESUpdates_Toggle.Checked,true,false)
-                Width: =400
-                X: =0
-                Y: =2
+                Width: =399
+                X: =2
+                Y: =1
                 ZIndex: =2
 
                 DataCardKey49 As Text:
@@ -966,7 +965,7 @@ Scn_RCPS As screen:
                 MaxLength: =DataSourceInfo([@RCPS], DataSourceInfo.MaxLength, 'Reactive Proactive A3')
                 Required: =false
                 Update: =DataCardValue43.Value
-                Width: =400
+                Width: =399
                 X: =1
                 Y: =2
                 ZIndex: =2
@@ -1053,7 +1052,7 @@ Scn_RCPS As screen:
                 Required: =false
                 Update: =DataCardValue44.Value
                 Visible: =true
-                Width: =400
+                Width: =399
                 X: =2
                 Y: =2
                 ZIndex: =2
@@ -1127,159 +1126,286 @@ Scn_RCPS As screen:
                     Y: =DataCardKey47.Y
                     ZIndex: =5
 
-        RCPS_ResourceAllocation_Container As groupContainer.manualLayoutContainer:
-            AlignInContainer: =AlignInContainer.SetByContainer
-            DropShadow: =DropShadow.Light
-            FillPortions: =0
+        RCPS_ResourceAllocation_Container As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =Color.White
             Height: =400
+            LayoutAlignItems: =LayoutAlignItems.Stretch
             LayoutMinHeight: =100
             LayoutMinWidth: =250
-            PaddingLeft: =20
+            LayoutMode: =LayoutMode.Auto
+            LayoutWrap: =true
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =App.Width
+            X: |
+                =0
+            Y: =Parent.Height - Self.Height
+            ZIndex: =4
+
+            RCPS_ResourceAllocation_Gallery As gallery.galleryVertical:
+                AccessibleLabel: ="Items gallery"
+                AlignInContainer: =AlignInContainer.SetByContainer
+                BorderColor: =RGBA(245, 245, 245, 1)
+                DelayItemLoading: =true
+                Height: =400
+                Items: =ResourceAllocationsForThiReq
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =287
+                LayoutMinWidth: =320
+                LoadingSpinner: =LoadingSpinner.Data
+                OnSelect: |-
+                    =Set(enableEditButton,true);
+                    Set(enableResourceAllocateButton,true);
+                TabIndex: =0
+                TemplatePadding: =20
+                TemplateSize: =250
+                Transition: =Transition.Pop
+                Width: =Parent.Width
+                WrapCount: =3
+                ZIndex: =5
+
+                RCPS_ResourceAllocation_Gallery_Container As groupContainer.verticalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =Parent.TemplateHeight
+                    LayoutAlignItems: =LayoutAlignItems.Center
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutJustifyContent: =LayoutJustifyContent.Center
+                    LayoutMode: =LayoutMode.Auto
+                    LayoutOverflowY: =LayoutOverflow.Scroll
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =6
+
+                    RCPS_ResourceAllocation_GalleryTitle_Container As groupContainer.verticalAutoLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        Height: =RCPS_ResourceAllocation_Container.Height/2
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =8
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =RCPS_ResourceAllocation_Gallery_Container.Width
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =10
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Width: =Parent.Width
+                        ZIndex: =9
+
+                        RCPS_ResourceAllocation_GalleryTitle_Label As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =Parent.Width
+                            Size: =16
+                            Text: =ThisItem.Title
+                            VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                            Weight: ='TextCanvas.Weight'.Bold
+                            Width: =Parent.Width - RCPS_ResourceAllocation_GalleryTitle_Container.PaddingLeft
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+                        RCPS_ResourceAllocation_GalleryCollection_Container As groupContainer.horizontalAutoLayoutContainer:
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            Height: =30
+                            LayoutAlignItems: =LayoutAlignItems.Center
+                            LayoutJustifyContent: =LayoutJustifyContent.Center
+                            LayoutMinHeight: =30
+                            LayoutMinWidth: =250
+                            LayoutMode: =LayoutMode.Auto
+                            RadiusBottomLeft: =4
+                            RadiusBottomRight: =4
+                            RadiusTopLeft: =4
+                            RadiusTopRight: =4
+                            Width: =Parent.Width - 40
+                            ZIndex: =3
+
+                            RCPS_ResourceAllocation_ModifiedOn_Label As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =30
+                                LayoutMinHeight: =32
+                                LayoutMinWidth: =96
+                                Text: =Concatenate("📅",ThisItem.Modified)
+                                Width: =RCPS_ResourceAllocation_GalleryCollection_Container.Width/2
+                                X: =0
+                                Y: =0
+                                ZIndex: =1
+
+                            RCPS_ResourceAllocation_RequestType_Label As Badge:
+                                BasePaletteColor: =Switch(ThisItem.'Request Type',"NPI",Color.Purple,"Project",Color.Green,"General",Color.Gray,"RCPS",Color.SkyBlue)
+                                Content: =ThisItem.'Request Type'
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =30
+                                LayoutMinHeight: =32
+                                LayoutMinWidth: =32
+                                Width: =RCPS_ResourceAllocation_GalleryCollection_Container.Width/2
+                                X: =0
+                                Y: =0
+                                ZIndex: =2
+
+                        RCPS_ResourceAllocation_GalleryBusinessUnit_Label As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =25
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =Parent.Width
+                            Size: =16
+                            Text: |-
+                                =Concatenate("Business Unit :",ThisItem.businessunit)
+                            VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                            Width: =Parent.Width - RCPS_ResourceAllocation_GalleryTitle_Container.PaddingLeft
+                            X: =0
+                            Y: =0
+                            ZIndex: =4
+
+                    RCPS_ResourceAllocation_InputControls_Container As groupContainer.verticalAutoLayoutContainer:
+                        DropShadow: =DropShadow.Light
+                        Height: =RCPS_ResourceAllocation_Container.Height/2
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        ZIndex: =10
+
+                        RCPS_ResourceAllocation_Effort_Container As groupContainer.horizontalAutoLayoutContainer:
+                            DropShadow: =DropShadow.Light
+                            LayoutMinHeight: =100
+                            LayoutMinWidth: =250
+                            LayoutMode: =LayoutMode.Auto
+                            RadiusBottomLeft: =4
+                            RadiusBottomRight: =4
+                            RadiusTopLeft: =4
+                            RadiusTopRight: =4
+                            ZIndex: =1
+
+    Redirect_URLs As groupContainer.horizontalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =20
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =false
+        Width: =App.Width
+        ZIndex: =3
+
+        "'J&JInnovationMedicine_Redirect_Container' As groupContainer.manualLayoutContainer":
+            AlignInContainer: =AlignInContainer.Start
+            DropShadow: =DropShadow.Light
+            Height: =Redirect_URLs.Height
+            LayoutMinHeight: =200
+            LayoutMinWidth: =250
             RadiusBottomLeft: =4
             RadiusBottomRight: =4
             RadiusTopLeft: =4
             RadiusTopRight: =4
-            Visible: =If(showResourceAllocateContainer,true,false)
-            Width: =Parent.Width
-            ZIndex: =4
+            Width: =100
+            ZIndex: =1
 
-            RCPS_ResourceAllocation_Gallery As gallery.galleryHorizontal:
-                BorderColor: =RGBA(245, 245, 245, 1)
-                DelayItemLoading: =true
-                Height: =255
-                Items: =ResourceAllocationsForThiReq
-                LoadingSpinner: =LoadingSpinner.Data
-                ShowScrollbar: =false
-                TemplatePadding: =0
-                TemplateSize: =100
-                Width: =1011
-                X: =238
-                Y: =62
+            "'J&JInnovationMedicine_Redirect_Arrow' As icon.ArrowUp":
+                BorderColor: =RGBA(0, 0, 0, 0)
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                DisabledColor: =RGBA(225, 223, 221, 1)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Height: ='J&JInnovationMedicine_Redirect_Container'.Height - 5
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverColor: =RGBA(16, 110, 190, 1)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Icon: =Icon.ArrowUp
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedColor: =RGBA(16, 110, 190, 1)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                Width: =20
+                X: =200
+                Y: =2
                 ZIndex: =1
 
-                RCPS_ResourceAllocation_Title_Label As label:
-                    Align: =Align.Center
-                    BorderColor: =RGBA(0, 0, 0, 0)
-                    BorderStyle: =BorderStyle.None
-                    BorderThickness: =2
-                    Color: =RGBA(255, 255, 255, 1)
-                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                    DisabledColor: =RGBA(161, 159, 157, 1)
-                    Fill: =RGBA(0, 51, 102, 1)
-                    FocusedBorderThickness: =4
-                    Font: =Font.'Segoe UI'
-                    Height: =76
-                    OnSelect: =Select(Parent)
-                    Size: =11
-                    Text: =ThisItem.Title
-                    Width: =100
-                    Y: =24
-                    ZIndex: =1
-
-                "RCPS_ResourceAllocation_Effort_TextInput As 'Text input'":
-                    BasePaletteColor: =
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =38
-                    OnChange: |-
-                        =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Hours: Value(Self.Value)});
-                    Placeholder: =""
-                    Type: ="Number"
-                    Value: =ThisItem.Hours
-                    Width: =100
-                    X: =0
-                    Y: =100
-                    ZIndex: =2
-
-                RCPS_ResourceAllocation_Group_Toggle As Toggle:
-                    BasePaletteColor: =
-                    Checked: =If(ThisItem.Group = "Yes",true,false)
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Label: =If(RCPS_ResourceAllocation_Group_Toggle.Checked = true,"Yes","No")
-                    OnCheck: |-
-                        =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Group: "Yes"});
-                    OnSelect: =Select(Parent)
-                    OnUncheck: |-
-                        =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Group: "No"});
-                    Width: =100
-                    X: =0
-                    Y: =152
-                    ZIndex: =3
-
-            RCPS_Galery_Group_Label As label:
+            "'J&JInnovationMedicine_Redirect_Label' As label":
+                Align: =Align.Center
                 BorderColor: =RGBA(0, 0, 0, 0)
                 BorderStyle: =BorderStyle.None
                 BorderThickness: =2
                 Color: =RGBA(255, 255, 255, 1)
                 DisabledBorderColor: =RGBA(0, 0, 0, 0)
                 DisabledColor: =RGBA(161, 159, 157, 1)
-                Fill: =RGBA(0, 51, 102, 1)
                 FocusedBorderThickness: =4
                 Font: =Font.'Segoe UI'
-                FontWeight: =FontWeight.Semibold
-                Height: =39
-                Size: =13
-                Text: ="Effort"
-                Width: =121
-                X: =117
-                Y: =162
+                Height: ='J&JInnovationMedicine_Redirect_Container'.Height
+                Size: =10
+                Text: ="J&J Innovative Medicine"
+                Width: =200
+                X: =20
                 ZIndex: =2
 
-            RCPS_Gallery_Effort_Label As label:
+        "'J&JMedTech_Redirect_Container' As groupContainer.manualLayoutContainer":
+            AlignInContainer: =AlignInContainer.Start
+            DropShadow: =DropShadow.Light
+            Height: =Redirect_URLs.Height
+            LayoutMinHeight: =10
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =10
+            ZIndex: =2
+
+            "'J&JMedTech_Redirect_Arrow' As icon.ArrowUp":
+                BorderColor: =RGBA(0, 0, 0, 0)
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                DisabledColor: =RGBA(225, 223, 221, 1)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Height: ='J&JMedTech_Redirect_Container'.Height - 5
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverColor: =RGBA(16, 110, 190, 1)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Icon: =Icon.ArrowUp
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedColor: =RGBA(16, 110, 190, 1)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                Width: =20
+                X: =120
+                Y: |
+                    =2.5
+                ZIndex: =1
+
+            "'J&JMedTech_Redirect_Label' As label":
+                Align: =Align.Center
                 BorderColor: =RGBA(0, 0, 0, 0)
                 BorderStyle: =BorderStyle.None
                 BorderThickness: =2
                 Color: =RGBA(255, 255, 255, 1)
                 DisabledBorderColor: =RGBA(0, 0, 0, 0)
                 DisabledColor: =RGBA(161, 159, 157, 1)
-                Fill: =RGBA(0, 51, 102, 1)
                 FocusedBorderThickness: =4
                 Font: =Font.'Segoe UI'
-                FontWeight: =FontWeight.Semibold
-                Height: =50
-                Size: =13
-                Text: ="Group"
-                Width: =121
-                X: =117
-                Y: =201
-                ZIndex: =3
-
-            RCPS_ResourceAllocation_ContainerHeader_Label As label:
-                BorderColor: =RGBA(0, 0, 0, 0)
-                BorderStyle: =BorderStyle.None
-                BorderThickness: =2
-                Color: =RGBA(0, 51, 102, 1)
-                DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                DisabledColor: =RGBA(161, 159, 157, 1)
-                FocusedBorderThickness: =4
-                Font: =Font.'Segoe UI'
-                FontWeight: =FontWeight.Semibold
-                Height: =38
-                Size: =13
-                Text: ="Departmental Impact"
-                Width: =188
-                X: =117
-                Y: =24
-                ZIndex: =4
-
-            RCPS_Galery_Group_Label_1 As label:
-                BorderColor: =RGBA(0, 0, 0, 0)
-                BorderStyle: =BorderStyle.None
-                BorderThickness: =2
-                Color: =RGBA(255, 255, 255, 1)
-                DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                DisabledColor: =RGBA(161, 159, 157, 1)
-                Fill: =RGBA(0, 51, 102, 1)
-                FocusedBorderThickness: =4
-                Font: =Font.'Segoe UI'
-                FontWeight: =FontWeight.Semibold
-                Height: =76
-                Size: =13
-                Text: ="BU Name"
-                Width: =121
-                X: =117
-                Y: =86
-                ZIndex: =5
+                Height: ='J&JMedTech_Redirect_Container'.Height
+                Size: =10
+                Text: ="J&J MedTech"
+                Width: =100
+                X: =20
+                ZIndex: =2
 

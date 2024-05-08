@@ -167,6 +167,75 @@ Scn_NPI As screen:
                     Y: =DataCardKey76.Y
                     ZIndex: =4
 
+            Title_DataCard8 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Title"
+                Default: =ThisItem.Title
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@NPI],DataSourceInfo.DisplayName,Title)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@NPI], DataSourceInfo.MaxLength, Title)
+                Required: =true
+                Update: =DataCardValue76.Value
+                Visible: =false
+                Width: =455
+                X: =0
+                Y: =7
+                ZIndex: =1
+
+                DataCardKey81 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue76 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =DataCardValue83.Value
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey81.Y + DataCardKey81.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage81 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue76.Y + DataCardValue76.Height
+                    ZIndex: =3
+
+                StarVisible81 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey81.Y
+                    ZIndex: =4
+
             "'Department ID_DataCard1' As typedDataCard.fluentV9NumberEditCard":
                 BorderColor: =RGBA(245, 245, 245, 1)
                 BorderStyle: =BorderStyle.Solid
@@ -297,75 +366,6 @@ Scn_NPI As screen:
                     Width: =30
                     X: =0
                     Y: =DataCardKey78.Y
-                    ZIndex: =4
-
-            Title_DataCard8 As typedDataCard.fluentV9TextualEditCard:
-                BorderColor: =RGBA(245, 245, 245, 1)
-                BorderStyle: =BorderStyle.Solid
-                DataField: ="Title"
-                Default: =ThisItem.Title
-                DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@NPI],DataSourceInfo.DisplayName,Title)
-                Fill: =RGBA(0, 0, 0, 0)
-                Height: =70
-                MaxLength: =DataSourceInfo([@NPI], DataSourceInfo.MaxLength, Title)
-                Required: =true
-                Update: =DataCardValue76.Value
-                Visible: =false
-                Width: =455
-                X: =0
-                Y: =7
-                ZIndex: =1
-
-                DataCardKey81 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =22
-                    Text: =Parent.DisplayName
-                    Weight: ='TextCanvas.Weight'.Semibold
-                    Width: =Parent.Width - 48
-                    Wrap: =false
-                    X: =24
-                    Y: =10
-                    ZIndex: =1
-
-                "DataCardValue76 As 'Text input'":
-                    AccessibleLabel: =Parent.DisplayName
-                    BasePaletteColor: =
-                    DisplayMode: =Parent.DisplayMode
-                    FontColor: =
-                    Height: =32
-                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
-                    Required: =Parent.Required
-                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                    Value: =DataCardValue83.Value
-                    Width: =Parent.Width - 48
-                    X: =24
-                    Y: =DataCardKey81.Y + DataCardKey81.Height + 4
-                    ZIndex: =2
-
-                ErrorMessage81 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Text: =Parent.Error
-                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =Parent.Width - 48
-                    Wrap: =true
-                    X: =24
-                    Y: =DataCardValue76.Y + DataCardValue76.Height
-                    ZIndex: =3
-
-                StarVisible81 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Text: ="*"
-                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =30
-                    X: =0
-                    Y: =DataCardKey81.Y
                     ZIndex: =4
 
             Product_DataCard3 As typedDataCard.fluentV9TextualEditCard:
@@ -1982,7 +1982,7 @@ Scn_NPI As screen:
                 Height: =32
                 OnSelect: |-
                     =Navigate(Scn_Home,ScreenTransition.Fade);
-                    ResetForm(form_NPI);
+                    ResetForm(Form_NPI);
                     Clear(ResourceAllocationsForThiReq)
                 Text: ="Back"
                 Width: =96

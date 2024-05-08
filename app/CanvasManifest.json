@@ -134,10 +134,10 @@
   },
   "ScreenOrder": [
     "Scn_Home",
-    "Scn_Request",
     "Scn_NPI",
     "Scn_Project",
     "Scn_General",
-    "Scn_RCPS"
+    "Scn_RCPS",
+    "Scn_TemplateDesign#"
   ]
 }

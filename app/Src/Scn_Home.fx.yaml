@@ -51,80 +51,219 @@ Scn_Home As screen:
         
         
 
-    Home_Header As Header:
-        BasePaletteColor: =RGBA(247, 30, 62, 1)
-        DisplayMode: =DisplayMode.Edit
-        FontColor: =
-        Height: =43
-        Logo: =jjlogowhite_svg
-        OnSelectLogo: =false
-        Title: ="MES Resource Requests"
-        UserEmail: =User().Email
-        UserImage: =User().Image
-        UserName: =User().FullName
-        Width: =Parent.Width
-        X: =0
-        Y: =0
+    MainContainer1_1 As groupContainer.horizontalAutoLayoutContainer:
+        Fill: =Color.White
+        Height: =App.Height - Home_Header_Container.Height - New_Request_Container.Height - Padding*2
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutMode: =LayoutMode.Auto
+        LayoutWrap: =true
+        RadiusBottomLeft: =8
+        RadiusBottomRight: =8
+        RadiusTopLeft: =8
+        RadiusTopRight: =8
+        Width: =App.Width
+        X: |
+            =0
+        Y: =Parent.Height - Self.Height
         ZIndex: =1
 
-    SummariesRequest_Table As Table.pcfdataset:
-        DisableChildItemsEditing: ="no"
-        DisplayMode: =DisplayMode.Edit
-        EnableColumnMoving: ="no"
-        Height: =App.Height - Home_Header.Height - New_Request_Container.Height - Padding*2
-        Items: =Summary
-        onCellValueChange: =false
-        onFilter: =false
-        onNavigate: =false
-        onRowSelect: =false
-        onSave: =false
-        OnSelect: |-
-            =Set(enableEditButton,true);
-            Set(enableResourceAllocateButton,true);
-        Width: =App.Width
-        X: =0
-        Y: =Parent.Height - Self.Height
-        ZIndex: =2
+        Gallery2_1 As gallery.galleryVertical:
+            AccessibleLabel: ="Items gallery"
+            BorderColor: =RGBA(245, 245, 245, 1)
+            DelayItemLoading: =true
+            Height: =400
+            Items: =Summary
+            Layout: =Layout.Vertical
+            LayoutMinHeight: =287
+            LayoutMinWidth: =320
+            LoadingSpinner: =LoadingSpinner.Data
+            OnSelect: |-
+                =Set(enableEditButton,true);
+                Set(enableResourceAllocateButton,true);
+            TabIndex: =0
+            TemplatePadding: =20
+            TemplateSize: =250
+            Transition: =Transition.Pop
+            Width: =Parent.Width
+            WrapCount: =3
+            ZIndex: =5
 
-        Title5 As pcfDataField.textualColumn:
-            FieldDisplayName: ="Title"
-            FieldName: ="Title"
-            FieldType: ="s"
-            FieldVariantName: ="textualColumn"
-            Order: =1
-            ZIndex: =16
+            GalleryContainer1_1 As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =Parent.TemplateHeight
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutJustifyContent: =LayoutJustifyContent.Center
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowY: =LayoutOverflow.Scroll
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.TemplateWidth
+                ZIndex: =6
 
-        businessunit1 As pcfDataField.textualColumn:
-            FieldDisplayName: ="businessunit"
-            FieldName: ="businessunit"
-            FieldType: ="s"
-            FieldVariantName: ="textualColumn"
-            Order: =2
-            ZIndex: =17
+                TitleContainer1_1 As groupContainer.verticalAutoLayoutContainer:
+                    AlignInContainer: =AlignInContainer.Center
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutGap: =8
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =GalleryContainer1_1.Width
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =20
+                    PaddingRight: =20
+                    PaddingTop: =12
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.Width
+                    ZIndex: =9
 
-        department1 As pcfDataField.textualColumn:
-            FieldDisplayName: ="department"
-            FieldName: ="department"
-            FieldType: ="s"
-            FieldVariantName: ="textualColumn"
-            Order: =3
-            ZIndex: =18
+                    TitleText1_1 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Start
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =30
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =Parent.Width
+                        Size: =16
+                        Text: =ThisItem.Title
+                        VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                        Weight: ='TextCanvas.Weight'.Bold
+                        Width: =Parent.Width - TitleContainer1_1.PaddingLeft
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
 
-        requeststatus1 As pcfDataField.textualColumn:
-            FieldDisplayName: ="requeststatus"
-            FieldName: ="requeststatus"
-            FieldType: ="s"
-            FieldVariantName: ="textualColumn"
-            Order: =5
-            ZIndex: =20
+                    DescriptionText1_2 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =25
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =Parent.Width
+                        Size: =16
+                        Text: =Concatenate("📅",ThisItem.Created)
+                        VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                        Width: =Parent.Width - TitleContainer1_1.PaddingLeft
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
 
-        RecordType1 As pcfDataField.textualColumn:
-            FieldDisplayName: ="RecordType"
-            FieldName: ="RecordType"
-            FieldType: ="s"
-            FieldVariantName: ="textualColumn"
-            Order: =6
-            ZIndex: =21
+                    DescriptionText1_3 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =
+                        Height: =25
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =Parent.Width
+                        Size: =16
+                        Text: |-
+                            =Concatenate("Business Unit :",ThisItem.businessunit)
+                        VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                        Width: =Parent.Width - TitleContainer1_1.PaddingLeft
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+                    Container4_1 As groupContainer.horizontalAutoLayoutContainer:
+                        Height: =30
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =30
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        ZIndex: =4
+
+                        TextCanvas1_1 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: |-
+                                =Concatenate("🏤 Department: ", ThisItem.department)
+                            Width: =(Parent.Width - TitleContainer1_1.PaddingLeft)/2
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+                        BadgeCanvas1_1 As Badge:
+                            BasePaletteColor: =Switch(ThisItem.RecordType,"NPI",Color.Purple,"Project",Color.Green,"General",Color.Gray,"RCPS",Color.SkyBlue)
+                            Content: =ThisItem.RecordType
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =
+                            Height: =30
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =32
+                            Width: =(Parent.Width - TitleContainer1_1.PaddingLeft)/2
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                ButtonContainer1_1 As groupContainer.verticalAutoLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =50
+                    LayoutJustifyContent: =LayoutJustifyContent.Center
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =12
+                    PaddingRight: =20
+                    PaddingTop: =8
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.Width
+                    ZIndex: =12
+
+                    ButtonCanvas1_1 As Button:
+                        AlignInContainer: =AlignInContainer.Center
+                        Appearance: ='ButtonCanvas.Appearance'.Secondary
+                        BasePaletteColor: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =DisplayMode.Edit
+                        FontColor: =RGBA(0, 0, 0, 1)
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        OnSelect: |-
+                            =If(ThisItem.RecordType="NPI",Set(RequestToModify,ThisItem.ID);Set(RequestRecordNPI,LookUp(NPI,ID=RequestToModify));Navigate(Scn_NPI),
+                            If(ThisItem.RecordType="Project",Set(RequestToModify,ThisItem.ID);Set(RequestRecordProject,LookUp(Project,ID=RequestToModify));Navigate(Scn_Project),
+                            If(ThisItem.RecordType="General",Set(RequestToModify,ThisItem.ID);Set(RequestRecordGeneral,LookUp(General,ID=RequestToModify));Navigate(Scn_General),
+                            Set(RequestToModify,ThisItem.ID);Set(RequestRecordRCPS,LookUp(RCPS,ID=RequestToModify));Navigate(Scn_RCPS))));
+                            Set(showResourceAllocateContainer,true);
+                        Text: ="Edit"
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                Header3_1 As Header:
+                    BasePaletteColor: =Switch(ThisItem.requeststatus,"Rejected",Color.Red,"Requested",Color.GoldenRod,"Completed",Color.Gray,"Accepted",Color.Green)
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =50
+                    IsLogoVisible: =false
+                    LayoutMinHeight: =75
+                    LayoutMinWidth: =Parent.Width
+                    OnSelectLogo: =false
+                    Title: =ThisItem.requeststatus
+                    UserEmail: =User().Email
+                    UserImage: =
+                    UserName: =User().FullName       
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =0
+                    ZIndex: =13
 
     Request_Count_Container As groupContainer.manualLayoutContainer:
         DropShadow: =DropShadow.Light
@@ -137,7 +276,7 @@ Scn_Home As screen:
         Width: =226
         X: |
             =New_Request_Container.Width + Edit_Request_Container.Width  + Padding*3
-        Y: =Home_Header.Height + Padding
+        Y: =Home_Header_Container.Height  + Padding
         ZIndex: =3
 
         RequestStatus_Header_Label As label:
@@ -347,8 +486,8 @@ Scn_Home As screen:
         RadiusTopRight: =4
         Width: =280
         X: =New_Request_Container.Width + Padding *2
-        Y: =Home_Header.Height + Padding
-        ZIndex: =5
+        Y: =Home_Header_Container.Height + Padding
+        ZIndex: =4
 
         edit_existing_request_button As Button:
             BasePaletteColor: =
@@ -356,11 +495,11 @@ Scn_Home As screen:
             FontColor: =
             Height: =23
             OnSelect: |-
-                =If(SummariesRequest_Table.Selected.RecordType="NPI",Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordNPI,LookUp(NPI,ID=RequestToModify));Navigate(Scn_NPI),
+                =/*If(SummariesRequest_Table.Selected.RecordType="NPI",Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordNPI,LookUp(NPI,ID=RequestToModify));Navigate(Scn_NPI),
                 If(SummariesRequest_Table.Selected.RecordType="Project",Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordProject,LookUp(Project,ID=RequestToModify));Navigate(Scn_Project),
                 If(SummariesRequest_Table.Selected.RecordType="General",Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordGeneral,LookUp(General,ID=RequestToModify));Navigate(Scn_General),
                 Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordRCPS,LookUp(RCPS,ID=RequestToModify));Navigate(Scn_RCPS))));
-                Set(showResourceAllocateContainer,true);
+                Set(showResourceAllocateContainer,true);*/
             Text: ="Edit Request"
             Width: =153
             X: =64
@@ -411,8 +550,8 @@ Scn_Home As screen:
         RadiusTopRight: =4
         Width: =280
         X: =Padding
-        Y: =Home_Header.Height + Padding
-        ZIndex: =6
+        Y: =Home_Header_Container.Height + Padding
+        ZIndex: =5
 
         create_new_request_button As Button:
             BasePaletteColor: =
@@ -475,7 +614,7 @@ Scn_Home As screen:
         Text: =""
         Visible: =ShowReqTypeModal
         Width: =App.Width
-        ZIndex: =7
+        ZIndex: =6
 
     Cnt_SelectReqType As groupContainer.manualLayoutContainer:
         DropShadow: =DropShadow.Light
@@ -489,7 +628,7 @@ Scn_Home As screen:
         Width: =1033
         X: =Parent.Width /2 -  Self.Width /2
         Y: =Parent.Height /2 - Self.Height /2
-        ZIndex: =8
+        ZIndex: =7
 
         "Gallery1 As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0'":
             '#CopilotOverlayLabel': ="Filtered"
@@ -683,7 +822,7 @@ Scn_Home As screen:
         RadiusTopLeft: =4
         RadiusTopRight: =4
         Width: =App.Width
-        ZIndex: =9
+        ZIndex: =8
 
         Home_Header_Image As image:
             BorderColor: =RGBA(0, 0, 0, 0)
