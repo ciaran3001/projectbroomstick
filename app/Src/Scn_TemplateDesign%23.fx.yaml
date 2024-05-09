@@ -35,7 +35,9 @@
             ZIndex: =2
 
             Header1 As Header:
+                BasePaletteColor: =
                 DisplayMode: =DisplayMode.Edit
+                FontColor: =
                 Height: =75
                 LayoutMinHeight: =75
                 LayoutMinWidth: =Parent.Width
@@ -126,6 +128,7 @@
                             Align: ='TextCanvas.Align'.Center
                             AlignInContainer: =AlignInContainer.Start
                             DisplayMode: =DisplayMode.Edit
+                            FontColor: =
                             Height: =30
                             LayoutMinHeight: =32
                             LayoutMinWidth: =Parent.Width
@@ -141,6 +144,7 @@
                         DescriptionText1 As Text:
                             Align: ='TextCanvas.Align'.Center
                             DisplayMode: =DisplayMode.Edit
+                            FontColor: =
                             Height: =25
                             LayoutMinHeight: =32
                             LayoutMinWidth: =Parent.Width
@@ -183,6 +187,7 @@
 
                             TextCanvas1 As Text:
                                 DisplayMode: =DisplayMode.Edit
+                                FontColor: =
                                 Height: =30
                                 LayoutMinHeight: =32
                                 LayoutMinWidth: =96
@@ -197,6 +202,7 @@
                                 BasePaletteColor: =Switch(ThisItem.RecordType,"NPI",Color.Purple,"Project",Color.Green,"General",Color.Gray,"RCPS",Color.SkyBlue)
                                 Content: =ThisItem.RecordType
                                 DisplayMode: =DisplayMode.Edit
+                                FontColor: =
                                 Height: =30
                                 LayoutMinHeight: =32
                                 LayoutMinWidth: =32
@@ -241,6 +247,7 @@
                     Header3 As Header:
                         BasePaletteColor: =Switch(ThisItem.requeststatus,"Rejected",Color.Red,"Requested",Color.GoldenRod,"Completed",Color.Gray,"Accepted",Color.Green)
                         DisplayMode: =DisplayMode.Edit
+                        FontColor: =
                         Height: =50
                         IsLogoVisible: =false
                         LayoutMinHeight: =75

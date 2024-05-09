@@ -22,7 +22,7 @@ Scn_RCPS As screen:
         RadiusTopLeft: =4
         RadiusTopRight: =4
         Width: =App.Width
-        Y: =RCPS_Container.Height + 20
+        Y: =RCPS_Container.Height + 10
         ZIndex: =1
 
         ButtonCanvas_DepartmnentBack_2 As Button:
@@ -58,7 +58,7 @@ Scn_RCPS As screen:
     RCPS_Container As groupContainer.verticalAutoLayoutContainer:
         DropShadow: =DropShadow.Light
         Fill: =RGBA(255, 255, 255, 1)
-        Height: =App.Height - RCPS_Footer_Container.Height - 20
+        Height: =App.Height - RCPS_Footer_Container.Height - 10
         LayoutAlignItems: =LayoutAlignItems.Center
         LayoutDirection: =LayoutDirection.Vertical
         LayoutMode: =LayoutMode.Auto
@@ -68,7 +68,7 @@ Scn_RCPS As screen:
         RadiusTopRight: =25
         Width: =App.Width - 15
         X: =7.5
-        Y: =20
+        Y: =10
         ZIndex: =2
 
         RCPS_Header_Container As groupContainer.manualLayoutContainer:
@@ -701,7 +701,7 @@ Scn_RCPS As screen:
 
                 DataCardKey44 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -769,7 +769,7 @@ Scn_RCPS As screen:
 
                 DataCardKey45 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -838,7 +838,7 @@ Scn_RCPS As screen:
 
                 DataCardKey48 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -906,7 +906,7 @@ Scn_RCPS As screen:
 
                 DataCardKey49 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -972,7 +972,7 @@ Scn_RCPS As screen:
 
                 DataCardKey46 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -983,7 +983,7 @@ Scn_RCPS As screen:
                     ZIndex: =1
 
                 RCPS_ReactiveProactive_Toggle As Toggle:
-                    BasePaletteColor: =RGBA(189, 178, 176, 1)
+                    BasePaletteColor: =RGBA(235, 23, 0, 1)
                     Checked: |-
                         =If(Not(IsBlank(RequestRecordRCPS)),
                         If(RequestRecordRCPS.'Reactive Proactive A3' = "Proactive",true,false),
@@ -1059,7 +1059,7 @@ Scn_RCPS As screen:
 
                 DataCardKey47 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -1070,7 +1070,7 @@ Scn_RCPS As screen:
                     ZIndex: =1
 
                 RCPS_MESUpdates_Toggle As Toggle:
-                    BasePaletteColor: =RGBA(189, 178, 176, 1)
+                    BasePaletteColor: =RGBA(235, 23, 0, 1)
                     Checked: |-
                         =If(Not(IsBlank(RequestRecordRCPS)),
                         If(RequestRecordRCPS.'MES Updates to help resolve' = "Yes",true,false),
@@ -1126,38 +1126,37 @@ Scn_RCPS As screen:
                     Y: =DataCardKey47.Y
                     ZIndex: =5
 
-        RCPS_ResourceAllocation_Container As groupContainer.horizontalAutoLayoutContainer:
-            Fill: =Color.White
-            Height: =400
-            LayoutAlignItems: =LayoutAlignItems.Stretch
+        RCPS_ResourceAllocation_Container As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Height: =460
             LayoutDirection: =LayoutDirection.Vertical
             LayoutMinHeight: =100
             LayoutMinWidth: =250
             LayoutMode: =LayoutMode.Auto
-            LayoutWrap: =true
-            RadiusBottomLeft: =8
-            RadiusBottomRight: =8
-            RadiusTopLeft: =8
-            RadiusTopRight: =8
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =If(showResourceAllocateContainer,true,false)
             Width: =App.Width
-            X: |
-                =0
-            Y: =Parent.Height - Self.Height
-            ZIndex: =4
+            ZIndex: =5
 
-            RCPS_ResourceAllocation_Header_Label As Text:
-                Align: ='TextCanvas.Align'.Center
-                DisplayMode: =DisplayMode.Edit
-                FontColor: =RGBA(0, 51, 102, 1)
-                Height: =32
-                LayoutMinHeight: =32
-                LayoutMinWidth: =96
-                Size: =16
+            RCPS_ResourceAllocationHeader_Label As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                Color: =RGBA(0, 51, 102, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(161, 159, 157, 1)
+                DisplayMode: =DisplayMode.View
+                Font: =Font.Arial
+                Height: =30
+                PaddingBottom: =0
+                PaddingTop: =0
                 Text: ="Department Allocation"
-                Weight: ='TextCanvas.Weight'.Bold
-                Width: =96
-                X: =0
-                Y: =0
+                Width: =RCPS_ResourceAllocation_Container.Width
+                Y: |
+                    =0
                 ZIndex: =1
 
             RCPS_ResourceAllocation_Gallery As gallery.galleryVertical:
@@ -1165,7 +1164,8 @@ Scn_RCPS As screen:
                 AlignInContainer: =AlignInContainer.SetByContainer
                 BorderColor: =RGBA(245, 245, 245, 1)
                 DelayItemLoading: =true
-                Height: =400
+                Height: |
+                    =400
                 Items: =ResourceAllocationsForThiReq
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287
@@ -1174,12 +1174,13 @@ Scn_RCPS As screen:
                 OnSelect: |-
                     =Set(enableEditButton,true);
                     Set(enableResourceAllocateButton,true);
+                ShowScrollbar: =false
                 TabIndex: =0
                 TemplatePadding: =20
                 TemplateSize: =250
                 Transition: =Transition.Pop
                 Width: =Parent.Width
-                WrapCount: =6
+                WrapCount: =If('Scn_RCPS'.Size = ScreenSize.ExtraLarge , 3, 'Scn_RCPS'.Size = ScreenSize.Large, 2, 1)
                 ZIndex: =2
 
                 RCPS_ResourceAllocation_Gallery_Container As groupContainer.verticalAutoLayoutContainer:
@@ -1219,7 +1220,7 @@ Scn_RCPS As screen:
                         RCPS_ResourceAllocation_GalleryTitle_Label As Text:
                             Align: ='TextCanvas.Align'.Center
                             DisplayMode: =DisplayMode.Edit
-                            FontColor: =
+                            FontColor: =RGBA(0, 51, 102, 1)
                             Height: =30
                             LayoutMinHeight: =32
                             LayoutMinWidth: =Parent.Width
@@ -1249,7 +1250,7 @@ Scn_RCPS As screen:
 
                             RCPS_ResourceAllocation_ModifiedOn_Label As Text:
                                 DisplayMode: =DisplayMode.Edit
-                                FontColor: =
+                                FontColor: =RGBA(0, 0, 0, 1)
                                 Height: =30
                                 LayoutMinHeight: =32
                                 LayoutMinWidth: =96
@@ -1260,7 +1261,7 @@ Scn_RCPS As screen:
                                 ZIndex: =1
 
                             RCPS_ResourceAllocation_RequestType_Label As Badge:
-                                BasePaletteColor: =Switch(ThisItem.'Request Type',"NPI",Color.Purple,"Project",Color.Green,"General",Color.Gray,"RCPS",Color.SkyBlue)
+                                BasePaletteColor: =RGBA(0, 51, 102, 1)
                                 Content: =ThisItem.'Request Type'
                                 DisplayMode: =DisplayMode.Edit
                                 FontColor: =
@@ -1275,13 +1276,13 @@ Scn_RCPS As screen:
                         RCPS_ResourceAllocation_GalleryBusinessUnit_Label As Text:
                             Align: ='TextCanvas.Align'.Center
                             DisplayMode: =DisplayMode.Edit
-                            FontColor: =
+                            FontColor: =RGBA(0, 0, 0, 1)
                             Height: =25
                             LayoutMinHeight: =32
                             LayoutMinWidth: =Parent.Width
-                            Size: =16
+                            Size: =14
                             Text: |-
-                                =Concatenate("🏤Business Unit :",ThisItem.businessunit)
+                                =Concatenate("🏤BU :",ThisItem.businessunit)
                             VerticalAlign: ='TextCanvas.VerticalAlign'.Top
                             Width: =Parent.Width - RCPS_ResourceAllocation_GalleryTitle_Container.PaddingLeft
                             X: =0
@@ -1320,7 +1321,7 @@ Scn_RCPS As screen:
                             RCPS_ResourceAllocation_Effort_Label As Text:
                                 Align: ='TextCanvas.Align'.Center
                                 DisplayMode: =DisplayMode.Edit
-                                FontColor: =
+                                FontColor: =RGBA(0, 0, 0, 1)
                                 Height: =20
                                 LayoutMinHeight: =32
                                 LayoutMinWidth: =Parent.Width
@@ -1334,10 +1335,16 @@ Scn_RCPS As screen:
                                 ZIndex: =2
 
                             "RCPS_ResourceAllocation_Effort_Input As 'Text input'":
+                                BasePaletteColor: =
                                 DisplayMode: =DisplayMode.Edit
-                                Height: =20
+                                FontColor: =RGBA(0, 0, 0, 1)
+                                Height: =30
                                 LayoutMinHeight: =32
                                 LayoutMinWidth: =320
+                                OnChange: |-
+                                    =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Hours: Value(Self.Value)});
+                                Value: =ThisItem.Hours
+                                Visible: =true
                                 Width: =Parent.Width/2
                                 X: =0
                                 Y: =0
@@ -1358,12 +1365,12 @@ Scn_RCPS As screen:
                             RCPS_ResourceAllocation_Group_Label As Text:
                                 Align: ='TextCanvas.Align'.Center
                                 DisplayMode: =DisplayMode.Edit
-                                FontColor: =
+                                FontColor: =RGBA(0, 0, 0, 1)
                                 Height: =30
                                 LayoutMinHeight: =32
                                 LayoutMinWidth: =Parent.Width
                                 Size: =16
-                                Text: ="Effort"
+                                Text: ="Group"
                                 VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
                                 Weight: ='TextCanvas.Weight'.Semibold
                                 Width: =Parent.Width/2
@@ -1372,13 +1379,18 @@ Scn_RCPS As screen:
                                 ZIndex: =1
 
                             RCPS_ResourceAllocation_Group_Toggle As Toggle:
+                                BasePaletteColor: =RGBA(235, 23, 0, 1)
+                                Checked: =If(ThisItem.Group = "Yes",true,false)
                                 DisplayMode: =DisplayMode.Edit
+                                FontColor: =RGBA(0, 0, 0, 1)
                                 Height: =35
                                 Label: =If(RCPS_ResourceAllocation_Group_Toggle.Checked = true, "Yes", "No")
                                 LayoutMinHeight: =35
                                 LayoutMinWidth: =110
-                                OnCheck: =false
-                                OnUncheck: =false
+                                OnCheck: |-
+                                    =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Group: "Yes"});
+                                OnUncheck: |-
+                                    =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Group: "No"});
                                 Width: =110
                                 X: =0
                                 Y: =0

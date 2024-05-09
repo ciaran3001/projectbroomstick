@@ -17,6 +17,8 @@ Scn_Home As screen:
         Set(selectedDepartment, Blank());
         
         ClearCollect(BUs, 'Business Unit');
+        Clear(ResourceAllocationsForThiReq);
+        Clear(ResourceAllocationsForThiReqNonViz);
         ClearCollect(RequestTypes, 
         {Label: "NPI", Desc:"Select this option if you need assistance with an NPI.", Image: undraw_os_upgrade_re_r0qa},
         {Label: "Project", Desc:"Select this option if you need a resource for a JJPS, change control or other minor Projects.", Image: undraw_projections_re_ulc6},
