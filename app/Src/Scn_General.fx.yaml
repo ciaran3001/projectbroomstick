@@ -1762,6 +1762,7 @@ Scn_General As screen:
                     ZIndex: =4
 
         General_ResourceAllocation_Container As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
             DropShadow: =DropShadow.Light
             Height: =460
             LayoutAlignItems: =LayoutAlignItems.Center
@@ -1774,7 +1775,7 @@ Scn_General As screen:
             RadiusTopLeft: =4
             RadiusTopRight: =4
             Visible: =If(showResourceAllocateContainer,true,false)
-            Width: =App.Width
+            Width: =1200
             ZIndex: =4
 
             General_ResourceAllocationHeader_Label As label:

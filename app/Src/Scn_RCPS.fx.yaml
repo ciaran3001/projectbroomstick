@@ -1127,7 +1127,7 @@ Scn_RCPS As screen:
                     ZIndex: =5
 
         RCPS_ResourceAllocation_Container As groupContainer.verticalAutoLayoutContainer:
-            DropShadow: =DropShadow.Light
+            AlignInContainer: =AlignInContainer.SetByContainer
             Height: =460
             LayoutAlignItems: =LayoutAlignItems.Center
             LayoutDirection: =LayoutDirection.Vertical
@@ -1139,7 +1139,7 @@ Scn_RCPS As screen:
             RadiusTopLeft: =4
             RadiusTopRight: =4
             Visible: =If(showResourceAllocateContainer,true,false)
-            Width: =App.Width
+            Width: =1200
             ZIndex: =5
 
             RCPS_ResourceAllocationHeader_Label As label:
@@ -1165,8 +1165,8 @@ Scn_RCPS As screen:
                 AlignInContainer: =AlignInContainer.Center
                 BorderColor: =RGBA(245, 245, 245, 1)
                 DelayItemLoading: =true
-                Height: |
-                    =400
+                FillPortions: =0
+                Height: =Parent.Height - RCPS_ResourceAllocationHeader_Label.Height
                 Items: =ResourceAllocationsForThiReq
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287
@@ -1180,7 +1180,7 @@ Scn_RCPS As screen:
                 TemplatePadding: =20
                 TemplateSize: =200
                 Transition: =Transition.Pop
-                Width: =Parent.Width
+                Width: =RCPS_ResourceAllocation_Container.Width
                 WrapCount: =If(Scn_RCPS.Size = ScreenSize.ExtraLarge , 3, Scn_RCPS.Size = ScreenSize.Large, 2, 1)
                 ZIndex: =2
 
