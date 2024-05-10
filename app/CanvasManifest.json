@@ -24,7 +24,7 @@
       "classiccontrols": false,
       "commentgeneratedformulas": true,
       "consistentreturnschemafortabularfunctions": true,
-      "copyandmerge": true,
+      "copyandmerge": false,
       "dataflowanalysisenabled": false,
       "datatablev2control": true,
       "dataverseactionsenabled": true,
