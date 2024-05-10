@@ -1172,10 +1172,10 @@ Scn_RCPS As screen:
                 LayoutMinHeight: =287
                 LayoutMinWidth: =320
                 LoadingSpinner: =LoadingSpinner.Data
+                LoadingSpinnerColor: =Color.Black
                 OnSelect: |-
                     =Set(enableEditButton,true);
                     Set(enableResourceAllocateButton,true);
-                ShowScrollbar: =false
                 TabIndex: =0
                 TemplatePadding: =20
                 TemplateSize: =200

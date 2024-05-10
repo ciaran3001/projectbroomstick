@@ -1844,19 +1844,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Scn_Project.Project_Container.Project_ResourceAllocation_Container.Project_ResourceAllocation_Gallery.AccessibleLabel"
+                  "fullyQualifiedName": "Scn_Project.Project_Footer_Container.ButtonCanvas_DepartmentSubmit_1.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Scn_Project.Project_Container.Project_ResourceAllocation_Container.Project_ResourceAllocation_Gallery.AccessibleLabel",
+                  "fullyQualifiedName": "Scn_Project.Project_Footer_Container.ButtonCanvas_DepartmentSubmit_1.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Scn_Project",
-                "type": "Scn_Project.Project_Container.Project_ResourceAllocation_Container.Project_ResourceAllocation_Gallery"
+                "type": "Scn_Project.Project_Footer_Container.ButtonCanvas_DepartmentSubmit_1"
               }
             }
           ],
@@ -1874,139 +1874,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Scn_Project.Project_Container.Project_ResourceAllocation_Container.Project_ResourceAllocation_Gallery.TabIndex"
+                  "fullyQualifiedName": "Scn_Project.Project_Footer_Container.ButtonCanvas_DepartmnentBack_1.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Scn_Project.Project_Container.Project_ResourceAllocation_Container.Project_ResourceAllocation_Gallery.TabIndex",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "TabIndex",
-                "module": "Scn_Project",
-                "type": "Scn_Project.Project_Container.Project_ResourceAllocation_Container.Project_ResourceAllocation_Gallery"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
-          "ruleIndex": 1
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Scn_Project.Project_Container.Project_ResourceAllocation_Container.Project_ResourceAllocation_Gallery.Project_ResourceAllocation_Effort_TextInput.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Scn_Project.Project_Container.Project_ResourceAllocation_Container.Project_ResourceAllocation_Gallery.Project_ResourceAllocation_Effort_TextInput.AccessibleLabel",
+                  "fullyQualifiedName": "Scn_Project.Project_Footer_Container.ButtonCanvas_DepartmnentBack_1.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Scn_Project",
-                "type": "Scn_Project.Project_Container.Project_ResourceAllocation_Container.Project_ResourceAllocation_Gallery.Project_ResourceAllocation_Effort_TextInput"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Scn_Project.Project_Container.Project_ResourceAllocation_Container.Project_ResourceAllocation_Gallery.Project_ResourceAllocation_Group_Toggle.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Scn_Project.Project_Container.Project_ResourceAllocation_Container.Project_ResourceAllocation_Gallery.Project_ResourceAllocation_Group_Toggle.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "Scn_Project",
-                "type": "Scn_Project.Project_Container.Project_ResourceAllocation_Container.Project_ResourceAllocation_Gallery.Project_ResourceAllocation_Group_Toggle"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Scn_Project.Project_Container.Container_ProjectFooter.ButtonCanvas_DepartmnentBack_1.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Scn_Project.Project_Container.Container_ProjectFooter.ButtonCanvas_DepartmnentBack_1.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "Scn_Project",
-                "type": "Scn_Project.Project_Container.Container_ProjectFooter.ButtonCanvas_DepartmnentBack_1"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Scn_Project.Project_Container.Container_ProjectFooter.ButtonCanvas_DepartmentSubmit_1.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Scn_Project.Project_Container.Container_ProjectFooter.ButtonCanvas_DepartmentSubmit_1.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "Scn_Project",
-                "type": "Scn_Project.Project_Container.Container_ProjectFooter.ButtonCanvas_DepartmentSubmit_1"
+                "type": "Scn_Project.Project_Footer_Container.ButtonCanvas_DepartmnentBack_1"
               }
             }
           ],
@@ -2624,36 +2504,6 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Scn_General.General_Container.Form_General.Height"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Scn_General.General_Container.Form_General.Height",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "Height",
-                "module": "Scn_General",
-                "type": "Scn_General.General_Container.Form_General"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-InefficientDelayLoading",
-          "ruleIndex": 5
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
                   "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.WrapCount"
                 }
               ],
@@ -2697,6 +2547,66 @@
                 "member": "Y",
                 "module": "Scn_General",
                 "type": "Scn_General.General_Footer_Container"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 5
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_Project.Project_Container.Height"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_Project.Project_Container.Height",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "Height",
+                "module": "Scn_Project",
+                "type": "Scn_Project.Project_Container"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 5
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_Project.Project_Container.Form_Project.Height"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_Project.Project_Container.Form_Project.Height",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "Height",
+                "module": "Scn_Project",
+                "type": "Scn_Project.Project_Container.Form_Project"
               }
             }
           ],

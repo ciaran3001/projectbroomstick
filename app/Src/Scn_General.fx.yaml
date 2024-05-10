@@ -133,11 +133,11 @@ Scn_General As screen:
             ZIndex: =2
 
         Form_General As form.PowerApps_CoreControls_Form:
-            AlignInContainer: =AlignInContainer.Center
+            AlignInContainer: =AlignInContainer.SetByContainer
             BorderColor: =RGBA(245, 245, 245, 1)
             DataSource: =General
             DefaultMode: =If(IsBlank(RequestRecordGeneral),FormMode.New,FormMode.Edit)
-            Height: =General_Container.Height - General_Header_Container.Height - RCPS_ResourceAllocation_Container.Height - General_HeaderFormType_Label.Height
+            Height: =General_Container.Height - General_Header_Container.Height - General_ResourceAllocation_Container.Height - General_HeaderFormType_Label.Height
             Item: =RequestRecordGeneral
             LayoutMinHeight: =250
             LayoutMinWidth: =400
@@ -1768,6 +1768,7 @@ Scn_General As screen:
             LayoutMinHeight: =100
             LayoutMinWidth: =250
             LayoutMode: =LayoutMode.Auto
+            PaddingTop: =10
             RadiusBottomLeft: =4
             RadiusBottomRight: =4
             RadiusTopLeft: =4
@@ -1799,17 +1800,17 @@ Scn_General As screen:
                 AlignInContainer: =AlignInContainer.SetByContainer
                 BorderColor: =RGBA(245, 245, 245, 1)
                 DelayItemLoading: =true
-                Height: |
-                    =400
+                FillPortions: =0
+                Height: =Parent.Height - General_ResourceAllocation_GalleryTitle_Label.Height - 10
                 Items: =ResourceAllocationsForThiReq
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287
                 LayoutMinWidth: =320
                 LoadingSpinner: =LoadingSpinner.Data
+                LoadingSpinnerColor: =Color.Black
                 OnSelect: |-
                     =Set(enableEditButton,true);
                     Set(enableResourceAllocateButton,true);
-                ShowScrollbar: =false
                 TabIndex: =0
                 TemplatePadding: =20
                 TemplateSize: =200
