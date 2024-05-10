@@ -55,7 +55,7 @@ Scn_Home As screen:
 
     MainContainer1_1 As groupContainer.horizontalAutoLayoutContainer:
         Fill: =Color.White
-        Height: =App.Height - Home_Header_Container.Height - New_Request_Container.Height - Padding*2
+        Height: =App.Height - Home_Header_Container_1.Height - New_Request_Container.Height - Padding*2
         LayoutAlignItems: =LayoutAlignItems.Stretch
         LayoutMode: =LayoutMode.Auto
         LayoutWrap: =true
@@ -278,7 +278,7 @@ Scn_Home As screen:
         Width: =226
         X: |
             =New_Request_Container.Width + Edit_Request_Container.Width  + Padding*3
-        Y: =Home_Header_Container.Height  + Padding
+        Y: =Home_Header_Container_1.Height  + Padding
         ZIndex: =3
 
         RequestStatus_Header_Label As label:
@@ -488,7 +488,7 @@ Scn_Home As screen:
         RadiusTopRight: =4
         Width: =280
         X: =New_Request_Container.Width + Padding *2
-        Y: =Home_Header_Container.Height + Padding
+        Y: =Home_Header_Container_1.Height + Padding
         ZIndex: =4
 
         edit_existing_request_button As Button:
@@ -552,7 +552,7 @@ Scn_Home As screen:
         RadiusTopRight: =4
         Width: =280
         X: =Padding
-        Y: =Home_Header_Container.Height + Padding
+        Y: =Home_Header_Container_1.Height + Padding
         ZIndex: =5
 
         create_new_request_button As Button:
@@ -815,7 +815,7 @@ Scn_Home As screen:
             Y: =10
             ZIndex: =3
 
-    Home_Header_Container As groupContainer.manualLayoutContainer:
+    Home_Header_Container_1 As groupContainer.manualLayoutContainer:
         DropShadow: =DropShadow.Light
         Fill: =RGBA(255, 255, 255, 1)
         Height: =50

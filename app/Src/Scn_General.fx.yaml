@@ -61,7 +61,7 @@ Scn_General As screen:
     General_Container As groupContainer.verticalAutoLayoutContainer:
         DropShadow: =DropShadow.Light
         Fill: =RGBA(255, 255, 255, 1)
-        Height: =App.Height - General_Header_Container.Height - 10
+        Height: =App.Height - General_Footer_Container.Height - 10
         LayoutAlignItems: =LayoutAlignItems.Center
         LayoutDirection: =LayoutDirection.Vertical
         LayoutMode: =LayoutMode.Auto

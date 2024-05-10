@@ -137,7 +137,7 @@ Scn_RCPS As screen:
             DataSource: =RCPS
             DefaultMode: =If(IsBlank(RequestRecordRCPS),FormMode.New,FormMode.Edit)
             Fill: =RGBA(255, 255, 255, 1)
-            Height: =RCPS_Container.Height - RCPS_Header_Container.Height - RCPS_ResourceAllocation_Container.Height - RCPS_HeaderFormType_Label.Height
+            Height: =Parent.Height - RCPS_Header_Container.Height - RCPS_ResourceAllocation_Container.Height - RCPS_HeaderFormType_Label.Height
             Item: =RequestRecordRCPS
             LayoutMinHeight: =230
             LayoutMinWidth: =400

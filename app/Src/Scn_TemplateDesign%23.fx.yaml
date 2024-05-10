@@ -53,7 +53,7 @@
 
         MainContainer1 As groupContainer.horizontalAutoLayoutContainer:
             Fill: =Parent.Fill
-            Height: =App.Height - Home_Header_Container.Height - New_Request_Container.Height - Padding*2
+            Height: =App.Height - Home_Header_Container_1.Height - New_Request_Container.Height - Padding*2
             LayoutAlignItems: =LayoutAlignItems.Stretch
             LayoutMinHeight: =100
             LayoutMinWidth: =250

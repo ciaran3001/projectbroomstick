@@ -11,7 +11,7 @@
   },
   "Properties": {
     "AppCreationSource": "AppFromDataV2",
-    "AppDescription": "General RCPS final UI",
+    "AppDescription": "All Forms UI V2 With Resource Allocation",
     "AppPreviewFlagsMap": {
       "aibuilderserviceenrollment": false,
       "allowmultiplescreensincanvaspages": false,
@@ -134,6 +134,7 @@
   },
   "ScreenOrder": [
     "Scn_Home",
+    "Scn_HomeUIMockup",
     "Scn_NPI",
     "Scn_Project",
     "Scn_General",
