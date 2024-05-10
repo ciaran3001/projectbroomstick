@@ -141,7 +141,6 @@ Scn_General As screen:
             Item: =RequestRecordGeneral
             LayoutMinHeight: =250
             LayoutMinWidth: =400
-            NumberOfColumns: =4
             OnSuccess: |
                 =Navigate(Scn_Home,ScreenTransition.Fade);
                 If(
@@ -187,9 +186,9 @@ Scn_General As screen:
                 Required: =true
                 Update: =DataCardValue38.Value
                 Visible: =false
-                Width: =300
-                X: =1
-                Y: =4
+                Width: =400
+                X: =2
+                Y: =5
                 ZIndex: =1
 
                 DataCardKey41 As Text:
@@ -255,9 +254,9 @@ Scn_General As screen:
                 Required: =false
                 Update: =Value(DataCardValue48.Value)
                 Visible: =false
-                Width: =300
-                X: =2
-                Y: =4
+                Width: =400
+                X: =0
+                Y: =6
                 ZIndex: =1
 
                 DataCardKey51 As Text:
@@ -321,9 +320,9 @@ Scn_General As screen:
                 Required: =false
                 Update: =Value(DataCardValue64.Value)
                 Visible: =false
-                Width: =300
-                X: =3
-                Y: =4
+                Width: =400
+                X: =1
+                Y: =6
                 ZIndex: =1
 
                 DataCardKey69 As Text:
@@ -387,9 +386,9 @@ Scn_General As screen:
                 Required: =false
                 Update: =Value(DataCardValue65.Value)
                 Visible: =false
-                Width: =300
-                X: =0
-                Y: =5
+                Width: =400
+                X: =2
+                Y: =6
                 ZIndex: =1
 
                 DataCardKey70 As Text:
@@ -453,7 +452,7 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Request Title')
                 Required: =false
                 Update: =DataCardValue49.Value
-                Width: =300
+                Width: =400
                 X: =0
                 Y: =0
                 ZIndex: =2
@@ -521,7 +520,7 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Business Unit')
                 Required: =false
                 Update: =DataCardValue50.Value
-                Width: =300
+                Width: =400
                 X: =1
                 Y: =0
                 ZIndex: =2
@@ -610,7 +609,7 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Point of Contact')
                 Required: =false
                 Update: =DataCardValue55.Value
-                Width: =300
+                Width: =400
                 X: =2
                 Y: =0
                 ZIndex: =2
@@ -685,93 +684,6 @@ Scn_General As screen:
                     Y: =DataCardKey58.Y
                     ZIndex: =5
 
-            Department_DataCard4 As typedDataCard.fluentV9TextualEditCard:
-                BorderColor: =RGBA(245, 245, 245, 1)
-                BorderStyle: =BorderStyle.Solid
-                DataField: ="department"
-                Default: =ThisItem.Department
-                DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@General],DataSourceInfo.DisplayName,Department)
-                Fill: =RGBA(0, 0, 0, 0)
-                Height: =70
-                MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, Department)
-                Required: =false
-                Update: =DataCardValue63.Value
-                Width: =300
-                X: =3
-                Y: =0
-                ZIndex: =2
-
-                DataCardKey68 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =RGBA(0, 51, 102, 1)
-                    Height: =22
-                    Text: =Parent.DisplayName
-                    Weight: ='TextCanvas.Weight'.Semibold
-                    Width: =Parent.Width - 48
-                    Wrap: =false
-                    X: =24
-                    Y: =10
-                    ZIndex: =1
-
-                General_Department_Dropdown As Dropdown.pcfdataset:
-                    DefaultSelectedItems: =selectedDepartment
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =32
-                    Items: =Department
-                    Width: =Parent.Width-48
-                    X: =24
-                    Y: =DataCardKey52.Y + DataCardKey52.Height + 4
-                    ZIndex: =2
-
-                    Title2_2 As pcfDataField.textualColumn:
-                        FieldDisplayName: ="Title"
-                        FieldName: ="Title"
-                        FieldType: ="s"
-                        FieldVariantName: ="textualColumn"
-                        Order: =1
-                        ZIndex: =8
-
-                "DataCardValue63 As 'Text input'":
-                    AccessibleLabel: =Parent.DisplayName
-                    BasePaletteColor: =
-                    DisplayMode: =Parent.DisplayMode
-                    FontColor: =
-                    Height: =32
-                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
-                    Required: =Parent.Required
-                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                    Value: =General_Department_Dropdown.Selected.Title
-                    Visible: =false
-                    Width: =Parent.Width - 48
-                    X: =24
-                    Y: =DataCardKey68.Y + DataCardKey68.Height + 4
-                    ZIndex: =3
-
-                ErrorMessage68 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Text: =Parent.Error
-                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =Parent.Width - 48
-                    Wrap: =true
-                    X: =24
-                    Y: =DataCardValue63.Y + DataCardValue63.Height
-                    ZIndex: =4
-
-                StarVisible68 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Text: ="*"
-                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =30
-                    X: =0
-                    Y: =DataCardKey68.Y
-                    ZIndex: =5
-
             Priority_DataCard2 As typedDataCard.fluentV9TextualEditCard:
                 BorderColor: =RGBA(245, 245, 245, 1)
                 BorderStyle: =BorderStyle.Solid
@@ -784,8 +696,8 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, Priority)
                 Required: =false
                 Update: =DataCardValue54.Value
-                Width: =300
-                X: =0
+                Width: =400
+                X: =1
                 Y: =1
                 ZIndex: =2
 
@@ -865,8 +777,8 @@ Scn_General As screen:
                 Required: =false
                 Update: =DataCardValue58.Value
                 Visible: =true
-                Width: =300
-                X: =1
+                Width: =400
+                X: =2
                 Y: =1
                 ZIndex: =2
 
@@ -944,8 +856,8 @@ Scn_General As screen:
                 Required: =false
                 Update: =Value(DataCardValue52.Value)
                 Visible: =true
-                Width: =300
-                X: =0
+                Width: =400
+                X: =2
                 Y: =2
                 ZIndex: =2
 
@@ -998,6 +910,93 @@ Scn_General As screen:
                     Y: =DataCardKey55.Y
                     ZIndex: =4
 
+            Department_DataCard4 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="department"
+                Default: =ThisItem.Department
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@General],DataSourceInfo.DisplayName,Department)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, Department)
+                Required: =false
+                Update: =DataCardValue63.Value
+                Width: =400
+                X: =0
+                Y: =1
+                ZIndex: =2
+
+                DataCardKey68 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =RGBA(0, 51, 102, 1)
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                General_Department_Dropdown As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =selectedDepartment
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    Items: =Department
+                    Width: =Parent.Width-48
+                    X: =24
+                    Y: =DataCardKey52.Y + DataCardKey52.Height + 4
+                    ZIndex: =2
+
+                    Title2_2 As pcfDataField.textualColumn:
+                        FieldDisplayName: ="Title"
+                        FieldName: ="Title"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =8
+
+                "DataCardValue63 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =General_Department_Dropdown.Selected.Title
+                    Visible: =false
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey68.Y + DataCardKey68.Height + 4
+                    ZIndex: =3
+
+                ErrorMessage68 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue63.Y + DataCardValue63.Height
+                    ZIndex: =4
+
+                StarVisible68 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey68.Y
+                    ZIndex: =5
+
             "'Request Type_DataCard1' As typedDataCard.fluentV9TextualEditCard":
                 BorderColor: =RGBA(245, 245, 245, 1)
                 BorderStyle: =BorderStyle.Solid
@@ -1010,9 +1009,9 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Request Type')
                 Required: =false
                 Update: =DataCardValue51.Value
-                Width: =300
-                X: =2
-                Y: =1
+                Width: =400
+                X: =0
+                Y: =2
                 ZIndex: =2
 
                 DataCardKey54 As Text:
@@ -1028,7 +1027,7 @@ Scn_General As screen:
                     ZIndex: =1
 
                 Genereal_RequestType_Dropdown As Dropdown.pcfdataset:
-                    DefaultSelectedItems: =If(Not(IsBlank(RequestRecordGeneral)),Filter(["Small", "Medium", "Large"], Value = RequestRecordGeneral.'Master Data Impact'))
+                    DefaultSelectedItems: =If(Not(IsBlank(RequestRecordGeneral)),Filter(["QI", "Corrections", "Audit Support", "CAPA", "Process Improvement", "Project Scoping", "Other"], Value = RequestRecordGeneral.'Request Type'))
                     DisplayMode: =DisplayMode.Edit
                     Height: =32
                     Items: =["QI", "Corrections", "Audit Support", "CAPA", "Process Improvement", "Project Scoping", "Other"]
@@ -1090,9 +1089,9 @@ Scn_General As screen:
                 Required: =false
                 Update: =DataCardValue60.Value
                 Visible: =true
-                Width: =300
-                X: =3
-                Y: =1
+                Width: =400
+                X: =1
+                Y: =2
                 ZIndex: =2
 
                 DataCardKey65 As Text:
@@ -1169,9 +1168,9 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Scope Detail')
                 Required: =false
                 Update: =DataCardValue53.Value
-                Width: =300
-                X: =1
-                Y: =2
+                Width: =400
+                X: =0
+                Y: =3
                 ZIndex: =2
 
                 DataCardKey56 As Text:
@@ -1237,9 +1236,9 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Reference Number')
                 Required: =false
                 Update: =DataCardValue56.Value
-                Width: =300
-                X: =2
-                Y: =2
+                Width: =400
+                X: =1
+                Y: =3
                 ZIndex: =2
 
                 DataCardKey59 As Text:
@@ -1305,9 +1304,9 @@ Scn_General As screen:
                 Required: =false
                 Update: =Value(DataCardValue57.Value)
                 Visible: =true
-                Width: =300
-                X: =3
-                Y: =2
+                Width: =400
+                X: =2
+                Y: =3
                 ZIndex: =2
 
                 DataCardKey60 As Text:
@@ -1372,9 +1371,9 @@ Scn_General As screen:
                 Update: =Value(DataCardValue59.Value)
                 Visible: |
                     =true
-                Width: =300
+                Width: =400
                 X: =0
-                Y: =3
+                Y: =4
                 ZIndex: =2
 
                 DataCardKey64 As Text:
@@ -1438,9 +1437,9 @@ Scn_General As screen:
                 Required: =false
                 Update: =Value(DataCardValue61.Value)
                 Visible: =true
-                Width: =300
+                Width: =400
                 X: =1
-                Y: =3
+                Y: =4
                 ZIndex: =2
 
                 DataCardKey66 As Text:
@@ -1503,9 +1502,9 @@ Scn_General As screen:
                 Height: =70
                 Required: =false
                 Update: =If(Not IsBlank(DateValue4.SelectedDate), Date(Year(DateValue4.SelectedDate), Month(DateValue4.SelectedDate), Day(DateValue4.SelectedDate)) + Time(Value(HourValue4.Selected.Value), Value(MinuteValue4.Selected.Value), Value(Second(DateValue4.SelectedDate))))
-                Width: =300
+                Width: =400
                 X: =2
-                Y: =3
+                Y: =4
                 ZIndex: =2
 
                 DataCardKey62 As Text:
@@ -1603,9 +1602,9 @@ Scn_General As screen:
                 Height: =70
                 Required: =false
                 Update: =If(Not IsBlank(DateValue5.SelectedDate), Date(Year(DateValue5.SelectedDate), Month(DateValue5.SelectedDate), Day(DateValue5.SelectedDate)) + Time(Value(HourValue5.Selected.Value), Value(MinuteValue5.Selected.Value), Value(Second(DateValue5.SelectedDate))))
-                Width: =300
-                X: =3
-                Y: =3
+                Width: =400
+                X: =0
+                Y: =5
                 ZIndex: =2
 
                 DataCardKey63 As Text:
@@ -1705,9 +1704,9 @@ Scn_General As screen:
                 Required: =false
                 Update: =DataCardValue62.Value
                 Visible: =If(Genereal_RequestType_Dropdown.Selected.Value = "Other", true, false)
-                Width: =300
-                X: =0
-                Y: =4
+                Width: =400
+                X: =1
+                Y: =5
                 ZIndex: =2
 
                 DataCardKey67 As Text:
@@ -1763,7 +1762,6 @@ Scn_General As screen:
 
         General_ResourceAllocation_Container As groupContainer.verticalAutoLayoutContainer:
             AlignInContainer: =AlignInContainer.SetByContainer
-            DropShadow: =DropShadow.Light
             Height: =460
             LayoutAlignItems: =LayoutAlignItems.Center
             LayoutDirection: =LayoutDirection.Vertical
