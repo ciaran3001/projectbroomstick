@@ -983,7 +983,7 @@ Scn_RCPS As screen:
                     ZIndex: =1
 
                 RCPS_ReactiveProactive_Toggle As Toggle:
-                    BasePaletteColor: =RGBA(235, 23, 0, 1)
+                    BasePaletteColor: =RGBA(0, 51, 102, 1)
                     Checked: |-
                         =If(Not(IsBlank(RequestRecordRCPS)),
                         If(RequestRecordRCPS.'Reactive Proactive A3' = "Proactive",true,false),
@@ -1070,7 +1070,7 @@ Scn_RCPS As screen:
                     ZIndex: =1
 
                 RCPS_MESUpdates_Toggle As Toggle:
-                    BasePaletteColor: =RGBA(235, 23, 0, 1)
+                    BasePaletteColor: =RGBA(0, 51, 102, 1)
                     Checked: |-
                         =If(Not(IsBlank(RequestRecordRCPS)),
                         If(RequestRecordRCPS.'MES Updates to help resolve' = "Yes",true,false),
@@ -1389,7 +1389,7 @@ Scn_RCPS As screen:
                                 ZIndex: =1
 
                             RCPS_ResourceAllocation_Group_Toggle As Toggle:
-                                BasePaletteColor: =RGBA(235, 23, 0, 1)
+                                BasePaletteColor: =RGBA(0, 51, 102, 1)
                                 Checked: =If(ThisItem.Group = "Yes",true,false)
                                 DisplayMode: =DisplayMode.Edit
                                 FontColor: =RGBA(0, 0, 0, 1)

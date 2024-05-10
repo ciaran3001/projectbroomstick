@@ -1429,7 +1429,7 @@ Scn_NPI As screen:
                     ZIndex: =1
 
                 NPI_UpstreamProcessing_Toggle As Toggle:
-                    BasePaletteColor: =RGBA(235, 23, 0, 1)
+                    BasePaletteColor: =RGBA(0, 51, 102, 1)
                     Checked: |-
                         =If(Not(IsBlank(RequestRecordNPI)),
                         If(RequestRecordNPI.'Upstream Processing' = "Yes",true,false),
@@ -1515,7 +1515,7 @@ Scn_NPI As screen:
                     ZIndex: =1
 
                 NPI_DownstreamProcessing_Toggle As Toggle:
-                    BasePaletteColor: =RGBA(235, 23, 0, 1)
+                    BasePaletteColor: =RGBA(0, 51, 102, 1)
                     Checked: |-
                         =If(Not(IsBlank(RequestRecordNPI)),
                         If(RequestRecordNPI.'Downstream Processing' = "Yes",true,false),
@@ -1602,7 +1602,7 @@ Scn_NPI As screen:
                     ZIndex: =1
 
                 NPI_HighTitre_Toggle As Toggle:
-                    BasePaletteColor: =RGBA(235, 23, 0, 1)
+                    BasePaletteColor: =RGBA(0, 51, 102, 1)
                     Checked: |-
                         =If(Not(IsBlank(RequestRecordNPI)),
                         If(RequestRecordNPI.'High Titre' = "Yes",true,false),
@@ -1689,7 +1689,7 @@ Scn_NPI As screen:
                     ZIndex: =1
 
                 NPI_HighConcentration_Toggle As Toggle:
-                    BasePaletteColor: =RGBA(235, 23, 0, 1)
+                    BasePaletteColor: =RGBA(0, 51, 102, 1)
                     Checked: |-
                         =If(Not(IsBlank(RequestRecordNPI)),
                         If(RequestRecordNPI.'High Concentration' = "Yes",true,false),
@@ -1776,7 +1776,7 @@ Scn_NPI As screen:
                     ZIndex: =1
 
                 NPI_IsDownstreamPlatform_Toggle As Toggle:
-                    BasePaletteColor: =RGBA(235, 23, 0, 1)
+                    BasePaletteColor: =RGBA(0, 51, 102, 1)
                     Checked: |-
                         =If(Not(IsBlank(RequestRecordNPI)),
                         If(RequestRecordNPI.'Is Downstream Platform' = "Yes",true,false),
@@ -1794,7 +1794,7 @@ Scn_NPI As screen:
 
                 "DataCardValue96 As 'Text input'":
                     AccessibleLabel: =Parent.DisplayName
-                    BasePaletteColor: =RGBA(189, 178, 176, 1)
+                    BasePaletteColor: =RGBA(0, 51, 102, 1)
                     DisplayMode: =Parent.DisplayMode
                     FontColor: =
                     Height: =32
@@ -1863,7 +1863,7 @@ Scn_NPI As screen:
                     ZIndex: =1
 
                 NPI_DuoBody_Toggle As Toggle:
-                    BasePaletteColor: =RGBA(235, 23, 0, 1)
+                    BasePaletteColor: =RGBA(0, 51, 102, 1)
                     Checked: |-
                         =If(Not(IsBlank(RequestRecordNPI)),
                         If(RequestRecordNPI.Duobody = "Yes",true,false),
@@ -2183,7 +2183,7 @@ Scn_NPI As screen:
                                 ZIndex: =1
 
                             NPI_ResourceAllocation_Group_Toggle As Toggle:
-                                BasePaletteColor: =RGBA(235, 23, 0, 1)
+                                BasePaletteColor: =RGBA(0, 51, 102, 1)
                                 Checked: =If(ThisItem.Group = "Yes",true,false)
                                 DisplayMode: =DisplayMode.Edit
                                 FontColor: =RGBA(0, 0, 0, 1)

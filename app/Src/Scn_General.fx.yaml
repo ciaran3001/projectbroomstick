@@ -2024,7 +2024,7 @@ Scn_General As screen:
                                 ZIndex: =1
 
                             General_ResourceAllocation_Group_Toggle As Toggle:
-                                BasePaletteColor: =RGBA(235, 23, 0, 1)
+                                BasePaletteColor: =RGBA(0, 51, 102, 1)
                                 Checked: =If(ThisItem.Group = "Yes",true,false)
                                 DisplayMode: =DisplayMode.Edit
                                 FontColor: =RGBA(0, 0, 0, 1)

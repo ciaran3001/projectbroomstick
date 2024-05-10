@@ -10511,7 +10511,7 @@
         {
           "Category": "Data",
           "PropertyName": "BasePaletteColor",
-          "RuleProviderType": "User"
+          "RuleProviderType": "Unknown"
         },
         {
           "Category": "Data",
@@ -10654,7 +10654,7 @@
         {
           "Category": "Data",
           "PropertyName": "BasePaletteColor",
-          "RuleProviderType": "User"
+          "RuleProviderType": "Unknown"
         },
         {
           "Category": "Data",
@@ -11945,7 +11945,7 @@
         {
           "Category": "Data",
           "PropertyName": "BasePaletteColor",
-          "RuleProviderType": "User"
+          "RuleProviderType": "Unknown"
         },
         {
           "Category": "Data",
@@ -12088,7 +12088,7 @@
         {
           "Category": "Data",
           "PropertyName": "BasePaletteColor",
-          "RuleProviderType": "User"
+          "RuleProviderType": "Unknown"
         },
         {
           "Category": "Data",
@@ -12231,7 +12231,7 @@
         {
           "Category": "Data",
           "PropertyName": "BasePaletteColor",
-          "RuleProviderType": "User"
+          "RuleProviderType": "Unknown"
         },
         {
           "Category": "Data",
