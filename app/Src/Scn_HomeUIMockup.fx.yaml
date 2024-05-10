@@ -18,6 +18,7 @@ Scn_HomeUIMockup As screen:
         DropShadow: =DropShadow.Light
         Fill: =RGBA(255, 255, 255, 1)
         Height: =Scn_Home.Height - Home_Footer_Container.Height - 10
+        LayoutAlignItems: =LayoutAlignItems.Center
         LayoutDirection: =LayoutDirection.Vertical
         LayoutMode: =LayoutMode.Auto
         RadiusBottomLeft: =25
@@ -72,17 +73,17 @@ Scn_HomeUIMockup As screen:
 
         Home_Selection_Container As groupContainer.horizontalAutoLayoutContainer:
             AlignInContainer: =AlignInContainer.SetByContainer
-            DropShadow: =DropShadow.Light
+            DropShadow: =DropShadow.Regular
             Fill: =RGBA(0, 51, 102, 1)
             FillPortions: =0
             Height: =250
             LayoutAlignItems: =LayoutAlignItems.Center
-            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+            LayoutGap: =20
             LayoutMinHeight: =100
             LayoutMinWidth: =250
             LayoutMode: =LayoutMode.Auto
             PaddingBottom: =10
-            PaddingLeft: =10
+            PaddingLeft: =20
             PaddingRight: =10
             PaddingTop: =10
             RadiusBottomLeft: =4
@@ -100,10 +101,10 @@ Scn_HomeUIMockup As screen:
                 Height: =199
                 LayoutMinHeight: =100
                 LayoutMinWidth: =250
-                RadiusBottomLeft: =4
-                RadiusBottomRight: =4
-                RadiusTopLeft: =4
-                RadiusTopRight: =4
+                RadiusBottomLeft: =25
+                RadiusBottomRight: =25
+                RadiusTopLeft: =25
+                RadiusTopRight: =25
                 Width: =280
                 ZIndex: =1
 
@@ -161,12 +162,11 @@ Scn_HomeUIMockup As screen:
                 Height: =199
                 LayoutMinHeight: =100
                 LayoutMinWidth: =250
-                RadiusBottomLeft: =4
-                RadiusBottomRight: =4
-                RadiusTopLeft: =4
-                RadiusTopRight: =4
+                RadiusBottomLeft: =25
+                RadiusBottomRight: =25
+                RadiusTopLeft: =25
+                RadiusTopRight: =25
                 Width: =280
-                X: =10
                 ZIndex: =2
 
                 edit_existing_request_button_1 As Button:
@@ -228,13 +228,11 @@ Scn_HomeUIMockup As screen:
                 Height: =199
                 LayoutMinHeight: =100
                 LayoutMinWidth: =250
-                RadiusBottomLeft: =4
-                RadiusBottomRight: =4
-                RadiusTopLeft: =4
-                RadiusTopRight: =4
+                RadiusBottomLeft: =25
+                RadiusBottomRight: =25
+                RadiusTopLeft: =25
+                RadiusTopRight: =25
                 Width: =280
-                X: |
-                    =0
                 ZIndex: =3
 
                 RequestStatus_Header_Label_1 As label:
