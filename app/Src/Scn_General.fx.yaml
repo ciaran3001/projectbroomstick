@@ -76,7 +76,7 @@ Scn_General As screen:
 
         General_Header_Container As groupContainer.manualLayoutContainer:
             AlignInContainer: =AlignInContainer.SetByContainer
-            DropShadow: =DropShadow.Light
+            DropShadow: =DropShadow.Regular
             Fill: =RGBA(255, 255, 255, 1)
             FillPortions: =0
             Height: =50
@@ -1712,7 +1712,7 @@ Scn_General As screen:
 
                 DataCardKey67 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -1760,4 +1760,284 @@ Scn_General As screen:
                     X: =0
                     Y: =DataCardKey67.Y
                     ZIndex: =4
+
+        General_ResourceAllocation_Container As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Height: =460
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =If(showResourceAllocateContainer,true,false)
+            Width: =App.Width
+            ZIndex: =4
+
+            General_ResourceAllocationHeader_Label As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                Color: =RGBA(0, 51, 102, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(161, 159, 157, 1)
+                DisplayMode: =DisplayMode.View
+                Font: =Font.Arial
+                Height: =30
+                PaddingBottom: =0
+                PaddingTop: =0
+                Text: ="Department Allocation"
+                Width: =General_ResourceAllocation_Container.Width
+                Y: |
+                    =0
+                ZIndex: =1
+
+            General_ResourceAllocation_Gallery As gallery.galleryVertical:
+                AccessibleLabel: ="Items gallery"
+                AlignInContainer: =AlignInContainer.SetByContainer
+                BorderColor: =RGBA(245, 245, 245, 1)
+                DelayItemLoading: =true
+                Height: |
+                    =400
+                Items: =ResourceAllocationsForThiReq
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =287
+                LayoutMinWidth: =320
+                LoadingSpinner: =LoadingSpinner.Data
+                OnSelect: |-
+                    =Set(enableEditButton,true);
+                    Set(enableResourceAllocateButton,true);
+                ShowScrollbar: =false
+                TabIndex: =0
+                TemplatePadding: =20
+                TemplateSize: =200
+                Transition: =Transition.Pop
+                Width: =Parent.Width
+                WrapCount: =If(Scn_RCPS.Size = ScreenSize.ExtraLarge , 3, Scn_RCPS.Size = ScreenSize.Large, 2, 1)
+                ZIndex: =2
+
+                General_ResourceAllocation_Gallery_Container As groupContainer.verticalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =Parent.TemplateHeight
+                    LayoutAlignItems: =LayoutAlignItems.Center
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutJustifyContent: =LayoutJustifyContent.Center
+                    LayoutMode: =LayoutMode.Auto
+                    LayoutOverflowY: =LayoutOverflow.Scroll
+                    PaddingRight: =
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.TemplateWidth 
+                    ZIndex: =6
+
+                    General_ResourceAllocation_GalleryTitle_Container As groupContainer.verticalAutoLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.Semilight
+                        FillPortions: =0
+                        Height: =120
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =8
+                        LayoutMinHeight: =100
+                        LayoutMinWidth: =General_ResourceAllocation_Gallery_Container.Width
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingBottom: =10
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =10
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Width: =Parent.Width
+                        ZIndex: =9
+
+                        General_ResourceAllocation_GalleryTitle_Label As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =RGBA(0, 51, 102, 1)
+                            Height: =30
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =Parent.Width
+                            Size: =16
+                            Text: =ThisItem.Title
+                            VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                            Weight: ='TextCanvas.Weight'.Bold
+                            Width: =Parent.Width - General_ResourceAllocation_GalleryTitle_Container.PaddingLeft
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+                        General_ResourceAllocation_GalleryCollection_Container As groupContainer.horizontalAutoLayoutContainer:
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            Height: =30
+                            LayoutAlignItems: =LayoutAlignItems.Center
+                            LayoutJustifyContent: =LayoutJustifyContent.Center
+                            LayoutMinHeight: =30
+                            LayoutMinWidth: =250
+                            LayoutMode: =LayoutMode.Auto
+                            RadiusBottomLeft: =4
+                            RadiusBottomRight: =4
+                            RadiusTopLeft: =4
+                            RadiusTopRight: =4
+                            Width: =Parent.Width - 40
+                            ZIndex: =3
+
+                            General_ResourceAllocation_ModifiedOn_Label As Text:
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =RGBA(0, 0, 0, 1)
+                                Height: =30
+                                LayoutMinHeight: =32
+                                LayoutMinWidth: =96
+                                Text: =Concatenate("📅",ThisItem.Modified)
+                                Width: =General_ResourceAllocation_GalleryCollection_Container.Width/2
+                                X: =0
+                                Y: =0
+                                ZIndex: =1
+
+                            General_ResourceAllocation_RequestType_Label As Badge:
+                                BasePaletteColor: =RGBA(0, 51, 102, 1)
+                                Content: =ThisItem.'Request Type'
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =
+                                Height: =30
+                                LayoutMinHeight: =32
+                                LayoutMinWidth: =32
+                                Width: =General_ResourceAllocation_GalleryCollection_Container.Width/2
+                                X: =0
+                                Y: =0
+                                ZIndex: =2
+
+                        General_ResourceAllocation_GalleryBusinessUnit_Label As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            DisplayMode: =DisplayMode.Edit
+                            FontColor: =RGBA(0, 0, 0, 1)
+                            Height: =25
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =Parent.Width
+                            Size: =14
+                            Text: |-
+                                =Concatenate("🏤BU :",ThisItem.businessunit)
+                            VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+                            Width: =Parent.Width - General_ResourceAllocation_GalleryTitle_Container.PaddingLeft
+                            X: =0
+                            Y: =0
+                            ZIndex: =4
+
+                    General_ResourceAllocation_InputControls_Container As groupContainer.verticalAutoLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        DropShadow: =DropShadow.Light
+                        FillPortions: =0
+                        Height: =80
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMinHeight: =40
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingTop: =10
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Width: =Parent.Width
+                        ZIndex: =10
+
+                        General_ResourceAllocation_Effort_Container As groupContainer.horizontalAutoLayoutContainer:
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            Height: =62.5
+                            LayoutAlignItems: =LayoutAlignItems.Center
+                            LayoutJustifyContent: =LayoutJustifyContent.Center
+                            LayoutMinHeight: =10
+                            LayoutMinWidth: =250
+                            LayoutMode: =LayoutMode.Auto
+                            RadiusBottomLeft: =4
+                            RadiusBottomRight: =4
+                            RadiusTopLeft: =4
+                            RadiusTopRight: =4
+                            Width: =Parent.Width
+                            ZIndex: =1
+
+                            General_ResourceAllocation_Effort_Label As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =RGBA(0, 0, 0, 1)
+                                Height: =20
+                                LayoutMinHeight: =32
+                                LayoutMinWidth: =Parent.Width
+                                Size: =16
+                                Text: ="Effort"
+                                VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width/2
+                                X: =0
+                                Y: =0
+                                ZIndex: =2
+
+                            "General_ResourceAllocation_Effort_Input As 'Text input'":
+                                BasePaletteColor: =
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =RGBA(0, 0, 0, 1)
+                                Height: =30
+                                LayoutMinHeight: =32
+                                LayoutMinWidth: =320
+                                OnChange: |-
+                                    =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Hours: Value(Self.Value)});
+                                Value: =ThisItem.Hours
+                                Visible: =true
+                                Width: =Parent.Width/2
+                                X: =0
+                                Y: =0
+                                ZIndex: =3
+
+                        General_ResourceAllocation_Group_Container As groupContainer.horizontalAutoLayoutContainer:
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            Height: =62.5
+                            LayoutMinHeight: =10
+                            LayoutMinWidth: =250
+                            LayoutMode: =LayoutMode.Auto
+                            RadiusBottomLeft: =4
+                            RadiusBottomRight: =4
+                            RadiusTopLeft: =4
+                            RadiusTopRight: =4
+                            Width: =Parent.Width
+                            ZIndex: =2
+
+                            General_ResourceAllocation_Group_Label As Text:
+                                Align: ='TextCanvas.Align'.Center
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =RGBA(0, 0, 0, 1)
+                                Height: =30
+                                LayoutMinHeight: =32
+                                LayoutMinWidth: =Parent.Width
+                                Size: =16
+                                Text: ="Group"
+                                VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                                Weight: ='TextCanvas.Weight'.Semibold
+                                Width: =Parent.Width/2
+                                X: =0
+                                Y: =0
+                                ZIndex: =1
+
+                            General_ResourceAllocation_Group_Toggle As Toggle:
+                                BasePaletteColor: =RGBA(235, 23, 0, 1)
+                                Checked: =If(ThisItem.Group = "Yes",true,false)
+                                DisplayMode: =DisplayMode.Edit
+                                FontColor: =RGBA(0, 0, 0, 1)
+                                Height: =35
+                                Label: =If(General_ResourceAllocation_Group_Toggle.Checked = true, "Yes", "No")
+                                LayoutMinHeight: =35
+                                LayoutMinWidth: =110
+                                OnCheck: |-
+                                    =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Group: "Yes"});
+                                OnUncheck: |-
+                                    =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Group: "No"});
+                                Width: =110
+                                X: =0
+                                Y: =0
+                                ZIndex: =2
 

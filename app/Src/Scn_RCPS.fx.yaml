@@ -73,7 +73,7 @@ Scn_RCPS As screen:
 
         RCPS_Header_Container As groupContainer.manualLayoutContainer:
             AlignInContainer: =AlignInContainer.SetByContainer
-            DropShadow: =DropShadow.Light
+            DropShadow: =DropShadow.Regular
             Fill: =RGBA(255, 255, 255, 1)
             FillPortions: =0
             Height: =50
@@ -1129,6 +1129,7 @@ Scn_RCPS As screen:
         RCPS_ResourceAllocation_Container As groupContainer.verticalAutoLayoutContainer:
             DropShadow: =DropShadow.Light
             Height: =460
+            LayoutAlignItems: =LayoutAlignItems.Center
             LayoutDirection: =LayoutDirection.Vertical
             LayoutMinHeight: =100
             LayoutMinWidth: =250
@@ -1161,7 +1162,7 @@ Scn_RCPS As screen:
 
             RCPS_ResourceAllocation_Gallery As gallery.galleryVertical:
                 AccessibleLabel: ="Items gallery"
-                AlignInContainer: =AlignInContainer.SetByContainer
+                AlignInContainer: =AlignInContainer.Center
                 BorderColor: =RGBA(245, 245, 245, 1)
                 DelayItemLoading: =true
                 Height: |
@@ -1177,7 +1178,7 @@ Scn_RCPS As screen:
                 ShowScrollbar: =false
                 TabIndex: =0
                 TemplatePadding: =20
-                TemplateSize: =250
+                TemplateSize: =200
                 Transition: =Transition.Pop
                 Width: =Parent.Width
                 WrapCount: =If(Scn_RCPS.Size = ScreenSize.ExtraLarge , 3, Scn_RCPS.Size = ScreenSize.Large, 2, 1)
@@ -1192,21 +1193,25 @@ Scn_RCPS As screen:
                     LayoutJustifyContent: =LayoutJustifyContent.Center
                     LayoutMode: =LayoutMode.Auto
                     LayoutOverflowY: =LayoutOverflow.Scroll
+                    PaddingRight: =
                     RadiusBottomLeft: =4
                     RadiusBottomRight: =4
                     RadiusTopLeft: =4
                     RadiusTopRight: =4
-                    Width: =Parent.TemplateWidth
+                    Width: =Parent.TemplateWidth 
                     ZIndex: =6
 
                     RCPS_ResourceAllocation_GalleryTitle_Container As groupContainer.verticalAutoLayoutContainer:
                         AlignInContainer: =AlignInContainer.SetByContainer
-                        Height: =125
+                        DropShadow: =DropShadow.Semilight
+                        FillPortions: =0
+                        Height: =120
                         LayoutDirection: =LayoutDirection.Vertical
                         LayoutGap: =8
                         LayoutMinHeight: =100
                         LayoutMinWidth: =RCPS_ResourceAllocation_Gallery_Container.Width
                         LayoutMode: =LayoutMode.Auto
+                        PaddingBottom: =10
                         PaddingLeft: =20
                         PaddingRight: =20
                         PaddingTop: =10
@@ -1292,11 +1297,14 @@ Scn_RCPS As screen:
                     RCPS_ResourceAllocation_InputControls_Container As groupContainer.verticalAutoLayoutContainer:
                         AlignInContainer: =AlignInContainer.Center
                         DropShadow: =DropShadow.Light
-                        Height: =125
+                        FillPortions: =0
+                        Height: =80
+                        LayoutAlignItems: =LayoutAlignItems.Center
                         LayoutDirection: =LayoutDirection.Vertical
                         LayoutMinHeight: =40
                         LayoutMinWidth: =250
                         LayoutMode: =LayoutMode.Auto
+                        PaddingTop: =10
                         RadiusBottomLeft: =4
                         RadiusBottomRight: =4
                         RadiusTopLeft: =4
@@ -1305,7 +1313,7 @@ Scn_RCPS As screen:
                         ZIndex: =10
 
                         RCPS_ResourceAllocation_Effort_Container As groupContainer.horizontalAutoLayoutContainer:
-                            DropShadow: =DropShadow.Light
+                            AlignInContainer: =AlignInContainer.SetByContainer
                             Height: =62.5
                             LayoutAlignItems: =LayoutAlignItems.Center
                             LayoutJustifyContent: =LayoutJustifyContent.Center
@@ -1316,6 +1324,7 @@ Scn_RCPS As screen:
                             RadiusBottomRight: =4
                             RadiusTopLeft: =4
                             RadiusTopRight: =4
+                            Width: =Parent.Width
                             ZIndex: =1
 
                             RCPS_ResourceAllocation_Effort_Label As Text:
@@ -1351,7 +1360,7 @@ Scn_RCPS As screen:
                                 ZIndex: =3
 
                         RCPS_ResourceAllocation_Group_Container As groupContainer.horizontalAutoLayoutContainer:
-                            DropShadow: =DropShadow.Light
+                            AlignInContainer: =AlignInContainer.SetByContainer
                             Height: =62.5
                             LayoutMinHeight: =10
                             LayoutMinWidth: =250
@@ -1360,6 +1369,7 @@ Scn_RCPS As screen:
                             RadiusBottomRight: =4
                             RadiusTopLeft: =4
                             RadiusTopRight: =4
+                            Width: =Parent.Width
                             ZIndex: =2
 
                             RCPS_ResourceAllocation_Group_Label As Text:

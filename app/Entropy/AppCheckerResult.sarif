@@ -344,6 +344,96 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Gallery_Container.General_ResourceAllocation_InputControls_Container.General_ResourceAllocation_Effort_Container.General_ResourceAllocation_Effort_Input.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Gallery_Container.General_ResourceAllocation_InputControls_Container.General_ResourceAllocation_Effort_Container.General_ResourceAllocation_Effort_Input.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Scn_General",
+                "type": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Gallery_Container.General_ResourceAllocation_InputControls_Container.General_ResourceAllocation_Effort_Container.General_ResourceAllocation_Effort_Input"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Gallery_Container.General_ResourceAllocation_InputControls_Container.General_ResourceAllocation_Group_Container.General_ResourceAllocation_Group_Toggle.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Gallery_Container.General_ResourceAllocation_InputControls_Container.General_ResourceAllocation_Group_Container.General_ResourceAllocation_Group_Toggle.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Scn_General",
+                "type": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Gallery_Container.General_ResourceAllocation_InputControls_Container.General_ResourceAllocation_Group_Container.General_ResourceAllocation_Group_Toggle"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Gallery_Container.General_ResourceAllocation_GalleryTitle_Container.General_ResourceAllocation_GalleryCollection_Container.General_ResourceAllocation_RequestType_Label.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Gallery_Container.General_ResourceAllocation_GalleryTitle_Container.General_ResourceAllocation_GalleryCollection_Container.General_ResourceAllocation_RequestType_Label.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Scn_General",
+                "type": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Gallery_Container.General_ResourceAllocation_GalleryTitle_Container.General_ResourceAllocation_GalleryCollection_Container.General_ResourceAllocation_RequestType_Label"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "Scn_General.General_Footer_Container.ButtonCanvas_DepartmentSubmit_3.AccessibleLabel"
                 }
               ],
@@ -2547,6 +2637,36 @@
                 "member": "Height",
                 "module": "Scn_General",
                 "type": "Scn_General.General_Container.Form_General"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 5
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.WrapCount"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.WrapCount",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "WrapCount",
+                "module": "Scn_General",
+                "type": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery"
               }
             }
           ],
