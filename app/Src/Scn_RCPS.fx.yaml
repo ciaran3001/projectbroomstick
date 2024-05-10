@@ -1180,7 +1180,7 @@ Scn_RCPS As screen:
                 TemplateSize: =250
                 Transition: =Transition.Pop
                 Width: =Parent.Width
-                WrapCount: =If('Scn_RCPS'.Size = ScreenSize.ExtraLarge , 3, 'Scn_RCPS'.Size = ScreenSize.Large, 2, 1)
+                WrapCount: =If(Scn_RCPS.Size = ScreenSize.ExtraLarge , 3, Scn_RCPS.Size = ScreenSize.Large, 2, 1)
                 ZIndex: =2
 
                 RCPS_ResourceAllocation_Gallery_Container As groupContainer.verticalAutoLayoutContainer:
@@ -1395,117 +1395,4 @@ Scn_RCPS As screen:
                                 X: =0
                                 Y: =0
                                 ZIndex: =2
-
-    Redirect_URLs As groupContainer.horizontalAutoLayoutContainer:
-        DropShadow: =DropShadow.Light
-        Height: =20
-        LayoutMode: =LayoutMode.Auto
-        RadiusBottomLeft: =4
-        RadiusBottomRight: =4
-        RadiusTopLeft: =4
-        RadiusTopRight: =4
-        Visible: =false
-        Width: =App.Width
-        ZIndex: =3
-
-        "'J&JInnovationMedicine_Redirect_Container' As groupContainer.manualLayoutContainer":
-            AlignInContainer: =AlignInContainer.Start
-            DropShadow: =DropShadow.Light
-            Height: =Redirect_URLs.Height
-            LayoutMinHeight: =200
-            LayoutMinWidth: =250
-            RadiusBottomLeft: =4
-            RadiusBottomRight: =4
-            RadiusTopLeft: =4
-            RadiusTopRight: =4
-            Width: =100
-            ZIndex: =1
-
-            "'J&JInnovationMedicine_Redirect_Arrow' As icon.ArrowUp":
-                BorderColor: =RGBA(0, 0, 0, 0)
-                Color: =RGBA(255, 255, 255, 1)
-                DisabledBorderColor: =RGBA(245, 245, 245, 1)
-                DisabledColor: =RGBA(225, 223, 221, 1)
-                DisabledFill: =RGBA(0, 0, 0, 0)
-                FocusedBorderThickness: =4
-                Height: ='J&JInnovationMedicine_Redirect_Container'.Height - 5
-                HoverBorderColor: =RGBA(0, 0, 0, 0)
-                HoverColor: =RGBA(16, 110, 190, 1)
-                HoverFill: =RGBA(0, 0, 0, 0)
-                Icon: =Icon.ArrowUp
-                PressedBorderColor: =RGBA(0, 0, 0, 0)
-                PressedColor: =RGBA(16, 110, 190, 1)
-                PressedFill: =RGBA(0, 0, 0, 0)
-                Width: =20
-                X: =200
-                Y: =2
-                ZIndex: =1
-
-            "'J&JInnovationMedicine_Redirect_Label' As label":
-                Align: =Align.Center
-                BorderColor: =RGBA(0, 0, 0, 0)
-                BorderStyle: =BorderStyle.None
-                BorderThickness: =2
-                Color: =RGBA(255, 255, 255, 1)
-                DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                DisabledColor: =RGBA(161, 159, 157, 1)
-                FocusedBorderThickness: =4
-                Font: =Font.'Segoe UI'
-                Height: ='J&JInnovationMedicine_Redirect_Container'.Height
-                Size: =10
-                Text: ="J&J Innovative Medicine"
-                Width: =200
-                X: =20
-                ZIndex: =2
-
-        "'J&JMedTech_Redirect_Container' As groupContainer.manualLayoutContainer":
-            AlignInContainer: =AlignInContainer.Start
-            DropShadow: =DropShadow.Light
-            Height: =Redirect_URLs.Height
-            LayoutMinHeight: =10
-            LayoutMinWidth: =250
-            RadiusBottomLeft: =4
-            RadiusBottomRight: =4
-            RadiusTopLeft: =4
-            RadiusTopRight: =4
-            Width: =10
-            ZIndex: =2
-
-            "'J&JMedTech_Redirect_Arrow' As icon.ArrowUp":
-                BorderColor: =RGBA(0, 0, 0, 0)
-                Color: =RGBA(255, 255, 255, 1)
-                DisabledBorderColor: =RGBA(245, 245, 245, 1)
-                DisabledColor: =RGBA(225, 223, 221, 1)
-                DisabledFill: =RGBA(0, 0, 0, 0)
-                FocusedBorderThickness: =4
-                Height: ='J&JMedTech_Redirect_Container'.Height - 5
-                HoverBorderColor: =RGBA(0, 0, 0, 0)
-                HoverColor: =RGBA(16, 110, 190, 1)
-                HoverFill: =RGBA(0, 0, 0, 0)
-                Icon: =Icon.ArrowUp
-                PressedBorderColor: =RGBA(0, 0, 0, 0)
-                PressedColor: =RGBA(16, 110, 190, 1)
-                PressedFill: =RGBA(0, 0, 0, 0)
-                Width: =20
-                X: =120
-                Y: |
-                    =2.5
-                ZIndex: =1
-
-            "'J&JMedTech_Redirect_Label' As label":
-                Align: =Align.Center
-                BorderColor: =RGBA(0, 0, 0, 0)
-                BorderStyle: =BorderStyle.None
-                BorderThickness: =2
-                Color: =RGBA(255, 255, 255, 1)
-                DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                DisabledColor: =RGBA(161, 159, 157, 1)
-                FocusedBorderThickness: =4
-                Font: =Font.'Segoe UI'
-                Height: ='J&JMedTech_Redirect_Container'.Height
-                Size: =10
-                Text: ="J&J MedTech"
-                Width: =100
-                X: =20
-                ZIndex: =2
 
