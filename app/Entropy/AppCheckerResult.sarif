@@ -344,19 +344,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.AccessibleLabel"
+                  "fullyQualifiedName": "Scn_General.General_Footer_Container.ButtonCanvas_DepartmentSubmit_3.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.AccessibleLabel",
+                  "fullyQualifiedName": "Scn_General.General_Footer_Container.ButtonCanvas_DepartmentSubmit_3.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Scn_General",
-                "type": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery"
+                "type": "Scn_General.General_Footer_Container.ButtonCanvas_DepartmentSubmit_3"
               }
             }
           ],
@@ -374,139 +374,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.TabIndex"
+                  "fullyQualifiedName": "Scn_General.General_Footer_Container.ButtonCanvas_DepartmnentBack_3.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.TabIndex",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "TabIndex",
-                "module": "Scn_General",
-                "type": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
-          "ruleIndex": 1
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Effort_TextInput.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Effort_TextInput.AccessibleLabel",
+                  "fullyQualifiedName": "Scn_General.General_Footer_Container.ButtonCanvas_DepartmnentBack_3.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Scn_General",
-                "type": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Effort_TextInput"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Group_Toggle.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Group_Toggle.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "Scn_General",
-                "type": "Scn_General.General_Container.General_ResourceAllocation_Container.General_ResourceAllocation_Gallery.General_ResourceAllocation_Group_Toggle"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Scn_General.General_Container.Container_GeneralFooter.ButtonCanvas_DepartmnentBack_3.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Scn_General.General_Container.Container_GeneralFooter.ButtonCanvas_DepartmnentBack_3.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "Scn_General",
-                "type": "Scn_General.General_Container.Container_GeneralFooter.ButtonCanvas_DepartmnentBack_3"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Scn_General.General_Container.Container_GeneralFooter.ButtonCanvas_DepartmentSubmit_3.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Scn_General.General_Container.Container_GeneralFooter.ButtonCanvas_DepartmentSubmit_3.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "Scn_General",
-                "type": "Scn_General.General_Container.Container_GeneralFooter.ButtonCanvas_DepartmentSubmit_3"
+                "type": "Scn_General.General_Footer_Container.ButtonCanvas_DepartmnentBack_3"
               }
             }
           ],
@@ -2648,6 +2528,66 @@
           },
           "ruleId": "app-CollectDelegatableDataSource",
           "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_General.General_Container.Form_General.Height"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_General.General_Container.Form_General.Height",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "Height",
+                "module": "Scn_General",
+                "type": "Scn_General.General_Container.Form_General"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 5
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_General.General_Footer_Container.Y"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_General.General_Footer_Container.Y",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "Y",
+                "module": "Scn_General",
+                "type": "Scn_General.General_Footer_Container"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 5
         },
         {
           "locations": [

@@ -79,7 +79,7 @@ Scn_RCPS As screen:
             Height: =50
             LayoutMinHeight: =50
             LayoutMinWidth: =250
-            Width: =App.Width
+            Width: =Parent.Width
             ZIndex: =1
 
             RCPS_Header_Image As image:
@@ -124,7 +124,7 @@ Scn_RCPS As screen:
             FocusedBorderThickness: =4
             Font: =Font.Arial
             Text: =If(Form_RCPS.Mode = FormMode.New,"New RCPS Request", "Edit RCPS Request - " & DataCardValue22.Value)
-            Width: =App.Width
+            Width: =Parent.Width
             Y: |
                 =0
             ZIndex: =2

@@ -1,4 +1,5 @@
 Scn_General As screen:
+    Fill: =RGBA(0, 0, 0, 1)
     LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
     OnVisible: |-
         =If(Not(IsBlank(RequestRecordGeneral)),
@@ -14,61 +15,133 @@ Scn_General As screen:
         ClearCollect(ResourceAllocationsForThiReq,Filter('Resource Allocation','General Lookup Id' = Text(RequestRecordGeneral.ID)));
         ClearCollect(ResourceAllocationsForThiReqNonViz,ResourceAllocationsForThiReq))
 
-    Header_General As Header:
-        BasePaletteColor: =RGBA(247, 30, 62, 1)
-        DisplayMode: =DisplayMode.Edit
-        FontColor: =
-        Height: =43
-        Logo: =jjlogowhite_svg
-        OnSelectLogo: =false
-        Title: ="MES Resource Requests"
-        UserEmail: =User().Email
-        UserImage: =User().Image
-        UserName: =User().FullName
-        Visible: =false
-        Width: =Parent.Width
-        X: =0
-        Y: =0
-        ZIndex: =1
-
-    General_Container As groupContainer.verticalAutoLayoutContainer:
+    General_Footer_Container As groupContainer.manualLayoutContainer:
         DropShadow: =DropShadow.Light
-        Height: =App.Height-Header_General.Height
-        LayoutDirection: =LayoutDirection.Vertical
-        LayoutMode: =LayoutMode.Auto
+        Fill: =RGBA(0, 0, 0, 1)
+        Height: =General_Header_Container.Height
         RadiusBottomLeft: =4
         RadiusBottomRight: =4
         RadiusTopLeft: =4
         RadiusTopRight: =4
         Width: =App.Width
-        Y: =Header_General.Height
+        Y: =RCPS_Container.Height + 10
+        ZIndex: =1
+
+        ButtonCanvas_DepartmnentBack_3 As Button:
+            BasePaletteColor: =RGBA(235, 23, 0, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =32
+            OnSelect: |+
+                =Navigate(Scn_Home,ScreenTransition.Fade);
+                ResetForm(Form_General);
+                
+            Text: ="Back"
+            Width: =96
+            X: =39
+            Y: =9
+            ZIndex: =1
+
+        ButtonCanvas_DepartmentSubmit_3 As Button:
+            BasePaletteColor: =RGBA(235, 23, 0, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =32
+            OnSelect: |-
+                =SubmitForm(Form_General);
+                Patch('Resource Allocation',ResourceAllocationsForThiReqNonViz);
+                Clear(ResourceAllocationsForThiReq);
+                Clear(ResourceAllocationsForThiReqNonViz);
+            Text: ="Submit"
+            Width: =96
+            X: =Parent.Width - Self.Width - 40
+            Y: =9
+            ZIndex: =2
+
+    General_Container As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =App.Height - General_Header_Container.Height - 10
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =25
+        RadiusBottomRight: =25
+        RadiusTopLeft: =25
+        RadiusTopRight: =25
+        Width: =App.Width - 15
+        X: =7.5
+        Y: =10
         ZIndex: =2
+
+        General_Header_Container As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =50
+            LayoutMinHeight: =50
+            LayoutMinWidth: =250
+            Width: =Parent.Width
+            ZIndex: =1
+
+            General_Header_Image As image:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Height: =50
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Image: ='johnson-johnson-logo'
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                Width: =247
+                X: =10
+                ZIndex: =1
+
+            General_Header_Text As Text:
+                DisplayMode: =DisplayMode.Edit
+                Font: =Font.'Segoe UI'
+                FontColor: =RGBA(235, 23, 0, 1)
+                Height: =50
+                Size: =20
+                Text: ="MES Intake"
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =378
+                X: =294
+                Y: =0
+                ZIndex: =2
 
         General_HeaderFormType_Label As label:
             Align: =Align.Center
             BorderColor: =RGBA(0, 0, 0, 0)
             BorderStyle: =BorderStyle.None
             BorderThickness: =2
-            Color: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(0, 51, 102, 1)
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(161, 159, 157, 1)
             DisplayMode: =DisplayMode.View
-            Fill: =RGBA(214, 221, 224, 1)
             FocusedBorderThickness: =4
             Font: =Font.Arial
-            Text: =If(Form_General.Mode = FormMode.New,"New General Request", "Edit General Request- " & DataCardValue38.Value)
-            Width: =App.Width
-            Y: =20
-            ZIndex: =1
+            Text: =If(Form_General.Mode = FormMode.New,"New General Request", "Edit General Request - " & DataCardValue49.Value)
+            Width: =Parent.Width
+            Y: |
+                =0
+            ZIndex: =2
 
         Form_General As form.PowerApps_CoreControls_Form:
+            AlignInContainer: =AlignInContainer.Center
             BorderColor: =RGBA(245, 245, 245, 1)
             DataSource: =General
             DefaultMode: =If(IsBlank(RequestRecordGeneral),FormMode.New,FormMode.Edit)
-            Height: =App.Height-Header_General.Height-Container_GeneralFooter.Height-General_HeaderFormType_Label.Height - General_ResourceAllocation_Container.Height
+            Height: =General_Container.Height - General_Header_Container.Height - RCPS_ResourceAllocation_Container.Height - General_HeaderFormType_Label.Height
             Item: =RequestRecordGeneral
             LayoutMinHeight: =250
             LayoutMinWidth: =400
+            NumberOfColumns: =4
             OnSuccess: |
                 =Navigate(Scn_Home,ScreenTransition.Fade);
                 If(
@@ -98,8 +171,8 @@ Scn_General As screen:
                     )
                 )
             UseFluentV9Cards: =true
-            Width: =App.Width
-            ZIndex: =2
+            Width: =1200
+            ZIndex: =3
 
             Title_DataCard3 As typedDataCard.fluentV9TextualEditCard:
                 BorderColor: =RGBA(245, 245, 245, 1)
@@ -114,9 +187,9 @@ Scn_General As screen:
                 Required: =true
                 Update: =DataCardValue38.Value
                 Visible: =false
-                Width: =455
-                X: =2
-                Y: =5
+                Width: =300
+                X: =1
+                Y: =4
                 ZIndex: =1
 
                 DataCardKey41 As Text:
@@ -182,9 +255,9 @@ Scn_General As screen:
                 Required: =false
                 Update: =Value(DataCardValue48.Value)
                 Visible: =false
-                Width: =455
-                X: =0
-                Y: =6
+                Width: =300
+                X: =2
+                Y: =4
                 ZIndex: =1
 
                 DataCardKey51 As Text:
@@ -248,9 +321,9 @@ Scn_General As screen:
                 Required: =false
                 Update: =Value(DataCardValue64.Value)
                 Visible: =false
-                Width: =455
-                X: =1
-                Y: =6
+                Width: =300
+                X: =3
+                Y: =4
                 ZIndex: =1
 
                 DataCardKey69 As Text:
@@ -314,9 +387,9 @@ Scn_General As screen:
                 Required: =false
                 Update: =Value(DataCardValue65.Value)
                 Visible: =false
-                Width: =455
-                X: =2
-                Y: =6
+                Width: =300
+                X: =0
+                Y: =5
                 ZIndex: =1
 
                 DataCardKey70 As Text:
@@ -380,14 +453,14 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Request Title')
                 Required: =false
                 Update: =DataCardValue49.Value
-                Width: =455
+                Width: =300
                 X: =0
                 Y: =0
                 ZIndex: =2
 
                 DataCardKey52 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -448,14 +521,14 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Business Unit')
                 Required: =false
                 Update: =DataCardValue50.Value
-                Width: =455
+                Width: =300
                 X: =1
                 Y: =0
                 ZIndex: =2
 
                 DataCardKey53 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -537,14 +610,14 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Point of Contact')
                 Required: =false
                 Update: =DataCardValue55.Value
-                Width: =455
+                Width: =300
                 X: =2
                 Y: =0
                 ZIndex: =2
 
                 DataCardKey58 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -624,14 +697,14 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, Department)
                 Required: =false
                 Update: =DataCardValue63.Value
-                Width: =455
-                X: =0
-                Y: =1
+                Width: =300
+                X: =3
+                Y: =0
                 ZIndex: =2
 
                 DataCardKey68 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -711,14 +784,14 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, Priority)
                 Required: =false
                 Update: =DataCardValue54.Value
-                Width: =455
-                X: =1
+                Width: =300
+                X: =0
                 Y: =1
                 ZIndex: =2
 
                 DataCardKey57 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -792,14 +865,14 @@ Scn_General As screen:
                 Required: =false
                 Update: =DataCardValue58.Value
                 Visible: =true
-                Width: =455
-                X: =2
+                Width: =300
+                X: =1
                 Y: =1
                 ZIndex: =2
 
                 DataCardKey61 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -859,6 +932,72 @@ Scn_General As screen:
                     Y: =DataCardKey61.Y
                     ZIndex: =5
 
+            "'Resource Hours Week_DataCard1' As typedDataCard.fluentV9NumberEditCard":
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Resource_x0020_Hours_x0020_Week"
+                Default: =ThisItem.'Resource Hours Week'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@General],DataSourceInfo.DisplayName,'Resource Hours Week')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =Value(DataCardValue52.Value)
+                Visible: =true
+                Width: =300
+                X: =0
+                Y: =2
+                ZIndex: =2
+
+                DataCardKey55 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =RGBA(0, 51, 102, 1)
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue52 As 'Text input'":
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey55.Y + DataCardKey55.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage55 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue52.Y + DataCardValue52.Height
+                    ZIndex: =3
+
+                StarVisible55 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey55.Y
+                    ZIndex: =4
+
             "'Request Type_DataCard1' As typedDataCard.fluentV9TextualEditCard":
                 BorderColor: =RGBA(245, 245, 245, 1)
                 BorderStyle: =BorderStyle.Solid
@@ -871,15 +1010,14 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Request Type')
                 Required: =false
                 Update: =DataCardValue51.Value
-                Width: =455
-                X: =0
-                Y: |
-                    =2
+                Width: =300
+                X: =2
+                Y: =1
                 ZIndex: =2
 
                 DataCardKey54 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -952,14 +1090,14 @@ Scn_General As screen:
                 Required: =false
                 Update: =DataCardValue60.Value
                 Visible: =true
-                Width: =455
-                X: =1
-                Y: =2
+                Width: =300
+                X: =3
+                Y: =1
                 ZIndex: =2
 
                 DataCardKey65 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -1019,72 +1157,6 @@ Scn_General As screen:
                     Y: =DataCardKey65.Y
                     ZIndex: =5
 
-            "'Resource Hours Week_DataCard1' As typedDataCard.fluentV9NumberEditCard":
-                BorderColor: =RGBA(245, 245, 245, 1)
-                BorderStyle: =BorderStyle.Solid
-                DataField: ="Resource_x0020_Hours_x0020_Week"
-                Default: =ThisItem.'Resource Hours Week'
-                DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@General],DataSourceInfo.DisplayName,'Resource Hours Week')
-                Fill: =RGBA(0, 0, 0, 0)
-                Height: =70
-                Required: =false
-                Update: =Value(DataCardValue52.Value)
-                Visible: =true
-                Width: =455
-                X: =2
-                Y: =2
-                ZIndex: =2
-
-                DataCardKey55 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =22
-                    Text: =Parent.DisplayName
-                    Weight: ='TextCanvas.Weight'.Semibold
-                    Width: =Parent.Width - 48
-                    Wrap: =false
-                    X: =24
-                    Y: =10
-                    ZIndex: =1
-
-                "DataCardValue52 As 'Text input'":
-                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
-                    BasePaletteColor: =
-                    DisplayMode: =Parent.DisplayMode
-                    FontColor: =
-                    Height: =32
-                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                    Value: =Parent.Default
-                    Width: =Parent.Width - 48
-                    X: =24
-                    Y: =DataCardKey55.Y + DataCardKey55.Height + 4
-                    ZIndex: =2
-
-                ErrorMessage55 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Text: =Parent.Error
-                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =Parent.Width - 48
-                    Wrap: =true
-                    X: =24
-                    Y: =DataCardValue52.Y + DataCardValue52.Height
-                    ZIndex: =3
-
-                StarVisible55 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Text: ="*"
-                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =30
-                    X: =0
-                    Y: =DataCardKey55.Y
-                    ZIndex: =4
-
             "'Scope Detail_DataCard2' As typedDataCard.fluentV9TextualEditCard":
                 BorderColor: =RGBA(245, 245, 245, 1)
                 BorderStyle: =BorderStyle.Solid
@@ -1097,14 +1169,14 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Scope Detail')
                 Required: =false
                 Update: =DataCardValue53.Value
-                Width: =455
-                X: =0
-                Y: =3
+                Width: =300
+                X: =1
+                Y: =2
                 ZIndex: =2
 
                 DataCardKey56 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -1165,14 +1237,14 @@ Scn_General As screen:
                 MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Reference Number')
                 Required: =false
                 Update: =DataCardValue56.Value
-                Width: =455
-                X: =1
-                Y: =3
+                Width: =300
+                X: =2
+                Y: =2
                 ZIndex: =2
 
                 DataCardKey59 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -1233,14 +1305,14 @@ Scn_General As screen:
                 Required: =false
                 Update: =Value(DataCardValue57.Value)
                 Visible: =true
-                Width: =455
-                X: =2
-                Y: =3
+                Width: =300
+                X: =3
+                Y: =2
                 ZIndex: =2
 
                 DataCardKey60 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -1300,14 +1372,14 @@ Scn_General As screen:
                 Update: =Value(DataCardValue59.Value)
                 Visible: |
                     =true
-                Width: =455
+                Width: =300
                 X: =0
-                Y: =4
+                Y: =3
                 ZIndex: =2
 
                 DataCardKey64 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -1366,14 +1438,14 @@ Scn_General As screen:
                 Required: =false
                 Update: =Value(DataCardValue61.Value)
                 Visible: =true
-                Width: =455
+                Width: =300
                 X: =1
-                Y: =4
+                Y: =3
                 ZIndex: =2
 
                 DataCardKey66 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -1420,75 +1492,6 @@ Scn_General As screen:
                     Y: =DataCardKey66.Y
                     ZIndex: =4
 
-            "'Custom Request Type_DataCard1' As typedDataCard.fluentV9TextualEditCard":
-                BorderColor: =RGBA(245, 245, 245, 1)
-                BorderStyle: =BorderStyle.Solid
-                DataField: ="customrequesttype"
-                Default: =ThisItem.'Custom Request Type'
-                DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@General],DataSourceInfo.DisplayName,'Custom Request Type')
-                Fill: =RGBA(0, 0, 0, 0)
-                Height: =70
-                MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Custom Request Type')
-                Required: =false
-                Update: =DataCardValue62.Value
-                Visible: =If(Genereal_RequestType_Dropdown.Selected.Value = "Other", true, false)
-                Width: =455
-                X: =2
-                Y: =4
-                ZIndex: =2
-
-                DataCardKey67 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =22
-                    Text: =Parent.DisplayName
-                    Weight: ='TextCanvas.Weight'.Semibold
-                    Width: =Parent.Width - 48
-                    Wrap: =false
-                    X: =24
-                    Y: =10
-                    ZIndex: =1
-
-                "DataCardValue62 As 'Text input'":
-                    AccessibleLabel: =Parent.DisplayName
-                    BasePaletteColor: =
-                    DisplayMode: =Parent.DisplayMode
-                    FontColor: =
-                    Height: =32
-                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
-                    Required: =Parent.Required
-                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                    Value: =Parent.Default
-                    Width: =Parent.Width - 48
-                    X: =24
-                    Y: =DataCardKey67.Y + DataCardKey67.Height + 4
-                    ZIndex: =2
-
-                ErrorMessage67 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Text: =Parent.Error
-                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =Parent.Width - 48
-                    Wrap: =true
-                    X: =24
-                    Y: =DataCardValue62.Y + DataCardValue62.Height
-                    ZIndex: =3
-
-                StarVisible67 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Text: ="*"
-                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =30
-                    X: =0
-                    Y: =DataCardKey67.Y
-                    ZIndex: =4
-
             "'Estimated Start Date_DataCard2' As typedDataCard.fluentV9DateTimeEditCard":
                 BorderColor: =RGBA(245, 245, 245, 1)
                 BorderStyle: =BorderStyle.Solid
@@ -1500,14 +1503,14 @@ Scn_General As screen:
                 Height: =70
                 Required: =false
                 Update: =If(Not IsBlank(DateValue4.SelectedDate), Date(Year(DateValue4.SelectedDate), Month(DateValue4.SelectedDate), Day(DateValue4.SelectedDate)) + Time(Value(HourValue4.Selected.Value), Value(MinuteValue4.Selected.Value), Value(Second(DateValue4.SelectedDate))))
-                Width: =455
-                X: =0
-                Y: =5
+                Width: =300
+                X: =2
+                Y: =3
                 ZIndex: =2
 
                 DataCardKey62 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -1600,14 +1603,14 @@ Scn_General As screen:
                 Height: =70
                 Required: =false
                 Update: =If(Not IsBlank(DateValue5.SelectedDate), Date(Year(DateValue5.SelectedDate), Month(DateValue5.SelectedDate), Day(DateValue5.SelectedDate)) + Time(Value(HourValue5.Selected.Value), Value(MinuteValue5.Selected.Value), Value(Second(DateValue5.SelectedDate))))
-                Width: =455
-                X: =1
-                Y: =5
+                Width: =300
+                X: =3
+                Y: =3
                 ZIndex: =2
 
                 DataCardKey63 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    FontColor: =
+                    FontColor: =RGBA(0, 51, 102, 1)
                     Height: =22
                     Text: =Parent.DisplayName
                     Weight: ='TextCanvas.Weight'.Semibold
@@ -1689,215 +1692,72 @@ Scn_General As screen:
                     Y: =DataCardKey63.Y
                     ZIndex: =7
 
-        General_ResourceAllocation_Container As groupContainer.manualLayoutContainer:
-            DropShadow: =DropShadow.Light
-            LayoutMinHeight: =100
-            LayoutMinWidth: =250
-            PaddingLeft: =20
-            RadiusBottomLeft: =4
-            RadiusBottomRight: =4
-            RadiusTopLeft: =4
-            RadiusTopRight: =4
-            Visible: =If(showResourceAllocateContainer,true,false)
-            ZIndex: =3
-
-            General_ResourceAllocation_Gallery As gallery.galleryHorizontal:
+            "'Custom Request Type_DataCard1' As typedDataCard.fluentV9TextualEditCard":
                 BorderColor: =RGBA(245, 245, 245, 1)
-                DelayItemLoading: =true
-                Height: =255
-                Items: =ResourceAllocationsForThiReq
-                LoadingSpinner: =LoadingSpinner.Data
-                ShowScrollbar: =false
-                TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(320, Self.Width - 60), Min(320, Self.Height - 60))
-                Width: =616
-                X: =135
-                Y: =65
-                ZIndex: =1
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="customrequesttype"
+                Default: =ThisItem.'Custom Request Type'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@General],DataSourceInfo.DisplayName,'Custom Request Type')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@General], DataSourceInfo.MaxLength, 'Custom Request Type')
+                Required: =false
+                Update: =DataCardValue62.Value
+                Visible: =If(Genereal_RequestType_Dropdown.Selected.Value = "Other", true, false)
+                Width: =300
+                X: =0
+                Y: =4
+                ZIndex: =2
 
-                General_ResourceAllocation_Title_Label As label:
-                    BorderColor: =RGBA(0, 0, 0, 0)
-                    BorderStyle: =BorderStyle.None
-                    BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
-                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                    DisabledColor: =RGBA(161, 159, 157, 1)
-                    FocusedBorderThickness: =4
-                    Font: =Font.'Segoe UI'
-                    OnSelect: =Select(Parent)
-                    Size: =13
-                    Text: =ThisItem.Title
-                    Width: =233
-                    X: =40
-                    Y: =40
+                DataCardKey67 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
                     ZIndex: =1
 
-                "General_ResourceAllocation_Effort_TextInput As 'Text input'":
+                "DataCardValue62 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
                     BasePaletteColor: =
-                    DisplayMode: =DisplayMode.Edit
+                    DisplayMode: =Parent.DisplayMode
                     FontColor: =
                     Height: =32
-                    OnChange: |-
-                        =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Hours: Value(Self.Value)});
-                    Placeholder: =""
-                    Type: ="Number"
-                    Value: =ThisItem.Hours
-                    Width: =320
-                    X: =0
-                    Y: =100
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey67.Y + DataCardKey67.Height + 4
                     ZIndex: =2
 
-                General_ResourceAllocation_Group_Toggle As Toggle:
-                    BasePaletteColor: =
-                    Checked: =If(ThisItem.Group = "Yes",true,false)
+                ErrorMessage67 As Text:
                     DisplayMode: =DisplayMode.Edit
                     FontColor: =
-                    Height: =35
-                    Label: =If(General_ResourceAllocation_Group_Toggle.Checked = true,"Yes","No")
-                    OnCheck: |-
-                        =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Group: "Yes"});
-                    OnSelect: =Select(Parent)
-                    OnUncheck: |-
-                        =UpdateIf(ResourceAllocationsForThiReqNonViz,ID = ThisItem.ID, {Group: "No"});
-                    Width: =110
-                    X: =101
-                    Y: =159
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue62.Y + DataCardValue62.Height
                     ZIndex: =3
 
-            General_Galery_Group_Label As label:
-                BorderColor: =RGBA(0, 0, 0, 0)
-                BorderStyle: =BorderStyle.None
-                BorderThickness: =2
-                Color: =RGBA(50, 49, 48, 1)
-                DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                DisabledColor: =RGBA(161, 159, 157, 1)
-                FocusedBorderThickness: =4
-                Font: =Font.'Segoe UI'
-                Height: =38
-                Size: =13
-                Text: ="Effort"
-                Width: =135
-                X: =Parent.PaddingLeft
-                Y: =170
-                ZIndex: =2
-
-            General_Gallery_Effort_Label As label:
-                BorderColor: =RGBA(0, 0, 0, 0)
-                BorderStyle: =BorderStyle.None
-                BorderThickness: =2
-                Color: =RGBA(50, 49, 48, 1)
-                DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                DisabledColor: =RGBA(161, 159, 157, 1)
-                FocusedBorderThickness: =4
-                Font: =Font.'Segoe UI'
-                Height: =38
-                Size: =13
-                Text: ="Group"
-                Width: =135
-                X: =Parent.PaddingLeft
-                Y: =221
-                ZIndex: =3
-
-            General_ResourceAllocation_ContainerHeader_Label As label:
-                BorderColor: =RGBA(0, 0, 0, 0)
-                BorderStyle: =BorderStyle.None
-                BorderThickness: =2
-                Color: =RGBA(50, 49, 48, 1)
-                DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                DisabledColor: =RGBA(161, 159, 157, 1)
-                FocusedBorderThickness: =4
-                Font: =Font.'Segoe UI'
-                Height: =38
-                Size: =13
-                Text: ="Departmental Impact"
-                Width: =188
-                X: =20
-                Y: =27
-                ZIndex: =4
-
-        Container_GeneralFooter As groupContainer.manualLayoutContainer:
-            AlignInContainer: =AlignInContainer.SetByContainer
-            DropShadow: =DropShadow.Light
-            Fill: =RGBA(255, 255, 255, 1)
-            FillPortions: =0
-            Height: =Header_General.Height
-            LayoutMinHeight: =100
-            LayoutMinWidth: =250
-            RadiusBottomLeft: =4
-            RadiusBottomRight: =4
-            RadiusTopLeft: =4
-            RadiusTopRight: =4
-            Width: =App.Width
-            ZIndex: =4
-
-            ButtonCanvas_DepartmnentBack_3 As Button:
-                BasePaletteColor: =
-                DisplayMode: =DisplayMode.Edit
-                FontColor: =
-                Height: =32
-                OnSelect: |+
-                    =Navigate(Scn_Home,ScreenTransition.Fade);
-                    ResetForm(Form_General);
-                    
-                Text: ="Back"
-                Width: =96
-                X: =39
-                Y: =9
-                ZIndex: =1
-
-            ButtonCanvas_DepartmentSubmit_3 As Button:
-                BasePaletteColor: =
-                DisplayMode: =DisplayMode.Edit
-                FontColor: =
-                Height: =32
-                OnSelect: |-
-                    =SubmitForm(Form_General);
-                    Patch('Resource Allocation',ResourceAllocationsForThiReqNonViz);
-                    Clear(ResourceAllocationsForThiReq);
-                    Clear(ResourceAllocationsForThiReqNonViz);
-                Text: ="Submit"
-                Width: =96
-                X: =Parent.Width - Self.Width - 40
-                Y: =9
-                ZIndex: =2
-
-    NPI_Header_Container_2 As groupContainer.manualLayoutContainer:
-        DropShadow: =DropShadow.Light
-        Fill: =RGBA(255, 255, 255, 1)
-        Height: =50
-        RadiusBottomLeft: =4
-        RadiusBottomRight: =4
-        RadiusTopLeft: =4
-        RadiusTopRight: =4
-        Width: =App.Width
-        ZIndex: =3
-
-        Home_Header_Image_3 As image:
-            BorderColor: =RGBA(0, 0, 0, 0)
-            BorderStyle: =BorderStyle.None
-            BorderThickness: =2
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            DisabledFill: =RGBA(0, 0, 0, 0)
-            FocusedBorderThickness: =4
-            Height: =50
-            HoverBorderColor: =RGBA(0, 0, 0, 0)
-            HoverFill: =RGBA(0, 0, 0, 0)
-            Image: ='johnson-johnson-logo'
-            PressedBorderColor: =RGBA(0, 0, 0, 0)
-            PressedFill: =RGBA(0, 0, 0, 0)
-            Width: =247
-            X: =10
-            ZIndex: =1
-
-        NPI_Header_Text_2 As Text:
-            DisplayMode: =DisplayMode.Edit
-            Font: =Font.'Segoe UI'
-            FontColor: =RGBA(235, 23, 0, 1)
-            Height: =50
-            Size: =20
-            Text: ="MES Intake"
-            Weight: ='TextCanvas.Weight'.Semibold
-            Width: =378
-            X: =294
-            Y: =0
-            ZIndex: =2
+                StarVisible67 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey67.Y
+                    ZIndex: =4
 
