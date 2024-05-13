@@ -1,6 +1,6 @@
 App As appinfo:
     BackEnabled: =true
-    StartScreen: =
+    StartScreen: =Scn_HomeUIMockup
     Theme: =PowerAppsTheme
 
     Host As hostControl.DefaultHostControlVariant:
