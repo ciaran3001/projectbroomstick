@@ -682,6 +682,93 @@ Scn_Project As screen:
                     Y: =DataCardKey30.Y
                     ZIndex: =5
 
+            Department_DataCard2 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="department"
+                Default: =ThisItem.Department
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@Project],DataSourceInfo.DisplayName,Department)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@Project], DataSourceInfo.MaxLength, Department)
+                Required: =false
+                Update: =DataCardValue37.Value
+                Width: =400
+                X: =0
+                Y: =1
+                ZIndex: =4
+
+                DataCardKey40 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =RGBA(0, 51, 102, 1)
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                Project_Department_Dropdown As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =selectedDepartment
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    Items: =Department
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey25.Y + DataCardKey25.Height + 4
+                    ZIndex: =2
+
+                    Title3_1 As pcfDataField.textualColumn:
+                        FieldDisplayName: ="Title"
+                        FieldName: ="Title"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =8
+
+                "DataCardValue37 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Project_Department_Dropdown.Selected.Title
+                    Visible: =false
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey40.Y + DataCardKey40.Height + 4
+                    ZIndex: =3
+
+                ErrorMessage40 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue37.Y + DataCardValue37.Height
+                    ZIndex: =4
+
+                StarVisible40 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey40.Y
+                    ZIndex: =5
+
             Priority_DataCard1 As typedDataCard.fluentV9TextualEditCard:
                 BorderColor: =RGBA(245, 245, 245, 1)
                 BorderStyle: =BorderStyle.Solid
@@ -842,161 +929,6 @@ Scn_Project As screen:
                     Y: =DataCardKey33.Y
                     ZIndex: =5
 
-            "'Scope Detail_DataCard1' As typedDataCard.fluentV9TextualEditCard":
-                BorderColor: =RGBA(245, 245, 245, 1)
-                BorderStyle: =BorderStyle.Solid
-                DataField: ="Scope_x0020_Detail"
-                Default: =ThisItem.'Scope Detail'
-                DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@Project],DataSourceInfo.DisplayName,'Scope Detail')
-                Fill: =RGBA(0, 0, 0, 0)
-                Height: =70
-                MaxLength: =DataSourceInfo([@Project], DataSourceInfo.MaxLength, 'Scope Detail')
-                Required: =false
-                Update: =DataCardValue27.Value
-                Width: =400
-                X: =2
-                Y: =2
-                ZIndex: =4
-
-                DataCardKey28 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =RGBA(0, 51, 102, 1)
-                    Height: =22
-                    Text: =Parent.DisplayName
-                    Weight: ='TextCanvas.Weight'.Semibold
-                    Width: =Parent.Width - 48
-                    Wrap: =false
-                    X: =24
-                    Y: =10
-                    ZIndex: =1
-
-                "DataCardValue27 As 'Text input'":
-                    AccessibleLabel: =Parent.DisplayName
-                    BasePaletteColor: =
-                    DisplayMode: =Parent.DisplayMode
-                    FontColor: =
-                    Height: =32
-                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
-                    Required: =Parent.Required
-                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                    Value: =Parent.Default
-                    Width: =Parent.Width - 48
-                    X: =24
-                    Y: =DataCardKey28.Y + DataCardKey28.Height + 4
-                    ZIndex: =2
-
-                ErrorMessage28 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Text: =Parent.Error
-                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =Parent.Width - 48
-                    Wrap: =true
-                    X: =24
-                    Y: =DataCardValue27.Y + DataCardValue27.Height
-                    ZIndex: =3
-
-                StarVisible28 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Text: ="*"
-                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =30
-                    X: =0
-                    Y: =DataCardKey28.Y
-                    ZIndex: =4
-
-            Department_DataCard2 As typedDataCard.fluentV9TextualEditCard:
-                BorderColor: =RGBA(245, 245, 245, 1)
-                BorderStyle: =BorderStyle.Solid
-                DataField: ="department"
-                Default: =ThisItem.Department
-                DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@Project],DataSourceInfo.DisplayName,Department)
-                Fill: =RGBA(0, 0, 0, 0)
-                Height: =70
-                MaxLength: =DataSourceInfo([@Project], DataSourceInfo.MaxLength, Department)
-                Required: =false
-                Update: =DataCardValue37.Value
-                Width: =400
-                X: =0
-                Y: =1
-                ZIndex: =4
-
-                DataCardKey40 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =RGBA(0, 51, 102, 1)
-                    Height: =22
-                    Text: =Parent.DisplayName
-                    Weight: ='TextCanvas.Weight'.Semibold
-                    Width: =Parent.Width - 48
-                    Wrap: =false
-                    X: =24
-                    Y: =10
-                    ZIndex: =1
-
-                Project_Department_Dropdown As Dropdown.pcfdataset:
-                    DefaultSelectedItems: =selectedDepartment
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =32
-                    Items: =Department
-                    Width: =Parent.Width - 48
-                    X: =24
-                    Y: =DataCardKey25.Y + DataCardKey25.Height + 4
-                    ZIndex: =2
-
-                    Title3_1 As pcfDataField.textualColumn:
-                        FieldDisplayName: ="Title"
-                        FieldName: ="Title"
-                        FieldType: ="s"
-                        FieldVariantName: ="textualColumn"
-                        Order: =1
-                        ZIndex: =8
-
-                "DataCardValue37 As 'Text input'":
-                    AccessibleLabel: =Parent.DisplayName
-                    BasePaletteColor: =
-                    DisplayMode: =Parent.DisplayMode
-                    FontColor: =
-                    Height: =32
-                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
-                    Required: =Parent.Required
-                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                    Value: =Project_Department_Dropdown.Selected.Title
-                    Visible: =false
-                    Width: =Parent.Width - 48
-                    X: =24
-                    Y: =DataCardKey40.Y + DataCardKey40.Height + 4
-                    ZIndex: =3
-
-                ErrorMessage40 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Text: =Parent.Error
-                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =Parent.Width - 48
-                    Wrap: =true
-                    X: =24
-                    Y: =DataCardValue37.Y + DataCardValue37.Height
-                    ZIndex: =4
-
-                StarVisible40 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =30
-                    Text: ="*"
-                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =30
-                    X: =0
-                    Y: =DataCardKey40.Y
-                    ZIndex: =5
-
             "'Project Type_DataCard1' As typedDataCard.fluentV9TextualEditCard":
                 BorderColor: =RGBA(245, 245, 245, 1)
                 BorderStyle: =BorderStyle.Solid
@@ -1155,6 +1087,74 @@ Scn_Project As screen:
                     X: =0
                     Y: =DataCardKey38.Y
                     ZIndex: =5
+
+            "'Scope Detail_DataCard1' As typedDataCard.fluentV9TextualEditCard":
+                BorderColor: =RGBA(245, 245, 245, 1)
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Scope_x0020_Detail"
+                Default: =ThisItem.'Scope Detail'
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@Project],DataSourceInfo.DisplayName,'Scope Detail')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@Project], DataSourceInfo.MaxLength, 'Scope Detail')
+                Required: =false
+                Update: =DataCardValue27.Value
+                Width: =400
+                X: =2
+                Y: =2
+                ZIndex: =4
+
+                DataCardKey28 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =RGBA(0, 51, 102, 1)
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue27 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    FontColor: =
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey28.Y + DataCardKey28.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage28 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue27.Y + DataCardValue27.Height
+                    ZIndex: =3
+
+                StarVisible28 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey28.Y
+                    ZIndex: =4
 
             "'Reference Number_DataCard1' As typedDataCard.fluentV9TextualEditCard":
                 BorderColor: =RGBA(245, 245, 245, 1)
