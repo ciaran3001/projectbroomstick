@@ -644,6 +644,7 @@ Scn_HomeUIMockup As screen:
                         Height: =Parent.TemplateHeight
                         LayoutGap: =20
                         LayoutMode: =LayoutMode.Auto
+                        PaddingLeft: =15
                         PaddingRight: =30
                         RadiusBottomLeft: =4
                         RadiusBottomRight: =4
@@ -651,6 +652,25 @@ Scn_HomeUIMockup As screen:
                         RadiusTopRight: =4
                         Width: =Parent.TemplateWidth
                         ZIndex: =1
+
+                        Home_SummaryItemSelection_Icon As icon.Check:
+                            AlignInContainer: =AlignInContainer.Center
+                            BorderColor: =RGBA(0, 0, 0, 0)
+                            DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                            DisabledColor: =RGBA(225, 223, 221, 1)
+                            DisabledFill: =RGBA(0, 0, 0, 0)
+                            FocusedBorderThickness: =4
+                            Height: =30
+                            HoverBorderColor: =RGBA(0, 0, 0, 0)
+                            HoverColor: =RGBA(16, 110, 190, 1)
+                            HoverFill: =RGBA(0, 0, 0, 0)
+                            Icon: =Icon.Check
+                            PressedBorderColor: =RGBA(0, 0, 0, 0)
+                            PressedColor: =RGBA(16, 110, 190, 1)
+                            PressedFill: =RGBA(0, 0, 0, 0)
+                            Visible: =If( enableEditButton && Home_Summary_Gallery.Selected.ID  = ThisItem.ID,true,false)
+                            Width: =25
+                            ZIndex: =1
 
                         Home_GelleryTitle_Text As Text:
                             Align: ='TextCanvas.Align'.Center
@@ -715,6 +735,7 @@ Scn_HomeUIMockup As screen:
 
                         Home_GalleryRequestStatus_Badge As Badge:
                             AlignInContainer: =AlignInContainer.Center
+                            Appearance: ='BadgeCanvas.Appearance'.Tint
                             BasePaletteColor: =
                             Content: =ThisItem.requeststatus
                             DisplayMode: =DisplayMode.Edit
@@ -723,6 +744,8 @@ Scn_HomeUIMockup As screen:
                             Height: =32
                             LayoutMinHeight: =32
                             LayoutMinWidth: =32
+                            Shape: ='BadgeCanvas.Shape'.Circular
+                            ThemeColor: ='BadgeCanvas.ThemeColor'.Brand
                             Width: =32
                             X: =0
                             Y: =0
