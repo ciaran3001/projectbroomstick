@@ -435,8 +435,9 @@ Scn_HomeUIMockup As screen:
 
         Home_MainGrid_Container As groupContainer.verticalAutoLayoutContainer:
             DropShadow: =DropShadow.Light
+            LayoutJustifyContent: =LayoutJustifyContent.Center
             LayoutMinHeight: =100
-            LayoutMinWidth: =250
+            LayoutMinWidth: =1200
             LayoutMode: =LayoutMode.Auto
             RadiusBottomLeft: =4
             RadiusBottomRight: =4
@@ -445,19 +446,112 @@ Scn_HomeUIMockup As screen:
             ZIndex: =3
 
             Home_Summary_Gallery As gallery.galleryVertical:
+                AlignInContainer: =AlignInContainer.Start
                 BorderColor: =RGBA(245, 245, 245, 1)
                 DelayItemLoading: =true
-                Items: =CustomGallerySample
+                FillPortions: =0
+                Items: =Summary
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287
                 LayoutMinWidth: =320
                 LoadingSpinner: =LoadingSpinner.Data
-                TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(280, Self.Width - 60), Min(280, Self.Height - 60))
+                TemplatePadding: =20
+                TemplateSize: |
+                    =50
+                Width: =1200
                 ZIndex: =1
 
+                Home_SummaryItem_Container As groupContainer.verticalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    Height: =Parent.TemplateHeight
+                    LayoutGap: =20
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingRight: =30
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =1
+
+                    Home_GelleryTitle_Text As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Stretch
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: =ThisItem.Title
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                    Home_GalleryDepartment_Title As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Stretch
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: |-
+                            =Concatenate("🏤 Department: ", ThisItem.department)
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    Home_GalleryModifiedOn_Title As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Stretch
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: =Concatenate("📅",ThisItem.Created)
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+                    Home_GalleryRequestType_Badge As Badge:
+                        AlignInContainer: =AlignInContainer.Center
+                        Content: =ThisItem.RecordType
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =32
+                        Width: =32
+                        X: =0
+                        Y: =0
+                        ZIndex: =4
+
+                    Home_GalleryRequestStatus_Badge As Badge:
+                        AlignInContainer: =AlignInContainer.Center
+                        BasePaletteColor: =
+                        Content: =ThisItem.requeststatus
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        FontColor: =
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =32
+                        Width: =32
+                        X: =0
+                        Y: =0
+                        ZIndex: =5
+
             Home_Filter_Container As groupContainer.verticalAutoLayoutContainer:
-                DropShadow: =DropShadow.Light
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.ExtraBold
                 FillPortions: =0
+                Height: =Home_Summary_Gallery.Height
                 LayoutDirection: =LayoutDirection.Vertical
                 LayoutMinHeight: =100
                 LayoutMinWidth: =250
