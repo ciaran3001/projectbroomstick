@@ -2594,6 +2594,36 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.Home_GalleryItemSelection_Button.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.Home_GalleryItemSelection_Button.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Scn_HomeUIMockup",
+                "type": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.Home_GalleryItemSelection_Button"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "App.enableResourceAllocateButton"
                 }
               ],
