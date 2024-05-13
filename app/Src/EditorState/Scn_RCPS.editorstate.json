@@ -5099,7 +5099,7 @@
       "MetaDataIDKey": "",
       "Name": "Form_RCPS",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 3,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -7866,7 +7866,7 @@
       "MetaDataIDKey": "",
       "Name": "RCPS_HeaderFormType_Label",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -8606,7 +8606,7 @@
       "MetaDataIDKey": "",
       "Name": "RCPS_ResourceAllocation_Container",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -9084,7 +9084,7 @@
       "MetaDataIDKey": "",
       "Name": "RCPS_ResourceAllocation_Effort_Input",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -9274,7 +9274,7 @@
       "MetaDataIDKey": "",
       "Name": "RCPS_ResourceAllocation_Effort_Label",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 0,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {

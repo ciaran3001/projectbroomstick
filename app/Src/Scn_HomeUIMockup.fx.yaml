@@ -635,6 +635,7 @@ Scn_HomeUIMockup As screen:
                     TemplatePadding: =20
                     TemplateSize: |
                         =50
+                    Transition: =Transition.Pop
                     Width: =1200
                     ZIndex: =2
 
@@ -726,18 +727,6 @@ Scn_HomeUIMockup As screen:
                             X: =0
                             Y: =0
                             ZIndex: =6
-
-                    Home_GalleryItemSelection_Button As Button:
-                        Appearance: ='ButtonCanvas.Appearance'.Subtle
-                        BasePaletteColor: =
-                        DisplayMode: =DisplayMode.Edit
-                        Height: =Parent.TemplateHeight
-                        OnSelect: =Select(Parent)
-                        Text: =""
-                        Width: =Parent.TemplateWidth
-                        X: =0
-                        Y: =0
-                        ZIndex: =2
 
             Home_Filter_Container As groupContainer.verticalAutoLayoutContainer:
                 AlignInContainer: =AlignInContainer.SetByContainer
