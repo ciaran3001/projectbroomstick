@@ -2264,49 +2264,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Summary_Gallery.AccessibleLabel"
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.TabIndex"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Summary_Gallery.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "Scn_HomeUIMockup",
-                "type": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Summary_Gallery"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Summary_Gallery.TabIndex"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Summary_Gallery.TabIndex",
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "TabIndex",
                 "module": "Scn_HomeUIMockup",
-                "type": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Summary_Gallery"
+                "type": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery"
               }
             }
           ],
@@ -2318,6 +2288,36 @@
           },
           "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
           "ruleIndex": 1
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Scn_HomeUIMockup",
+                "type": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 0
         },
         {
           "locations": [
@@ -2474,19 +2474,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Summary_Gallery.Home_SummaryItem_Container.Home_GalleryRequestType_Badge.AccessibleLabel"
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.Home_SummaryItem_Container.Home_GalleryRequestStatus_Badge.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Summary_Gallery.Home_SummaryItem_Container.Home_GalleryRequestType_Badge.AccessibleLabel",
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.Home_SummaryItem_Container.Home_GalleryRequestStatus_Badge.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Scn_HomeUIMockup",
-                "type": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Summary_Gallery.Home_SummaryItem_Container.Home_GalleryRequestType_Badge"
+                "type": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.Home_SummaryItem_Container.Home_GalleryRequestStatus_Badge"
               }
             }
           ],
@@ -2504,19 +2504,109 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Summary_Gallery.Home_SummaryItem_Container.Home_GalleryRequestStatus_Badge.AccessibleLabel"
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.Home_SummaryItem_Container.Home_GalleryRequestType_Badge.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Summary_Gallery.Home_SummaryItem_Container.Home_GalleryRequestStatus_Badge.AccessibleLabel",
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.Home_SummaryItem_Container.Home_GalleryRequestType_Badge.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Scn_HomeUIMockup",
-                "type": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Summary_Gallery.Home_SummaryItem_Container.Home_GalleryRequestStatus_Badge"
+                "type": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.Home_SummaryItem_Container.Home_GalleryRequestType_Badge"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_GalleryHeader_Contianer.Home_HeaderFilter_Button.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_GalleryHeader_Contianer.Home_HeaderFilter_Button.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Scn_HomeUIMockup",
+                "type": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_GalleryHeader_Contianer.Home_HeaderFilter_Button"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_GalleryHeader_Contianer.Home_HeaderFilter_Button.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_GalleryHeader_Contianer.Home_HeaderFilter_Button.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "Scn_HomeUIMockup",
+                "type": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_GalleryHeader_Contianer.Home_HeaderFilter_Button"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 1
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.Home_GalleryItemSelection_Button.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.Home_GalleryItemSelection_Button.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Scn_HomeUIMockup",
+                "type": "Scn_HomeUIMockup.Home_Main_Container.Home_MainGrid_Container.Home_Gallery_Container.Home_Summary_Gallery.Home_GalleryItemSelection_Button"
               }
             }
           ],
@@ -2714,19 +2804,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Scn_Home.OnVisible"
+                  "fullyQualifiedName": "Scn_HomeUIMockup.OnVisible"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Scn_Home.OnVisible",
+                  "fullyQualifiedName": "Scn_HomeUIMockup.OnVisible",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "OnVisible",
-                "module": "Scn_Home",
-                "type": "Scn_Home"
+                "module": "Scn_HomeUIMockup",
+                "type": "Scn_HomeUIMockup"
               }
             }
           ],
@@ -2774,19 +2864,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Scn_Home.OnVisible"
+                  "fullyQualifiedName": "Scn_HomeUIMockup.OnVisible"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Scn_Home.OnVisible",
+                  "fullyQualifiedName": "Scn_HomeUIMockup.OnVisible",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "OnVisible",
-                "module": "Scn_Home",
-                "type": "Scn_Home"
+                "module": "Scn_HomeUIMockup",
+                "type": "Scn_HomeUIMockup"
               }
             }
           ],
@@ -2817,6 +2907,156 @@
                 "member": "OnVisible",
                 "module": "Scn_Home",
                 "type": "Scn_Home"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-CollectDelegatableDataSource",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.OnVisible"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.OnVisible",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "OnVisible",
+                "module": "Scn_HomeUIMockup",
+                "type": "Scn_HomeUIMockup"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-CollectDelegatableDataSource",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_Home.OnVisible"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_Home.OnVisible",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "OnVisible",
+                "module": "Scn_Home",
+                "type": "Scn_Home"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-CollectDelegatableDataSource",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.OnVisible"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.OnVisible",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "OnVisible",
+                "module": "Scn_HomeUIMockup",
+                "type": "Scn_HomeUIMockup"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-CollectDelegatableDataSource",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_Home.OnVisible"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_Home.OnVisible",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "OnVisible",
+                "module": "Scn_Home",
+                "type": "Scn_Home"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-CollectDelegatableDataSource",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.OnVisible"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Scn_HomeUIMockup.OnVisible",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "OnVisible",
+                "module": "Scn_HomeUIMockup",
+                "type": "Scn_HomeUIMockup"
               }
             }
           ],

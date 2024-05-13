@@ -33,8 +33,9 @@ Scn_Project As screen:
             FontColor: =
             Height: =32
             OnSelect: |-
-                =Navigate(Scn_Home,ScreenTransition.Fade);
-                ResetForm(Form_Project)
+                =Navigate(Scn_HomeUIMockup,ScreenTransition.Fade);
+                ResetForm(Form_Project);
+                Clear(ResourceAllocationsForThiReq)
             Text: ="Back"
             Width: =96
             X: =39
@@ -141,7 +142,7 @@ Scn_Project As screen:
             LayoutMinHeight: =250
             LayoutMinWidth: =400
             OnSuccess: |-
-                =Navigate(Scn_Home,ScreenTransition.Fade);
+                =Navigate(Scn_HomeUIMockup,ScreenTransition.Fade);
                 If(
                     varFormMode = FormMode.New,
                     Notify(

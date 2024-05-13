@@ -31,8 +31,9 @@ Scn_RCPS As screen:
             FontColor: =
             Height: =32
             OnSelect: |
-                =ResetForm(Form_RCPS);
-                Navigate(Scn_Home,ScreenTransition.Fade);
+                =Navigate(Scn_HomeUIMockup,ScreenTransition.Fade);
+                ResetForm(Form_RCPS);
+                Clear(ResourceAllocationsForThiReq)
             Text: ="Back"
             Width: =96
             X: =39
@@ -142,7 +143,7 @@ Scn_RCPS As screen:
             LayoutMinHeight: =230
             LayoutMinWidth: =400
             OnSuccess: |-
-                =Navigate(Scn_Home,ScreenTransition.Fade);
+                =Navigate(Scn_HomeUIMockup,ScreenTransition.Fade);
                 If(
                     varFormMode = FormMode.New,
                     Notify(

@@ -1,6 +1,57 @@
 Scn_HomeUIMockup As screen:
     Fill: =RGBA(0, 0, 0, 1)
     LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnVisible: |+
+        =Set(enableEditButton,false);
+        Set(showResourceAllocateContainer,false);
+        Set(RequestRecordNPI, Blank());
+        Set(RequestRecordProject, Blank());
+        Set(RequestRecordGeneral, Blank());
+        Set(RequestRecordRCPS, Blank());
+        Set(Padding,15);
+        Set(varFormMode, Blank());
+        
+        // setting empty lookup variables
+        Set(selectedBusinessUnit, Blank());
+        Set(selectedPerson, Blank());
+        Set(selectedDepartment, Blank());
+        
+        ClearCollect(BUs, 'Business Unit');
+        Clear(ResourceAllocationsForThiReq);
+        Clear(ResourceAllocationsForThiReqNonViz);
+        ClearCollect(RequestTypes, 
+        {Label: "NPI", Desc:"Select this option if you need assistance with an NPI.", Image: undraw_os_upgrade_re_r0qa},
+        {Label: "Project", Desc:"Select this option if you need a resource for a JJPS, change control or other minor Projects.", Image: undraw_projections_re_ulc6},
+        {Label: "RCPS", Desc:"Select this option if you need resource(s) for an RCPS.", Image: undraw_searching_re_3ra9},
+        {Label: "General", Desc:"Select this option if you require resources for other types of tasks.", Image: undraw_my_answer_re_k4dv}
+        );
+        
+        
+        ClearCollect(NPICollection, NPI);
+        ClearCollect( NPICollection, AddColumns( NPI, RecordType, "NPI" ));
+        
+        
+        ClearCollect(ProjectCollection, Project);
+        ClearCollect(ProjectCollection,AddColumns( Project, RecordType, "Project"));
+        
+        ClearCollect(GeneralCollection, General);
+        ClearCollect(GeneralCollection,AddColumns( General, RecordType, "General"));
+        
+        ClearCollect(RCPSCollection, RCPS);
+        ClearCollect(RCPSCollection,AddColumns( RCPS, RecordType, "RCPS"));
+        
+        
+        
+        ClearCollect(Summary,NPICollection);
+        Collect(Summary,ProjectCollection);
+        Collect(Summary,GeneralCollection);
+        Collect(Summary,RCPSCollection);
+        
+        
+        
+        
+        
+        
 
     Home_Footer_Container As groupContainer.manualLayoutContainer:
         DropShadow: =DropShadow.Light
@@ -176,11 +227,11 @@ Scn_HomeUIMockup As screen:
                     FontColor: =
                     Height: =23
                     OnSelect: |-
-                        =/*If(SummariesRequest_Table.Selected.RecordType="NPI",Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordNPI,LookUp(NPI,ID=RequestToModify));Navigate(Scn_NPI),
-                        If(SummariesRequest_Table.Selected.RecordType="Project",Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordProject,LookUp(Project,ID=RequestToModify));Navigate(Scn_Project),
-                        If(SummariesRequest_Table.Selected.RecordType="General",Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordGeneral,LookUp(General,ID=RequestToModify));Navigate(Scn_General),
-                        Set(RequestToModify,SummariesRequest_Table.Selected.ID);Set(RequestRecordRCPS,LookUp(RCPS,ID=RequestToModify));Navigate(Scn_RCPS))));
-                        Set(showResourceAllocateContainer,true);*/
+                        =If(Home_Summary_Gallery.Selected.RecordType="NPI",Set(RequestToModify,Home_Summary_Gallery.Selected.ID);Set(RequestRecordNPI,LookUp(NPI,ID=RequestToModify));Navigate(Scn_NPI),
+                        If(Home_Summary_Gallery.Selected.RecordType="Project",Set(RequestToModify,Home_Summary_Gallery.Selected.ID);Set(RequestRecordProject,LookUp(Project,ID=RequestToModify));Navigate(Scn_Project),
+                        If(Home_Summary_Gallery.Selected.RecordType="General",Set(RequestToModify,Home_Summary_Gallery.Selected.ID);Set(RequestRecordGeneral,LookUp(General,ID=RequestToModify));Navigate(Scn_General),
+                        Set(RequestToModify,Home_Summary_Gallery.Selected.ID);Set(RequestRecordRCPS,LookUp(RCPS,ID=RequestToModify));Navigate(Scn_RCPS))));
+                        Set(showResourceAllocateContainer,true);
                     Text: ="Edit Request"
                     Width: =153
                     X: =64
@@ -445,113 +496,254 @@ Scn_HomeUIMockup As screen:
             RadiusTopRight: =4
             ZIndex: =3
 
-            Home_Summary_Gallery As gallery.galleryVertical:
-                AlignInContainer: =AlignInContainer.Start
-                BorderColor: =RGBA(245, 245, 245, 1)
-                DelayItemLoading: =true
+            Home_Gallery_Container As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
                 FillPortions: =0
-                Items: =Summary
-                Layout: =Layout.Vertical
-                LayoutMinHeight: =287
-                LayoutMinWidth: =320
-                LoadingSpinner: =LoadingSpinner.Data
-                TemplatePadding: =20
-                TemplateSize: |
-                    =50
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingTop: =20
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
                 Width: =1200
                 ZIndex: =1
 
-                Home_SummaryItem_Container As groupContainer.verticalAutoLayoutContainer:
+                Home_GalleryHeader_Contianer As groupContainer.horizontalAutoLayoutContainer:
                     DropShadow: =DropShadow.Light
-                    Height: =Parent.TemplateHeight
-                    LayoutGap: =20
+                    Fill: =RGBA(0, 51, 102, 1)
+                    FillPortions: =0
+                    Height: =50
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
                     LayoutMode: =LayoutMode.Auto
-                    PaddingRight: =30
                     RadiusBottomLeft: =4
                     RadiusBottomRight: =4
                     RadiusTopLeft: =4
                     RadiusTopRight: =4
-                    Width: =Parent.TemplateWidth
                     ZIndex: =1
 
-                    Home_GelleryTitle_Text As Text:
+                    Home_HeaderTitle_Contianer As Text:
                         Align: ='TextCanvas.Align'.Center
                         AlignInContainer: =AlignInContainer.Stretch
                         DisplayMode: =DisplayMode.Edit
                         FillPortions: =1
+                        FontColor: =RGBA(255, 255, 255, 1)
                         Height: =32
                         LayoutMinHeight: =32
                         LayoutMinWidth: =96
-                        Text: =ThisItem.Title
+                        Text: ="Title"
                         Width: =96
                         X: =0
                         Y: =0
                         ZIndex: =1
 
-                    Home_GalleryDepartment_Title As Text:
+                    Home_HeaderDepartment_Contianer As Text:
                         Align: ='TextCanvas.Align'.Center
                         AlignInContainer: =AlignInContainer.Stretch
                         DisplayMode: =DisplayMode.Edit
                         FillPortions: =1
-                        FontColor: =
+                        FontColor: =RGBA(255, 255, 255, 1)
                         Height: =32
                         LayoutMinHeight: =32
                         LayoutMinWidth: =96
-                        Text: |-
-                            =Concatenate("🏤 Department: ", ThisItem.department)
+                        Text: ="Department"
                         Width: =96
                         X: =0
                         Y: =0
                         ZIndex: =2
 
-                    Home_GalleryModifiedOn_Title As Text:
+                    Home_HeaderModifiedOn_Contianer As Text:
                         Align: ='TextCanvas.Align'.Center
                         AlignInContainer: =AlignInContainer.Stretch
                         DisplayMode: =DisplayMode.Edit
                         FillPortions: =1
-                        FontColor: =
+                        FontColor: =RGBA(255, 255, 255, 1)
                         Height: =32
                         LayoutMinHeight: =32
                         LayoutMinWidth: =96
-                        Text: =Concatenate("📅",ThisItem.Created)
+                        Text: ="Modified On"
                         Width: =96
                         X: =0
                         Y: =0
                         ZIndex: =3
 
-                    Home_GalleryRequestType_Badge As Badge:
-                        AlignInContainer: =AlignInContainer.Center
-                        Content: =ThisItem.RecordType
+                    Home_HeaderRequestType_Contianer As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Stretch
                         DisplayMode: =DisplayMode.Edit
                         FillPortions: =1
+                        FontColor: =RGBA(255, 255, 255, 1)
                         Height: =32
                         LayoutMinHeight: =32
-                        LayoutMinWidth: =32
-                        Width: =32
+                        LayoutMinWidth: =96
+                        Text: ="Request Type"
+                        Width: =96
                         X: =0
                         Y: =0
                         ZIndex: =4
 
-                    Home_GalleryRequestStatus_Badge As Badge:
-                        AlignInContainer: =AlignInContainer.Center
-                        BasePaletteColor: =
-                        Content: =ThisItem.requeststatus
+                    Home_HeaderRequestStatus_Contianer As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Stretch
                         DisplayMode: =DisplayMode.Edit
                         FillPortions: =1
-                        FontColor: =
+                        FontColor: =RGBA(255, 255, 255, 1)
                         Height: =32
                         LayoutMinHeight: =32
-                        LayoutMinWidth: =32
-                        Width: =32
+                        LayoutMinWidth: =96
+                        Text: ="Request Status"
+                        Width: =96
                         X: =0
                         Y: =0
                         ZIndex: =5
+
+                    Home_HeaderFilter_Button As icon.Filter:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                        DisabledColor: =RGBA(225, 223, 221, 1)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =4
+                        Height: =30
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(16, 110, 190, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Icon: =Icon.Filter
+                        OnSelect: =Set(ShowPanel,!ShowPanel)
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedColor: =RGBA(16, 110, 190, 1)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        Width: =25
+                        ZIndex: =6
+
+                Home_Summary_Gallery As gallery.galleryVertical:
+                    AlignInContainer: =AlignInContainer.Start
+                    BorderColor: =RGBA(245, 245, 245, 1)
+                    DelayItemLoading: =true
+                    Items: =Summary 
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =287
+                    LayoutMinWidth: =320
+                    LoadingSpinner: =LoadingSpinner.Data
+                    OnSelect: |-
+                        =Set(enableEditButton,true);
+                        Set(enableResourceAllocateButton,true);
+                    TemplatePadding: =20
+                    TemplateSize: |
+                        =50
+                    Width: =1200
+                    ZIndex: =2
+
+                    Home_SummaryItem_Container As groupContainer.verticalAutoLayoutContainer:
+                        DropShadow: =DropShadow.Light
+                        Height: =Parent.TemplateHeight
+                        LayoutGap: =20
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingRight: =30
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Width: =Parent.TemplateWidth
+                        ZIndex: =1
+
+                        Home_GelleryTitle_Text As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            AlignInContainer: =AlignInContainer.Stretch
+                            DisplayMode: =DisplayMode.Edit
+                            FillPortions: =1
+                            FontColor: =
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =ThisItem.Title
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                        Home_GalleryDepartment_Title As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            AlignInContainer: =AlignInContainer.Stretch
+                            DisplayMode: =DisplayMode.Edit
+                            FillPortions: =1
+                            FontColor: =
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: |-
+                                =Concatenate("🏤 Department: ", ThisItem.department)
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =3
+
+                        Home_GalleryModifiedOn_Title As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            AlignInContainer: =AlignInContainer.Stretch
+                            DisplayMode: =DisplayMode.Edit
+                            FillPortions: =1
+                            FontColor: =
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =Concatenate("📅",ThisItem.Created)
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =4
+
+                        Home_GalleryRequestType_Badge As Badge:
+                            AlignInContainer: =AlignInContainer.Center
+                            BasePaletteColor: =
+                            Content: =ThisItem.RecordType
+                            DisplayMode: =DisplayMode.Edit
+                            FillPortions: =1
+                            FontColor: =
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =32
+                            Width: =32
+                            X: =0
+                            Y: =0
+                            ZIndex: =5
+
+                        Home_GalleryRequestStatus_Badge As Badge:
+                            AlignInContainer: =AlignInContainer.Center
+                            BasePaletteColor: =
+                            Content: =ThisItem.requeststatus
+                            DisplayMode: =DisplayMode.Edit
+                            FillPortions: =1
+                            FontColor: =
+                            Height: =32
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =32
+                            Width: =32
+                            X: =0
+                            Y: =0
+                            ZIndex: =6
+
+                    Home_GalleryItemSelection_Button As Button:
+                        Appearance: ='ButtonCanvas.Appearance'.Subtle
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =Parent.TemplateHeight
+                        OnSelect: =Select(Parent)
+                        Text: =""
+                        Width: =Parent.TemplateWidth
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
 
             Home_Filter_Container As groupContainer.verticalAutoLayoutContainer:
                 AlignInContainer: =AlignInContainer.SetByContainer
                 DropShadow: =DropShadow.ExtraBold
                 FillPortions: =0
-                Height: =Home_Summary_Gallery.Height
+                Height: =Home_Summary_Gallery.Height + Home_GalleryHeader_Contianer.Height
                 LayoutDirection: =LayoutDirection.Vertical
                 LayoutMinHeight: =100
                 LayoutMinWidth: =250
@@ -560,8 +752,22 @@ Scn_HomeUIMockup As screen:
                 RadiusBottomRight: =4
                 RadiusTopLeft: =4
                 RadiusTopRight: =4
+                Visible: =ShowPanel
                 Width: =300
-                ZIndex: =2
+                ZIndex: =3
+
+                TextCanvas4 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    AlignInContainer: =AlignInContainer.Stretch
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
 
     Greyout As label:
         BorderColor: =RGBA(0, 0, 0, 0)
