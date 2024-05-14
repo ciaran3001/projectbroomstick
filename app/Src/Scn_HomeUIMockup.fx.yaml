@@ -634,7 +634,7 @@ Scn_HomeUIMockup As screen:
 
                 Home_GalleryHeader_Contianer As groupContainer.horizontalAutoLayoutContainer:
                     DropShadow: =DropShadow.Light
-                    Fill: =RGBA(235, 23, 0, 1)
+                    Fill: =RGBA(0, 51, 102, 1)
                     FillPortions: =0
                     Height: =50
                     LayoutMinHeight: =100
