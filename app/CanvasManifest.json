@@ -11,7 +11,7 @@
   },
   "Properties": {
     "AppCreationSource": "AppFromDataV2",
-    "AppDescription": "Filters V2",
+    "AppDescription": "",
     "AppPreviewFlagsMap": {
       "aibuilderserviceenrollment": false,
       "allowmultiplescreensincanvaspages": false,
