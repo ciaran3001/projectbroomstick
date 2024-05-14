@@ -161,7 +161,8 @@ Scn_HomeUIMockup As screen:
                 ZIndex: =1
 
                 create_new_request_button_1 As Button:
-                    BasePaletteColor: =
+                    Appearance: ='ButtonCanvas.Appearance'.Primary
+                    BasePaletteColor: =RGBA(235, 23, 0, 1)
                     DisplayMode: =DisplayMode.Edit
                     FontColor: =
                     Height: =23
@@ -222,7 +223,8 @@ Scn_HomeUIMockup As screen:
                 ZIndex: =2
 
                 edit_existing_request_button_1 As Button:
-                    BasePaletteColor: =
+                    Appearance: ='ButtonCanvas.Appearance'.Primary
+                    BasePaletteColor: =RGBA(235, 23, 0, 1)
                     DisplayMode: =If(enableEditButton,DisplayMode.Edit,DisplayMode.Disabled)
                     FontColor: =
                     Height: =23
@@ -503,6 +505,7 @@ Scn_HomeUIMockup As screen:
                 LayoutMinHeight: =100
                 LayoutMinWidth: =250
                 LayoutMode: =LayoutMode.Auto
+                PaddingRight: =10
                 PaddingTop: =20
                 RadiusBottomLeft: =4
                 RadiusBottomRight: =4
@@ -511,19 +514,135 @@ Scn_HomeUIMockup As screen:
                 Width: =1200
                 ZIndex: =1
 
-                Home_GalleryHeader_Contianer As groupContainer.horizontalAutoLayoutContainer:
+                Home_AppliedFilters_Container As groupContainer.horizontalAutoLayoutContainer:
                     DropShadow: =DropShadow.Light
-                    Fill: =RGBA(0, 51, 102, 1)
                     FillPortions: =0
                     Height: =50
                     LayoutMinHeight: =100
                     LayoutMinWidth: =250
                     LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =30
                     RadiusBottomLeft: =4
                     RadiusBottomRight: =4
                     RadiusTopLeft: =4
                     RadiusTopRight: =4
+                    Visible: =If(!IsBlank(Home_FilterTitle_TextInput.Value) || !IsBlank(Home_RequestType_Combobox.Selected.Value) || !IsBlank(Home_RequestStatus_Combobox.Selected.Value),true,false)
                     ZIndex: =1
+
+                    Home_AppliedFIlter_Label As Text:
+                        Align: ='TextCanvas.Align'.Start
+                        AlignInContainer: =AlignInContainer.Stretch
+                        DisplayMode: =DisplayMode.Edit
+                        Height: =32
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Applied Filters ➔"
+                        Width: =200
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                    Home_AppliedFIlterRequestTitle_Button As button:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Fill: =RGBA(0, 51, 102, 1)
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =30
+                        HoverBorderColor: =RGBA(17, 61, 15, 1)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =RGBA(71, 158, 245, 1)
+                        OnSelect: =Reset(Home_FilterTitle_TextInput)
+                        PressedBorderColor: =RGBA(45, 128, 40, 1)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(15, 108, 189, 1)
+                        RadiusBottomLeft: =20
+                        RadiusBottomRight: =20
+                        RadiusTopLeft: =20
+                        RadiusTopRight: =20
+                        Size: =10
+                        Text: |-
+                            ="(X) Title: " & Home_FilterTitle_TextInput.Value
+                        Visible: =!IsBlank(Home_FilterTitle_TextInput.Value)
+                        Width: =250
+                        ZIndex: =2
+
+                    Home_AppliedFIlterRequestType_Button As button:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Fill: =RGBA(0, 51, 102, 1)
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =30
+                        HoverBorderColor: =RGBA(17, 61, 15, 1)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =RGBA(15, 84, 140, 1)
+                        OnSelect: =Reset(Home_RequestType_Combobox)
+                        PressedBorderColor: =RGBA(45, 128, 40, 1)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(15, 108, 189, 1)
+                        RadiusBottomLeft: =20
+                        RadiusBottomRight: =20
+                        RadiusTopLeft: =20
+                        RadiusTopRight: =20
+                        Size: =10
+                        Text: |-
+                            ="(X) Title: " & Home_RequestType_Combobox.Selected.Value
+                        Visible: =!IsBlank(Home_RequestType_Combobox.Selected.Value)
+                        Width: =250
+                        ZIndex: =3
+
+                    Home_AppliedFIlterRequestStatus_Button As button:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Fill: =RGBA(0, 51, 102, 1)
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =30
+                        HoverBorderColor: =RGBA(17, 61, 15, 1)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =RGBA(15, 84, 140, 1)
+                        OnSelect: =Reset(Home_RequestStatus_Combobox)
+                        PressedBorderColor: =RGBA(45, 128, 40, 1)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(15, 108, 189, 1)
+                        RadiusBottomLeft: =20
+                        RadiusBottomRight: =20
+                        RadiusTopLeft: =20
+                        RadiusTopRight: =20
+                        Size: =10
+                        Text: |-
+                            ="(X) Title: " & Home_RequestStatus_Combobox.Selected.Value
+                        Visible: =!IsBlank(Home_RequestStatus_Combobox.Selected.Value)
+                        Width: =250
+                        ZIndex: =4
+
+                Home_GalleryHeader_Contianer As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    Fill: =RGBA(235, 23, 0, 1)
+                    FillPortions: =0
+                    Height: =50
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingRight: =20
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    ZIndex: =2
 
                     Home_HeaderTitle_Label As Text:
                         Align: ='TextCanvas.Align'.Center
@@ -640,7 +759,7 @@ Scn_HomeUIMockup As screen:
                         =50
                     Transition: =Transition.Pop
                     Width: =1200
-                    ZIndex: =2
+                    ZIndex: =3
 
                     Home_SummaryItem_Container As groupContainer.verticalAutoLayoutContainer:
                         DropShadow: =DropShadow.Light
@@ -648,7 +767,7 @@ Scn_HomeUIMockup As screen:
                         LayoutGap: =20
                         LayoutMode: =LayoutMode.Auto
                         PaddingLeft: =15
-                        PaddingRight: =30
+                        PaddingRight: =20
                         RadiusBottomLeft: =4
                         RadiusBottomRight: =4
                         RadiusTopLeft: =4
@@ -872,6 +991,8 @@ Scn_HomeUIMockup As screen:
 
                 Home_FilterReset_Button As Button:
                     AlignInContainer: =AlignInContainer.Center
+                    Appearance: ='ButtonCanvas.Appearance'.Primary
+                    BasePaletteColor: =RGBA(235, 23, 0, 1)
                     DisplayMode: =DisplayMode.Edit
                     Height: =32
                     LayoutMinHeight: =32
@@ -1024,7 +1145,7 @@ Scn_HomeUIMockup As screen:
                 ZIndex: =5
 
             ButtonCanvas2_1 As Button:
-                BasePaletteColor: =
+                BasePaletteColor: =RGBA(235, 23, 0, 1)
                 DisplayMode: =DisplayMode.Edit
                 FontColor: =
                 Height: =30
@@ -1063,14 +1184,14 @@ Scn_HomeUIMockup As screen:
 
         "Icon1_1 As icon.'3DPrinting'":
             BorderColor: =RGBA(0, 0, 0, 0)
-            Color: =RGBA(0, 120, 212, 1)
+            Color: =RGBA(39, 113, 194, 1)
             DisabledBorderColor: =RGBA(245, 245, 245, 1)
             DisabledColor: =RGBA(225, 223, 221, 1)
             DisabledFill: =RGBA(0, 0, 0, 0)
             FocusedBorderThickness: =4
             Height: =27
             HoverBorderColor: =RGBA(0, 0, 0, 0)
-            HoverColor: =RGBA(16, 110, 190, 1)
+            HoverColor: =RGBA(189, 49, 51, 1)
             HoverFill: =RGBA(0, 0, 0, 0)
             Icon: =Icon.Cancel
             OnSelect: =Set(ShowReqTypeModal,false);
