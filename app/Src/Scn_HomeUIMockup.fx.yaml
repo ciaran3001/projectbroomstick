@@ -194,7 +194,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
@@ -261,7 +261,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
@@ -293,7 +293,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
@@ -311,7 +311,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
@@ -329,7 +329,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
@@ -346,7 +346,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
@@ -364,7 +364,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
@@ -381,7 +381,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
@@ -399,7 +399,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
@@ -416,7 +416,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
@@ -435,7 +435,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
@@ -453,7 +453,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
@@ -472,7 +472,7 @@ Scn_HomeUIMockup As screen:
                     BorderColor: =RGBA(0, 0, 0, 0)
                     BorderStyle: =BorderStyle.None
                     BorderThickness: =2
-                    Color: =RGBA(50, 49, 48, 1)
+                    Color: =RGBA(0, 51, 102, 1)
                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                     DisabledColor: =RGBA(161, 159, 157, 1)
                     FocusedBorderThickness: =4
