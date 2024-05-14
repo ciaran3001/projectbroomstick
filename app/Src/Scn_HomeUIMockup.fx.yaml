@@ -525,7 +525,7 @@ Scn_HomeUIMockup As screen:
                     RadiusTopRight: =4
                     ZIndex: =1
 
-                    Home_HeaderTitle_Contianer As Text:
+                    Home_HeaderTitle_Label As Text:
                         Align: ='TextCanvas.Align'.Center
                         AlignInContainer: =AlignInContainer.Stretch
                         DisplayMode: =DisplayMode.Edit
@@ -534,13 +534,13 @@ Scn_HomeUIMockup As screen:
                         Height: =32
                         LayoutMinHeight: =32
                         LayoutMinWidth: =96
-                        Text: ="Title"
+                        Text: =If(!IsBlank(Home_FilterTitle_TextInput.Value),"🌪️ ") & "Request Title"
                         Width: =96
                         X: =0
                         Y: =0
                         ZIndex: =1
 
-                    Home_HeaderDepartment_Contianer As Text:
+                    Home_HeaderDepartment_Label As Text:
                         Align: ='TextCanvas.Align'.Center
                         AlignInContainer: =AlignInContainer.Stretch
                         DisplayMode: =DisplayMode.Edit
@@ -555,7 +555,7 @@ Scn_HomeUIMockup As screen:
                         Y: =0
                         ZIndex: =2
 
-                    Home_HeaderModifiedOn_Contianer As Text:
+                    Home_HeaderModifiedOn_Lable As Text:
                         Align: ='TextCanvas.Align'.Center
                         AlignInContainer: =AlignInContainer.Stretch
                         DisplayMode: =DisplayMode.Edit
@@ -570,7 +570,7 @@ Scn_HomeUIMockup As screen:
                         Y: =0
                         ZIndex: =3
 
-                    Home_HeaderRequestType_Contianer As Text:
+                    Home_HeaderRequestType_Label As Text:
                         Align: ='TextCanvas.Align'.Center
                         AlignInContainer: =AlignInContainer.Stretch
                         DisplayMode: =DisplayMode.Edit
@@ -579,13 +579,13 @@ Scn_HomeUIMockup As screen:
                         Height: =32
                         LayoutMinHeight: =32
                         LayoutMinWidth: =96
-                        Text: ="Request Type"
+                        Text: =If(!IsBlank(Home_RequestType_Combobox.Selected.Value),"🌪️ ") & "Request Type"
                         Width: =96
                         X: =0
                         Y: =0
                         ZIndex: =4
 
-                    Home_HeaderRequestStatus_Contianer As Text:
+                    Home_HeaderRequestStatus_Label As Text:
                         Align: ='TextCanvas.Align'.Center
                         AlignInContainer: =AlignInContainer.Stretch
                         DisplayMode: =DisplayMode.Edit
@@ -594,13 +594,13 @@ Scn_HomeUIMockup As screen:
                         Height: =32
                         LayoutMinHeight: =32
                         LayoutMinWidth: =96
-                        Text: ="Request Status"
+                        Text: =If(!IsBlank(Home_RequestStatus_Combobox.Selected.Value),"🌪️ ") & "Request Status"
                         Width: =96
                         X: =0
                         Y: =0
                         ZIndex: =5
 
-                    Home_HeaderFilter_Button As icon.Filter:
+                    Home_HeaderFilter_Icon As icon.Filter:
                         AlignInContainer: =AlignInContainer.Center
                         BorderColor: =RGBA(0, 0, 0, 0)
                         Color: =RGBA(255, 255, 255, 1)
@@ -624,7 +624,10 @@ Scn_HomeUIMockup As screen:
                     AlignInContainer: =AlignInContainer.Start
                     BorderColor: =RGBA(245, 245, 245, 1)
                     DelayItemLoading: =true
-                    Items: =Summary 
+                    Items: |-
+                        =Filter(Search(Summary,Home_FilterTitle_TextInput.Value,Title),
+                        RecordType = Home_RequestType_Combobox.Selected.Value || IsBlank(Home_RequestType_Combobox.Selected.Value),
+                        requeststatus = Home_RequestStatus_Combobox.Selected.Value || IsBlank(Home_RequestStatus_Combobox.Selected.Value))
                     Layout: =Layout.Vertical
                     LayoutMinHeight: =287
                     LayoutMinWidth: =320
@@ -752,7 +755,7 @@ Scn_HomeUIMockup As screen:
                             ZIndex: =6
 
                     Home_GalleryItemSelection_Button As Button:
-                        Appearance: ='ButtonCanvas.Appearance'.Outline
+                        Appearance: ='ButtonCanvas.Appearance'.Transparent
                         BasePaletteColor: =
                         DisplayMode: =DisplayMode.Edit
                         FontColor: =
@@ -770,6 +773,7 @@ Scn_HomeUIMockup As screen:
                 FillPortions: =0
                 Height: =Home_Summary_Gallery.Height + Home_GalleryHeader_Contianer.Height
                 LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =11
                 LayoutMinHeight: =100
                 LayoutMinWidth: =250
                 LayoutMode: =LayoutMode.Auto
@@ -781,18 +785,104 @@ Scn_HomeUIMockup As screen:
                 Width: =300
                 ZIndex: =3
 
-                TextCanvas4 As Text:
+                Home_FilterTitle_Label As Text:
                     Align: ='TextCanvas.Align'.Center
                     AlignInContainer: =AlignInContainer.Stretch
                     DisplayMode: =DisplayMode.Edit
+                    FontColor: =
                     Height: =32
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
+                    Text: ="Request Title"
                     VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
                     Width: =96
                     X: =0
                     Y: =0
                     ZIndex: =1
+
+                "Home_FilterTitle_TextInput As 'Text input'":
+                    AlignInContainer: =AlignInContainer.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Placeholder: ="🔎 Search In Request Title"
+                    Width: =260
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+                Home_FilterRequestStatus_Label As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    AlignInContainer: =AlignInContainer.Stretch
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Request Status"
+                    VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =3
+
+                Home_RequestType_Combobox As Combobox.pcfdataset:
+                    AlignInContainer: =AlignInContainer.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    InputTextPlaceholder: ="All"
+                    Items: =["NPI", "Project", "General", "RCPS"]
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Width: =260
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+                Home_FilterRequestTitle_Label As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    AlignInContainer: =AlignInContainer.Stretch
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: ="Request Type"
+                    VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =5
+
+                Home_RequestStatus_Combobox As Combobox.pcfdataset:
+                    AlignInContainer: =AlignInContainer.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    InputTextPlaceholder: ="All"
+                    Items: =["Requested", "Accepted", "Rejected", "Completed"]
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Width: =260
+                    X: =0
+                    Y: =0
+                    ZIndex: =6
+
+                Home_FilterReset_Button As Button:
+                    AlignInContainer: =AlignInContainer.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    OnSelect: |
+                        =Reset(Home_FilterTitle_TextInput);
+                        Reset(Home_RequestStatus_Combobox);
+                        Reset(Home_RequestType_Combobox)
+                    Text: ="Reset"
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =7
 
     Greyout As label:
         BorderColor: =RGBA(0, 0, 0, 0)

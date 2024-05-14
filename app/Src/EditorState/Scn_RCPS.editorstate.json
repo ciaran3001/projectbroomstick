@@ -9084,7 +9084,7 @@
       "MetaDataIDKey": "",
       "Name": "RCPS_ResourceAllocation_Effort_Input",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 0,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -9274,7 +9274,7 @@
       "MetaDataIDKey": "",
       "Name": "RCPS_ResourceAllocation_Effort_Label",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
