@@ -851,7 +851,8 @@ Scn_HomeUIMockup As screen:
                             Content: =ThisItem.RecordType
                             DisplayMode: =DisplayMode.Edit
                             FillPortions: =1
-                            FontColor: =
+                            FontColor: =RGBA(0, 0, 0, 1)
+                            FontWeight: =FontWeight.Normal
                             Height: =32
                             LayoutMinHeight: =32
                             LayoutMinWidth: =32
@@ -867,7 +868,8 @@ Scn_HomeUIMockup As screen:
                             Content: =ThisItem.requeststatus
                             DisplayMode: =DisplayMode.Edit
                             FillPortions: =1
-                            FontColor: =
+                            FontColor: =RGBA(0, 0, 0, 1)
+                            FontWeight: =FontWeight.Normal
                             Height: =32
                             LayoutMinHeight: =32
                             LayoutMinWidth: =32
