@@ -4008,7 +4008,8 @@
           "InvariantPropertyName": "Align",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
-        }
+        },
+        "FontColor"
       ],
       "DynamicProperties": [
         {
@@ -4084,6 +4085,11 @@
         {
           "Category": "Data",
           "PropertyName": "Align",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "FontColor",
           "RuleProviderType": "Unknown"
         },
         {
@@ -5976,7 +5982,7 @@
       "StyleName": "",
       "Type": "ControlInfo"
     },
-    "Home_FilterRequestTitle_Label": {
+    "Home_FilterRequestType_Label": {
       "AllowAccessToGlobals": true,
       "ControlPropertyState": [
         "Height",
@@ -6065,19 +6071,14 @@
       "IsLocked": false,
       "LayoutName": "",
       "MetaDataIDKey": "",
-      "Name": "Home_FilterRequestTitle_Label",
+      "Name": "Home_FilterRequestType_Label",
       "OptimizeForDevices": "Off",
       "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
           "Category": "Data",
-          "PropertyName": "Text",
-          "RuleProviderType": "Unknown"
-        },
-        {
-          "Category": "Data",
-          "PropertyName": "FontColor",
+          "PropertyName": "VerticalAlign",
           "RuleProviderType": "Unknown"
         },
         {
@@ -6087,12 +6088,12 @@
         },
         {
           "Category": "Data",
-          "PropertyName": "VerticalAlign",
+          "PropertyName": "FontColor",
           "RuleProviderType": "Unknown"
         },
         {
-          "Category": "Design",
-          "PropertyName": "Y",
+          "Category": "Data",
+          "PropertyName": "Text",
           "RuleProviderType": "Unknown"
         },
         {
@@ -6102,12 +6103,12 @@
         },
         {
           "Category": "Design",
-          "PropertyName": "Height",
+          "PropertyName": "Y",
           "RuleProviderType": "Unknown"
         },
         {
           "Category": "Design",
-          "PropertyName": "Width",
+          "PropertyName": "X",
           "RuleProviderType": "Unknown"
         },
         {
@@ -6117,7 +6118,12 @@
         },
         {
           "Category": "Design",
-          "PropertyName": "X",
+          "PropertyName": "Width",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Design",
+          "PropertyName": "Height",
           "RuleProviderType": "Unknown"
         }
       ],
@@ -6164,7 +6170,8 @@
           "InvariantPropertyName": "Appearance",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
-        }
+        },
+        "FontColor"
       ],
       "DynamicProperties": [
         {
@@ -6238,6 +6245,11 @@
         {
           "Category": "Data",
           "PropertyName": "Appearance",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "FontColor",
           "RuleProviderType": "Unknown"
         },
         {
@@ -6450,7 +6462,9 @@
           "InvariantPropertyName": "Placeholder",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
-        }
+        },
+        "BasePaletteColor",
+        "FontColor"
       ],
       "DynamicProperties": [
         {
@@ -6514,6 +6528,16 @@
         {
           "Category": "Data",
           "PropertyName": "Placeholder",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "BasePaletteColor",
+          "RuleProviderType": "Unknown"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "FontColor",
           "RuleProviderType": "Unknown"
         },
         {

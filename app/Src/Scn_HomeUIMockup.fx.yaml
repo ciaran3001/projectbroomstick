@@ -533,6 +533,7 @@ Scn_HomeUIMockup As screen:
                         Align: ='TextCanvas.Align'.Start
                         AlignInContainer: =AlignInContainer.Stretch
                         DisplayMode: =DisplayMode.Edit
+                        FontColor: =
                         Height: =32
                         LayoutMinHeight: =32
                         LayoutMinWidth: =96
@@ -928,7 +929,9 @@ Scn_HomeUIMockup As screen:
 
                 "Home_FilterTitle_TextInput As 'Text input'":
                     AlignInContainer: =AlignInContainer.Center
+                    BasePaletteColor: =
                     DisplayMode: =DisplayMode.Edit
+                    FontColor: =
                     Height: =32
                     LayoutMinHeight: =32
                     LayoutMinWidth: =320
@@ -938,7 +941,7 @@ Scn_HomeUIMockup As screen:
                     Y: =0
                     ZIndex: =2
 
-                Home_FilterRequestStatus_Label As Text:
+                Home_FilterRequestType_Label As Text:
                     Align: ='TextCanvas.Align'.Center
                     AlignInContainer: =AlignInContainer.Stretch
                     DisplayMode: =DisplayMode.Edit
@@ -946,7 +949,7 @@ Scn_HomeUIMockup As screen:
                     Height: =32
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
-                    Text: ="Request Status"
+                    Text: ="Request Type"
                     VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
                     Width: =96
                     X: =0
@@ -966,7 +969,7 @@ Scn_HomeUIMockup As screen:
                     Y: =0
                     ZIndex: =4
 
-                Home_FilterRequestTitle_Label As Text:
+                Home_FilterRequestStatus_Label As Text:
                     Align: ='TextCanvas.Align'.Center
                     AlignInContainer: =AlignInContainer.Stretch
                     DisplayMode: =DisplayMode.Edit
@@ -974,7 +977,7 @@ Scn_HomeUIMockup As screen:
                     Height: =32
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
-                    Text: ="Request Type"
+                    Text: ="Request Status"
                     VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
                     Width: =96
                     X: =0
@@ -999,6 +1002,7 @@ Scn_HomeUIMockup As screen:
                     Appearance: ='ButtonCanvas.Appearance'.Primary
                     BasePaletteColor: =RGBA(235, 23, 0, 1)
                     DisplayMode: =DisplayMode.Edit
+                    FontColor: =
                     Height: =32
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
